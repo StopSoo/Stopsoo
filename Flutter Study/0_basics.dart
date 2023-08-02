@@ -169,11 +169,11 @@ void main() {
 
     // 8. 조건문
     // 1) if문
-    int number = 3;
+    int num = 3;
 
-    if (number % 3 == 0) {
+    if (num % 3 == 0) {
     print('나머지가 0입니다.');
-    } else if (number % 3 == 1) {
+    } else if (num % 3 == 1) {
     print('나머지가 1입니다.');
     } else {
     print('나머지가 2입니다.');
@@ -181,7 +181,7 @@ void main() {
 
     // 2) switch문
     // 반드시 break를 사용해야 함
-    switch (number % 3) {
+    switch (num % 3) {
     case 0:
         print('나머지가 0입니다.');
         break;
@@ -199,15 +199,15 @@ void main() {
     // 9. loop문
     // 1) for loop
     int total = 0;
-    List<int> numbers = [1, 2, 3, 4, 5, 6];
+    List<int> numbers2 = [1, 2, 3, 4, 5, 6];
 
-    for (int i=0; i < numbers.length; i++) {
-    total += numbers[i];
+    for (int i=0; i < numbers2.length; i++) {
+    total += numbers2[i];
     }
     print(total);
 
     total = 0;
-    for (int number in numbers) {
+    for (int number in numbers2) {
     total += number;
     }
 
