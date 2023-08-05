@@ -25,7 +25,7 @@ def DFS(graph, start_node):
     # 시작 노드를 정하기
     next_visit.append(start_node)
 
-    # 방문할 노드가 남아 있다면
+    # 방문할 노드가 남아 있다면 계속 반복
     while next_visit:
         # 노드들 중 마지막 데이터를 추출 
         node = next_visit.pop()
@@ -33,7 +33,7 @@ def DFS(graph, start_node):
         if node not in visited:
             # 방문 목록에 추가
             visited.append(node)
-            next_visit.extend(graph[node])
+            next_visit.extend(graph[node])  # pop한 노드의 인접 리스트 원소들을 스택에 추가
     return visited
 
 # 2. 큐를 활용한 DFS 구현
