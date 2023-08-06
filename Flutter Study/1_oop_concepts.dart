@@ -34,7 +34,63 @@ void main() {
   print(blackPink.firstMember); // 첫 번째 멤버인 '지수'를 반환
   blackPink.firstMember = '박진영';  // setter를 사용해서 값을 변경
   print(blackPink.firstMember);
+
+  print('----- Idol -----');
+  Idol2 apink = Idol2(name: '에이핑크', membersCount: 5);
+  
+  apink.sayName;
+  apink.sayMembersCount();
+  print('');
+  // Idol class를 상속 받았기 때문에 Idol 클래스 내 함수들도 사용 가능
+  BoyGroup BTS = BoyGroup('BTS', 7);
+  BTS.sayMembersCount();
+  BTS.sayName();
+  print('');
+  
+  GirlGroup redVelvet = GirlGroup('Red Velvet', 5);
+  redVelvet.sayMembersCount();
+  redVelvet.sayName();
+  redVelvet.sayFemale();
+  
+  print('----- Type Comparison -----');
+  print(apink is Idol2);
+  print(apink is GirlGroup);
+  print(BTS is Idol2); // 상속 받은 클래스의 경우 부모 클래스에도 해당한다. 
+  print(BTS is BoyGroup);
+  print(BTS is GirlGroup); // 같은 부모 클래스를 상속 받은 자식 클래스들은 서로 상관이 없다.
+
+  TimesTwo tt = TimesTwo(2);
+  print(tt.calculate());
+  
+  TimesFour tf = TimesFour(2);
+  print(tf.calculate());
+
+  // Employee 객체 각각의 이름은 static 변수가 아니므로 다른 값을 가질 수 있다. 
+  Employee seulgi = Employee('슬기');
+  Employee.building = '오투타워';
+  seulgi.printNameAndBuilding();
+  
+  // 빌딩 이름은 static 변수로 객체에 귀속된다. 
+  Employee.printBuilding();
+
+  BoyGroup_ bts_ = BoyGroup_('Bts');
+  GirlGroup_ redVelvet_ = GirlGroup_('레드벨벳');
+  
+  bts_.sayName();
+  redVelvet_.sayName();
+  
+  // 타입 비교
+  print(bts_ is IdolInterface);
+  print(bts_ is BoyGroup_);
+
+  // generic 사용
+  Lecture<String, String> lecture1 = Lecture('123', 'lecture1');
+  lecture1.printIdType();
+  
+  Lecture<int, String> lecture2 = Lecture(123, 'lecture2');
+  lecture2.printIdType();
 }
+
 
 // class 선언
 class Idol {
@@ -86,4 +142,147 @@ class Idol {
 
   // private variable
   // 변수명 앞에 _를 붙여주면 외부 파일에서 접근할 수 없다.
+}
+
+// 상속 - inheritance
+// 상속을 받으면 부모 클래스의 모든 속성을 자식 클래스가 부여 받는다.
+// 부모 class
+class Idol2 {
+  // 이름
+  String name;
+  // 멤버 숫자
+  int membersCount;
+  // 생성자
+  Idol2({
+    // named parameter
+    required this.name,
+    required this.membersCount,
+  });
+  
+  void sayName() {
+    print('저는 ${this.name}입니다.');
+  }
+  
+  void sayMembersCount() {
+    print('${this.name}은 ${this.membersCount}명의 멤버가 있습니다.');
+  }  
+}
+
+// 자식 class => extends 키워드를 사용
+class BoyGroup extends Idol2 {
+  // 생성자
+  // super 키워드를 사용하여 각 파라미터에 값을 넣어줌
+  BoyGroup (
+    String name,
+    int membersCount,
+  ): super (
+          name: name,
+          membersCount: membersCount,
+          );
+  
+  void sayMale() {
+    print('저는 남자 아이돌입니다.');
+  }
+}
+
+class GirlGroup extends Idol2 {
+  GirlGroup(
+    String name,
+    int membersCount,
+  ): super (name: name, membersCount: membersCount);
+  
+  void sayFemale() {
+    print('저는 여자 아이돌입니다.');
+  }
+}
+
+// method - function (class 내부에 있는 함수)
+// override - 덮어쓰다 (우선시하다)
+class TimesTwo {
+  final int number;
+  // 생성자
+  TimesTwo (
+    this.number,
+  );
+  // method
+  int calculate() {
+    return number * 2;
+  }
+}
+
+class TimesFour extends TimesTwo {
+  TimesFour (
+    int number
+  ) : super(number);
+  
+  @override // 오버라이딩 키워드
+  int calculate() {
+    // 정석은 super.number이지만 this.number 해도 상관 없다.
+    // or super.calcalculate()라고 해도 된다.                                        
+    return number * 4;
+  }
+}
+
+class Employee {
+  // static은 instance에 귀속되지 않고 class에 귀속된다.
+  // 객체에 상관 없이 같은 값을 가진다. 
+  static String? building;
+  final String name;
+  
+  Employee (
+    this.name
+  );
+  
+  void printNameAndBuilding() {
+    print('제 이름은 $name입니다. $building 건물에서 근무하고 있습니다.');
+  }
+  
+  static void printBuilding() {
+    print('저는 $building 건물에서 근무 중입니다.');
+  }
+}
+
+// interface
+// 특수한 구조를 강요
+// instance화를 막기 위해 abstract 키워드를 사용한다. => body 지우기 가능
+abstract class IdolInterface {
+  String name;
+  
+  IdolInterface (this.name);
+  
+  void sayName();  // 틀만 잡아놓는 거라 코드가 필요X
+}
+
+// interface를 사용할 때는 implements 키워드를 사용한다.
+// 원래 interface와 구조를 맞춰야 한다. 
+class BoyGroup_ implements IdolInterface {
+  String name;
+  
+  BoyGroup_(this.name);
+  
+  void sayName() {
+    print('제 이름은 $name입니다.');
+  }
+}
+
+class GirlGroup_ implements IdolInterface {
+  String name;
+  
+  GirlGroup_(this.name);
+  
+  void sayName() {
+    print('제 이름은 $name입니다.');
+  }
+}
+
+// generic - 타입을 외부에서 받을 때 사용
+class Lecture<T, X> {
+  final T id;
+  final X name;
+  
+  Lecture(this.id, this.name);
+  
+  void printIdType() {
+    print(id.runtimeType);
+  }
 }
