@@ -1,14 +1,12 @@
 // dart 3.0 update
 
-class Idol {  // for ex
+class Idol {
+  // for ex
   final String nameI;
   final int ageI;
 
   // constructor
-  Idol({
-    required this.nameI,
-    required this.ageI
-  });
+  Idol({required this.nameI, required this.ageI});
 }
 
 void main() {
@@ -55,7 +53,6 @@ void main() {
   print(nameM);
   print(ageM);
 
-
   // rest matching
   // 중간 원소들을 생략할 때 ...를 사용
   // 단 한 번만 사용할 수 있다 (!)
@@ -69,7 +66,6 @@ void main() {
   final [xx, yy, ...rest, zz] = numbers;
   print(rest); // 2와 8 사이에 있는 [3, 4, 5, 6, 7]이 출력됨
 
-
   // ignore
   // distructuring을 이용하는데 특정한 원소는 무시하고 싶을 때 _를 사용한다.
   final [xxx, _, yyy, ...rest2, zzz, _] = numbers;
@@ -78,13 +74,39 @@ void main() {
   print(rest2);
   print(zzz);
 
-
   // Validation
   // 패턴 매칭으로 validation 가능
   final minji = ('민지', 20);
   final (name_m as String, age_m as int) = minji;
-  
+  print(name);
+  print(age);
 
+  // switch
+  switcher(['1', '2']);
+  switcher([1, 2]);
+  switcher([1, 2, 3]);
+  switcher([4, 5, 6]);
+  switcher([4, 5, 6, 7]);
+
+  print(switcher2(5, true));
+
+  // loop에서 pattern matching 사용하기
+  final List<Map<String, dynamic>> members = [
+    {'name': '민지', 'age': 20},
+    {'name': '해린', 'age': 19}
+  ];
+  // 원래 loop 형태
+  for (final member in members) {
+    print(member['name']);
+    print(member['age']);
+  }
+  // pattern matching 사용
+  for (var {'name': name, 'age': age} in members) {
+    print(name);
+    print(age);
+  }
+
+  ifMatcher();
 }
 
 // Record
@@ -159,3 +181,66 @@ List<({String name, int age})> getNewJeansWithType3() {
     )
   ];
 }
+
+// switch
+void switcher(dynamic anything) {
+  switch (anything) {
+    case 'aaa':
+      print('match: aaa');
+    case ['1', '2']:
+      print('match: [1, 2]');
+    case [_, _, _]: // 어떠한 자료형이라도 가능
+      print('match: [_, _, _]');
+    case [int a, int b]:
+      print('match: [int $a, int $b]');
+    case < 10 && > 5: // 이렇게 대소 관계를 표현할 수 있다는 걸 알아둘 것 !
+      print('match: < 10 && > 5');
+    default:
+      print('no match');
+  }
+}
+
+// arrow 함수를 사용한 switch문
+// switcher2는 switch문을 반환하고, switch문은 경우에 따라 다음과 같은 string을 반환한다.
+String switcher2(dynamic val, bool condition) => switch (val) {
+      5 => 'match: 5',
+      7 when condition => 'match 7 and true', // condition 조건 추가
+      _ => 'no match' // default
+    };
+
+// if
+void ifMatcher() {
+  final MinJi = {'name': '민지', 'age': 20};
+  if (MinJi case {'name': String name, 'age': int age}) {
+    print(name);
+    print(age);
+  }
+}
+
+// 아래 내용은 모두 다른 파일에서 클래스를 불러왔을 때 해당되는 내용 !!
+// final로 클래스를 선언하면
+// extends, implement, 또는 mixin으로 사용이 불가능하다.
+
+// base로 클래스를 선언하면 extends는 가능하지만 implement는 불가능하다. 
+// base, sealed, final로 선언된 클래스만 extends가 가능하다. 
+
+// interface로 선언하면 implement만 가능하다.
+
+// sealed 클래스는 abstract이면서 final이다.
+// 그리고 패턴매칭을 할 수 있도록 해준다.
+// 매칭이 안 된 클래스가 있다면 에러 발생 !
+
+// mixin 클래스
+// 1. mixin 클래스는 extends나 with를 사용할 수 없다. 
+//    그렇기 때문에 mixin class도 마찬가지로 사용 불가능하다. 
+// 2. 클래스는 on 키워드를 사용할 수 없다. 그렇기 때문에 Mixin class도 on 키워드를 사용할 수 앖다. 
+final class Person {
+  final String name;
+  final int age;
+
+  Person({
+    required this.name,
+    required this.age
+  });
+}
+
