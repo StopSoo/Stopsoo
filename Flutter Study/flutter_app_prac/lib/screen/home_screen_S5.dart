@@ -1,7 +1,8 @@
+// Section 5 (Row and Column)
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreenS5 extends StatelessWidget {
+  const HomeScreenS5({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
