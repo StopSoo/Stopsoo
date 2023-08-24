@@ -10,7 +10,7 @@ Future<void> main() async {
   // 미래에 받아올 값, 아래와 같이 설정 가능
   Future<String> name = Future.value('정지수');
   Future<int> number = Future.value(25);
-  Future<bool> isTure = Future.value(true);
+  Future<bool> isTrue = Future.value(true);
 
   print('함수 시작 !');
   // delayed
@@ -47,6 +47,7 @@ Future<void> main() async {
 void addNumbers(int number1, int number2) {
   print('계산 중: $number1 + $number2');
   print('계산 완료: ${number1 + number2}');
+  print('---------------------');
 }
 
 // delayed를 사용한 함수
@@ -59,6 +60,7 @@ void addNumbers2(int number1, int number2) {
   });
 
   print('함수 완료 !');
+  print('---------------------');
 }
 
 // async & await 키워드 사용하기 (둘을 같이 사용)
@@ -72,6 +74,7 @@ void addNumbers3(int number1, int number2) async {
   });
 
   print('함수 완료 !');
+  print('---------------------');
 }
 
 // Future를 리턴하나 int형이므로 다음과 같이 반환형을 작성한다.

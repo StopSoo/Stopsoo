@@ -200,9 +200,11 @@ void main() {
   }
 
   final bts = parsedPeoples.where(
-    (x) => x.group == 'BTS'
+    (x) => x.group == '방탄소년단'
   );
   print(bts); // 오버라이딩된 toString 함수를 통해 출력된다.
+
+
 }
 
 class Person {
@@ -218,6 +220,6 @@ class Person {
   // 원하는 형태로 출력하기 위해 원래 존재하는 toString 함수를 오버라이딩한다.
   @override
   String toString() {
-    return 'Person(name: $name, group: $group)';
+    return '이름: $name | 그룹: $group';
   }
 }
