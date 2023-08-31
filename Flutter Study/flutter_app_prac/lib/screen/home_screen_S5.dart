@@ -1,4 +1,4 @@
-// Section 5 (Row and Column)
+// Section 5 : Row and Column
 import 'package:flutter/material.dart';
 
 class HomeScreenS5 extends StatelessWidget {

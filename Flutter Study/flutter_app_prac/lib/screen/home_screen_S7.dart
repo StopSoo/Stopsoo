@@ -1,3 +1,4 @@
+// Section 7 : Stateful Widget
 import 'package:flutter/material.dart';
 import 'dart:ui';
 // StatefulWidget 단축 명령어 : stful

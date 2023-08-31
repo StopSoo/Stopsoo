@@ -1,7 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_prac/prac/test.dart';
-import 'package:flutter_application_prac/screen/home_sccren_S10.dart';
+import 'package:flutter_application_prac/screen/home_screen_S10.dart';
+import 'package:flutter_application_prac/screen/home_screen_S11.dart';
 import 'package:flutter_application_prac/screen/home_screen_S5.dart';
 import 'package:flutter_application_prac/screen/home_screen_S6.dart';
 import 'package:flutter_application_prac/screen/home_screen_S7.dart';
@@ -15,8 +15,33 @@ void main() {
   runApp(
     // Widget - 클래스의 일종
     MaterialApp(
+      theme: ThemeData(
+        // Section 10 : 기본 font 설정
+        fontFamily: 'sunflower',
+        // Section 10 : 테마 적용해보기
+        textTheme: TextTheme(
+          headline1: TextStyle(
+            color: Colors.white,
+            fontFamily: 'parisienne',
+            fontSize: 80.0
+          ),
+          headline2: TextStyle(
+            color: Colors.white,
+            fontSize: 50.0,
+            fontWeight: FontWeight.w700
+          ),
+          bodyText1: TextStyle(
+            color: Colors.white,
+            fontSize: 30.0,
+          ),
+          bodyText2: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+          )
+        ),
+      ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreenS10(),
-    )
+      home: HomeScreenS11(),
+    ),
   );
 }

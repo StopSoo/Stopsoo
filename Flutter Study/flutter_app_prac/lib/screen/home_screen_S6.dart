@@ -1,4 +1,4 @@
-// Section 6 (WebView)
+// Section 6 : WebView
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
