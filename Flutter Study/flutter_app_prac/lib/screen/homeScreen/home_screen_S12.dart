@@ -13,6 +13,8 @@ class HomeScreenS12 extends StatefulWidget {
 }
 
 class _HomeScreenS12State extends State<HomeScreenS12> {
+  int maxNumber = 1000;
+
   List<int> randomNumbers = [
     123,
     456,
@@ -35,7 +37,9 @@ class _HomeScreenS12State extends State<HomeScreenS12> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // 헤더
-              _Header(),
+              _Header(
+                onPressed: onSettingsPop,
+              ),
               // 랜덤 숫자 나오는 부분
               _Body(
                 randomNumbers: randomNumbers
@@ -59,7 +63,8 @@ class _HomeScreenS12State extends State<HomeScreenS12> {
 
     // 중복이 제거되더라도 숫자의 개수는 3개가 될 수 있게 => 버그 가능성 제거
     while (newNumbers.length != 3) {
-      final number = rand.nextInt(1000);
+      // nextInt : 인수로 들어온 숫자가 최대 숫자
+      final number = rand.nextInt(maxNumber);
       newNumbers.add(number);
     }
 
@@ -69,10 +74,38 @@ class _HomeScreenS12State extends State<HomeScreenS12> {
       randomNumbers = newNumbers.toList();
     });
   } 
+
+  void onSettingsPop () async {
+    // 1. 스크린 이동하기 : Navigator를 이용한 방법 알아둘 것
+    //    [HomeScreenS12(), SettingsScreen()] 개념
+    // 2. 데이터를 돌려받을 때 navigator push한 곳에서 변수를 설정해서 돌려받으면 된다 (!)
+    //    그냥 돌려받을 수는 없고 async - await 설정해줘야 하고, (!)
+    //    push 옆에 generic(<>)으로 어떤 값을 돌려받는지 설정해주면 좋다.
+    // 3. SettingsScreen에서 받은 숫자를 바로 화면에 띄울 수 없다. 트리 상단으로 올려야 함 !! 
+    // 4. 현재 '저장' 버튼을 눌러야 값이 넘어오기 때문에 result는 null 값이 될 수 있는 int? 형이다 (!)
+    //    따라서 setState() 함수 실행은 null 처리를 해줘야 한다. 
+    final result = await Navigator.of(context).push<int>(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return SettingsScreen();
+        },
+      )
+    );
+
+    // 함수를 위로 올렸기 때문에 받은 숫자를 setState() 설정을 통해 화면에 띄울 수가 있음 !!
+    // result가 null이 아닐 때만 setState() 함수를 실행한다.
+    if (result != null) {
+      setState(() {
+        maxNumber = result;
+      });
+    }
+  }
 }
 
 class _Header extends StatelessWidget {
-  const _Header({super.key});
+  final VoidCallback onPressed;
+
+  const _Header({required this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -88,17 +121,8 @@ class _Header extends StatelessWidget {
           )
         ),
         IconButton(
-          onPressed: () {
-            // 스크린 이동하기 : 방법 알아둘 것 (!)
-            // [HomeScreenS12(), SettingsScreen()] 개념
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return SettingsScreen();
-                },
-              )
-            );
-          },
+          // onPressed 함수 위로 올림 !
+          onPressed: onPressed,
           icon: Icon(
             Icons.settings,
             color: RED_COLOR,
