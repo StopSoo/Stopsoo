@@ -8,6 +8,9 @@ import 'package:flutter_application_prac/screen/homeScreen/home_screen_S5.dart';
 import 'package:flutter_application_prac/screen/homeScreen/home_screen_S6.dart';
 import 'package:flutter_application_prac/screen/homeScreen/home_screen_S7.dart';
 import 'package:flutter_application_prac/screen/homeScreen/home_screen_S8.dart';
+import 'package:flutter_application_prac/screen/route_one_screen.dart';
+import 'package:flutter_application_prac/screen/route_three_screen.dart';
+import 'package:flutter_application_prac/screen/route_two_screen.dart';
 
 void main() {
   // Flutter가 앱을 실행할 준비가 될 때까지 기다린다.
@@ -43,7 +46,18 @@ void main() {
       //   ),
       // ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreenS14(),
+      // home: HomeScreenS14(),
+
+      // home 대신 사용
+      // Web과 같은 방식으로 routes 설정해서 push 가능 => 페이지를 넘기는 새로운 방법
+      // www.google.com/어쩌구 => 슬래시(/) 뒤에 오는 어쩌구를 map으로 설정해준다. 
+      initialRoute: '/',  // 초기 화면 설정
+      routes: {
+        '/': (context) => HomeScreenS14(),
+        '/one': (context) => RouteOneScreen(),
+        '/two': (context) => RouteTwoScreen(),
+        '/three': (context) => RouteThreeScreen(),
+      },
     ),
   );
 }
