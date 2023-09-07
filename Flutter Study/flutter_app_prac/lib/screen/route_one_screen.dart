@@ -25,6 +25,20 @@ class RouteOneScreen extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         ElevatedButton(
+          onPressed: () {
+            // 해당 화면에서 pop해서 이동할 화면이 있는지 true/false로 반환
+            print(Navigator.of(context).canPop());
+          }, 
+          child: Text('Can Pop')
+        ),
+        ElevatedButton(
+          onPressed: () {
+            // stack에 screen이 존재하지 않는데 pop해서 검정 화면이 나오는 것을 방지
+            Navigator.of(context).maybePop();
+          }, 
+          child: Text('Maybe Pop')
+        ),
+        ElevatedButton(
           // pop으로 argument 전달 시, async-await 적용 (!)
           onPressed: () {
             Navigator.of(context).pop(456);
