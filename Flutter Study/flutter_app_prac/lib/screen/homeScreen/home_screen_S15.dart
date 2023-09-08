@@ -1,6 +1,7 @@
 // Section 15 : 동영상 플레이어
 // 동영상 재생 시 화면이 push되는 형태가 아닌, 이 파일 내에서 영상이 재생되도록 설정 (!)
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prac/component/custom_video_player.dart';
 import 'package:image_picker/image_picker.dart';
 
 // stateful widget으로 변경 => class 내 모든 위젯들에서 context 사용 가능 (!)
@@ -23,7 +24,9 @@ class _HomeScreenS15State extends State<HomeScreenS15> {
 
   Widget renderVideo() {
     return Center(
-      child: Text('Video')
+      child: CustomVideoPlayer(
+        video: video!,
+      )
     );
   }
   
