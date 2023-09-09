@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prac/component/number_row.dart';
 import 'package:flutter_application_prac/constant/colors.dart';
 import 'package:flutter_application_prac/screen/settings_screen.dart';
 
@@ -87,7 +88,9 @@ class _HomeScreenS12State extends State<HomeScreenS12> {
     final result = await Navigator.of(context).push<int>(
       MaterialPageRoute(
         builder: (BuildContext context) {
-          return SettingsScreen();
+          return SettingsScreen(
+            maxNumber: maxNumber,
+          );
         },
       )
     );
@@ -148,22 +151,18 @@ class _Body extends StatelessWidget {
         children: randomNumbers
         .asMap()
         .entries  // key, value로 저장됨
-        .map((e) => Padding(
-          padding: EdgeInsets.only(
-            // 마지막 Row에는 아래 패딩을 넣지 않는다 (!)
-            bottom: e.key == 2 ? 0.0 : 16.0
-          ),
-          child: Row(
-            children: e.value // value가 들어와야 함 체크 !
-              .toString()
-              .split('')
-              .map((x) => Image.asset(
-                'asset/img/$x.png',
-                height: 80.0,
-                )
-              ).toList(),
-          ),
-        )).toList()
+        .map(
+          (e) => 
+          Padding(
+            padding: EdgeInsets.only(
+              // 마지막 Row에는 아래 패딩을 넣지 않는다 (!)
+              bottom: e.key == 2 ? 0.0 : 16.0
+            ),
+            child: NumberRow(
+              number: e.value,
+            )
+          )
+        ).toList()
       )
     );
   }

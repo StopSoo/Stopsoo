@@ -1,16 +1,29 @@
 // Section 12 : Navigation으로 화면 이동해버리기 ~!
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prac/component/number_row.dart';
 import 'package:flutter_application_prac/constant/colors.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final int maxNumber;
+  const SettingsScreen({required this.maxNumber, super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  // State에 직접 선언하는 위젯에는 widget.maxNumber처럼 widget 키워드를 사용할 수 없다 (!)
   double maxNumber = 1000;  // for slider
+
+  // initState() 함수는 _SettingsScreenState 클래스가 실행될 때마다 불린다.
+  // 그래서 widget 키워드를 선언할 수 있다.
+  @override
+  void initState() {
+    super.initState();
+
+    // 형 변환 항상 체크할 것
+    maxNumber = widget.maxNumber.toDouble();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,18 +70,8 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Row(
-        children: maxNumber
-        .toInt()  // double => int 형 변환
-        .toString()
-        .split('')
-        .map((e) => Image.asset(
-          'asset/img/$e.png',
-          height: 80.0,
-          )
-        )
-        .toList(),
-      ),
+      // 형 변환 체크
+      child: NumberRow(number: maxNumber.toInt()),
     );
   }
 }
