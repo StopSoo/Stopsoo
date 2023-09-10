@@ -49,7 +49,7 @@ void main() {
       //   ),
       // ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreenS17(),
+      home: HomeScreenS15(),
 
       // home 대신 사용
       // Web과 같은 방식으로 routes 설정해서 push 가능 => 페이지를 넘기는 새로운 방법
