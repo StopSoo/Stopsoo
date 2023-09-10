@@ -6,6 +6,7 @@ import 'package:flutter_application_prac/screen/homeScreen/home_screen_S12.dart'
 import 'package:flutter_application_prac/screen/homeScreen/home_screen_S13.dart';
 import 'package:flutter_application_prac/screen/homeScreen/home_screen_S14.dart';
 import 'package:flutter_application_prac/screen/homeScreen/home_screen_S15.dart';
+import 'package:flutter_application_prac/screen/homeScreen/home_screen_S17.dart';
 import 'package:flutter_application_prac/screen/homeScreen/home_screen_S5.dart';
 import 'package:flutter_application_prac/screen/homeScreen/home_screen_S6.dart';
 import 'package:flutter_application_prac/screen/homeScreen/home_screen_S7.dart';
@@ -48,7 +49,7 @@ void main() {
       //   ),
       // ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreenS13(),
+      home: HomeScreenS17(),
 
       // home 대신 사용
       // Web과 같은 방식으로 routes 설정해서 push 가능 => 페이지를 넘기는 새로운 방법
