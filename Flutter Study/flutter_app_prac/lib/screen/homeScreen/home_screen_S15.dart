@@ -26,6 +26,7 @@ class _HomeScreenS15State extends State<HomeScreenS15> {
     return Center(
       child: CustomVideoPlayer(
         video: video!,
+        onNewVideoPressed: onNewVideoPressed,
       )
     );
   }
@@ -39,7 +40,7 @@ class _HomeScreenS15State extends State<HomeScreenS15> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _logo(
-            onTap: onLogoTap,
+            onTap: onNewVideoPressed,
           ),
           SizedBox(height: 30.0),
           _AppName()
@@ -50,7 +51,7 @@ class _HomeScreenS15State extends State<HomeScreenS15> {
 
   // async-await 설정
   // : 이미지 클릭 시 갤러리로 전환되어 사용자가 미디어를 선택할 때까지 기다려야 하기 때문
-  void onLogoTap() async {
+  void onNewVideoPressed() async {
     final video = await ImagePicker().pickVideo(
       source: ImageSource.gallery,
     );
