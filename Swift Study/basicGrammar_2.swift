@@ -106,7 +106,131 @@ greeting(to: "hana", from: "JiSoo")
 //  함수 구현부
 //  return
 // }
+
+// String 뒤에 ...은 인수의 개수에 제한이 없다는 뜻 !!
+// 전달 인자가 없거나 nil이 들어가면 오류
 func sayHelloToFriends(me: String, friends: String...) -> String {
     return "Hello \(friend)! I'm \(me)!"
 }
 print(sayHelloToFriends(me: "JiSoo", friends: "hana", "eric", "wing"))
+print(sayHelloToFriends(me: "JiSoo"))   // friends에 인자를 안 넘길 경우
+
+/*
+위에서 설명한 함수의 다양한 모양은 모두 섞어서 사용 가능하다.
+*/
+
+/* 데이터 타입으로서의 함수 */
+
+// 스위프트는 함수형 프로그래밍 패러다임을 포함하는 다중 패러다임 언어이다.
+// 스위프트의 함수는 일급객체이므로 변수, 상수 등에 저장이 가능하고, 매개변수를 통해 전달할 수도 있다.
+
+/* 함수의 타입 표현 */
+// 변환 타입을 생략할 수 없습니다.
+// (매개변수1 타입, 매개변수2 타입 ...) -> 반환 타입
+
+var someFunction: (String, String) -> Void = greeting(to:from:)
+someFunction("eric", "JiSoo")
+
+someFunction = greeting(friend:me:)
+someFunction("eric", "JiSoo")
+
+// 타입이 다른 함수는 할당할 수 없다.
+// someFunction = sayHelloToFriend(me: friend:)
+
+func runAnother(function: (String, String) -> Void) {
+    function("jenny", "mike")
+}
+
+runAnother(function: greeting(friend:me:))
+
+runAnother(function: someFunction)
+
+
+/* 8. 조건문 */
+
+// 스위프트의 조건에는 항상 Bool 타입이 들어와야 한다. -> Int 등 안됨 !!
+// someInteger는 Bool 타입이 아닌 Int타입이기 때문에 컴파일 오류 발생
+
+let someInteger = 100   // 수정 불가능
+
+/* if - else if - else */
+if someInteger < 100 {
+    print("100 미만")
+} else if someInteger > 100 {
+    print("100 초과")
+} else {
+    print("100")
+}
+
+/* switch */
+// switch value {
+// case pattern:
+//  code
+// default:
+//  code
+// }
+
+// 범위 연산자 활용하기 (!)
+switch someInteger {
+case 0:
+    print("zero")
+case 1..<100:   // 1부터 100 "미만"
+    print("1~99")
+case 100:
+    print("100")
+case 101...Int.max: // 101부터 Int.max "이하"
+    print("over 100")
+default:
+    print("unknown")
+}
+
+// 정수 외의 대부분의 기본 타입 사용 가능
+// 주의 사항 (!)
+// 1. default는 반드시 사용할 것
+// 2. break는 작성하지 않아도 자동으로 걸린다
+// 3. case "cake", "juice": 처럼 여러 개의 키워드 가능
+// 4. 기존 다른 언어들이 break를 사용하지 않았을 때 다른 case로 넘어가는 것을 구현하고 싶다면
+//    fallthrough 키워드를 사용할 것
+switch "cake" {
+case "juice":
+    print("juice")
+    // fallthrough
+case "snack":
+    print("snack")
+case "cake":
+    print("cake")
+default:
+    print("unknown")
+}
+
+
+/* 9. 반복문 */
+var integers = [1, 2, 3]
+let people = ["JiSoo": 10, "Sieun": 5, "Sooyoung": 0]
+
+/* for - in */
+// for item in items { code }
+for integer in integers {
+    print(integer)
+}
+
+// Dictionary의 item은 key와 value로 구성된 튜플 타입
+for (name, age) in people {
+    print("\(name): \(age)")
+}
+
+/* while */
+// while condition { code }
+while integers.count > 1 {
+    integers.removeLast()
+}
+
+/* repeat - while */
+// do-while문과 비슷하다고 할 수 있음
+// repeat {
+//  code    
+// } while condition
+
+repeat {
+    integers.removeLast()
+} while integers.count > 0
