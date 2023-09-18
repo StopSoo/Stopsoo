@@ -140,7 +140,7 @@ let immutable: Sample = Sample()
 Sample.typeProperty = 300
 Sample.typeMethod()
 
-/* 학생 구조체 */
+/* Ex> 학생 구조체 */
 struct Student {
     var name: String = "unknown"
     var `class`: String = "Swift"   // 키워드와 겹치는 변수명은 강세표로 묶어주면 사용할 수 있다.
@@ -150,7 +150,7 @@ struct Student {
     }
     
     func selfIntroduce() {
-        print("저는 \(self.class)빈 \(name)입니다.")
+        print("저는 \(self.class)반 \(name)입니다.")
     }
 }
 Student.selfIntroduce() // 타입 메서드 사용
@@ -168,6 +168,7 @@ jina.selfIntroduce()
 
 
 /* 13. 클래스 */
+// 구조체는 값  타입인 반면, 클래스는 참조 타입
 // Swift의 클래스는 다중 상속 X
 // class 이름 {
 //  /* 구현부 */    
@@ -196,13 +197,138 @@ class Sample2 {
 }
 
 /* 클래스 사용 */
-// 클래스는 구조체와 다르게, 가변 인스턴스와 불변 인스턴스 모두 인스턴스 내 가변 프로퍼티를 변경할 수 있다. (!)
+// 클래스는 구조체와 다르게, 가변 인스턴스와 불변 인스턴스 모두 인스턴스 내 가변 프로퍼티를 변경할 수 있다 (!)
 var mutableReference2: Sample = Sample()
 mutableReference2.mutableProperty = 200
-// mutableReference2.immutableProperty = 200
+// mutableReference2.immutableProperty = 200    // 애초에 불변 프로퍼티로 선언했다면 변경 불가능 ! 
 
 let immutableReference2: Sample = Sample()
 immutableReference2.mutableProperty = 200
-// immutableReference2.immutableProperty = 200
+// immutableReference2.immutableProperty = 200  // 애초에 불변 프로퍼티로 선언했다면 변경 불가능 ! 
 
-// immutableReference2 = mutableReference
+// immutableReference2 = mutableReference   // let으로 선언한 상수는 변경 불가능
+
+/* 타입 프로퍼티 및 메서드 */
+Sample.typeProperty = 300
+Sample.typeMethod()
+// mutableReference2.typeProperty = 400
+// mutableReference2.typeMethod()
+
+/* Ex> 학생 클래스 */
+class Student {
+    var name: String = "unknown"
+    var `class`: String = "Swift"
+
+    class func selfIntroduce() {
+        print("학생 타입입니다.")
+
+    }
+
+    func selfIntroduce() {
+        print("저는 \(self.class)반 \(name)입니다.")
+    }
+}
+Student.selfIntroduce() // 학생 타입입니다.
+
+var jisoo: Student = Student()
+jisoo.name = "JiSoo"
+jisoo.class = "스위프트"
+jisoo.selfIntroduce()
+
+let jina: Student = Student()
+jina.name = "jina"  // let으로 변수를 선언했음에도 불구하고 가변 프로퍼티를 변경할 수 있다는 점 !
+jina.selfIntroduce()
+
+
+/* 14. 열거형 */
+/* 정의 */
+// enum은 타입이므로 대문자 카멜 케이스를 사용하여 이름을 정의
+// 각 case는 소문자 카멜 케이스로 정의
+// 각 case는 그 자체가 고유의 값
+// C언어처럼 enum의 각 값들이 정수 값을 가지는 것은 아니라는 것에 주의 (!)
+// enum 이름 {
+//  case 이름1
+//  case 이름2
+//  case 이름3, 이름4, 이름5
+//  ...
+// }
+
+/* 열거형 사용 */
+// 모든 경우를 case 키워드를 통해 선언해주거나, 나머지를 default 키워드를 통해 선언해줄 것
+enum Weekday {
+    case mon
+    case tue
+    case wed
+    case thu, fri, sat, sun
+}
+
+var day: Weekday = Weekday.mon
+day = .tue  // 위에서 Weekday형임을 선언했기 때문에, 이와 같이 축약 가능
+print(day)
+
+switch day {
+    case .mon, .tue, .wed, .thu:
+        print("평일입니다.")
+    case Weekday.fri:
+        print("불금입니다.")
+    case .sat, .sun:
+        print("주말입니다.")
+}
+
+/* 원시값 */
+// C 언어의 enum처럼 정수 값을 가질 수도 있다.
+// rawValue를 사용하면 된다.
+// case 별로 각각 다른 값을 가져야 한다. 
+// 자동으로 1씩 증가한다. 
+enum Fruit: Int {
+    case apple = 0
+    case grape = 1
+    case peach
+    // case mango = 0
+}
+print("Fruit.peach.rawValue == \(Fruit.peach.rawValue)")    // Fruit.peach.rawValue == 2
+
+// 정수 타입 뿐만 아니라 Hashable 프로토콜을 따르는 모든 타입이 원시 값의 타입으로 지정될 수 있다.
+enum School: String {
+    case elementary = "초등"
+    case middle = "중등"
+    case high = "고등"
+    case university
+}
+print("School.middle.rawValue == \(School.middle.rawValue)")    // School.middle.rawValue == 중등
+print("School.university.rawValue == \(School.university.rawValue)")    // School.middle.rawValue == university
+
+/* 원시값을 통한 초기화 */
+// rawValue를 통해 초기화할 수 있다.
+// but, rawValue가 case에 해당하지 않을 수 있으므로 rawValue를 통해 초기화한 인스턴스는 옵셔널 타입이다.
+
+// let apple: Fruit = Fruit(rawValue: 0)
+let apple: Fruit? = Fruit(rawValue: 0)  // Optional로 선언
+
+if let orange: Fruit = Fruit(rawValue: 5) {
+    print("rawValue 5에 해당하는 케이스는 \(orange)입니다.")
+} else {
+    print("rawValue 5에 해당하는 케이스가 없습니다.")
+}
+
+/* 메서드 */
+enum Month {
+    case dec, jan, feb
+    case mar, apr, may
+    case jun, jul, aug
+    case sep, oct, nov
+
+    func printMessage() {
+        switch self {
+            case .mar, .apr, .may:
+                print("따스한 봄")
+            case .jun, .jul, .aug:
+                print("더운 여름")
+            case .sep, .oct, .nov:
+                print("독서의 계절 가을")
+            case .dec, .jan, .feb:
+                print("추운 겨울")
+        }
+    }
+}
+Month.mar.printMessage()
