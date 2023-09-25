@@ -32,11 +32,11 @@ switch optionalValue3 {
         print("Value is \(value)")
 }
 // 기존 변수처럼 사용 가능
-optionalValue3 = optionalValue + 1
+optionalValue3 = optionalValue3 + 1
 // nil 할당 가능 
 optionalValue3 = nil
-// 잘못된 접근으로 인한 런타임 오류 발생
-optionalValue3 = optionalValue + 1
+// 잘못된 접근으로 인한 런타임 오류 발생 -> nil 값을 넣어줬으므로 
+optionalValue3 = optionalValue3 + 1
 
 // Optional (?)
 var optionalValue4: Int? = 100
@@ -92,7 +92,7 @@ func printName3(_ name: String) {
     print(name)
 }
 var myName4: String? = "JiSoo"  // 옵셔널 타입
-printName3(myName!) // 옵셔널 변수 값을 강제 추출
+printName3(myName4!) // 옵셔널 변수 값을 강제 추출
 
 myName4 = nil
 print(myName4!) // 강제 추출 시 값이 없으므로 런타임 오류 발생
@@ -168,7 +168,7 @@ jina.selfIntroduce()
 
 
 /* 13. 클래스 */
-// 구조체는 값  타입인 반면, 클래스는 참조 타입
+// 구조체는 값 타입인 반면, 클래스는 참조 타입
 // Swift의 클래스는 다중 상속 X
 // class 이름 {
 //  /* 구현부 */    
@@ -221,7 +221,6 @@ class Student {
 
     class func selfIntroduce() {
         print("학생 타입입니다.")
-
     }
 
     func selfIntroduce() {
