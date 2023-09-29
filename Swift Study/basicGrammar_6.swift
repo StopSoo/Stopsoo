@@ -285,7 +285,272 @@ let stringFromInt: String = String(intTypeNumber: 100)  // "100"
 let stringFromDouble: String = String(doubleTypeNumber: 100.0)  // "100.0"
 
 
+/* 27. 오류 처리 */
+/* 
+오류 표현 
+Error 프로토콜과 (주로) 열거형을 통해서 오류를 표현
+*/
+
+/*
+enum 오류 종류 이름: Error {
+    case 종류1
+    case 종류2
+    case 종류3
+    ...
+}
+*/
+
+// 자판기 동작 오류의 종류를 표현한 VendingMachineError 열거형
+enum VendingMachineError: Error {
+    case invalidInput
+    case insufficientFunds(moneyNeeded: Int)
+    case outOfStock
+}
+
+/* 
+함수에서 발생한 오류 던지기 
+- 자판기 동작 도중 발생한 오류 던지기
+- 오류 발생의 여지가 있는 메서드는 throws를 사용하여 오류를 내포하는 함수임을 표시
+*/
+
+class VendingMachine {
+    let itemPrice: Int = 100
+    var itemCount: Int = 5
+    var deposited: Int = 0
+
+    // 돈 받기 메서드 (오류 발생의 여지가 있음을 표현)
+    func receiveMoney(_ money: Int) throws {
+        // 입력한 돈이 0 이하면 오류를 던짐
+        guard money > 0  else {
+            throw VendingMachineError.invalidInput
+        }
+        // 오류가 없으면 정상 처리
+        self.deposited += money
+        print("\(money)원 받음")
+    }
+
+    // 물건 팔기 메서드
+    func vend(numberOfItems numberOfItemsToVend: Int) throws -> String {
+        // 원하는 아이템의 수량이 잘못 입력되었으면 오류를 던짐
+        guard numberOfItemsToVend > 0  else {
+            throw VendingMachineError.invalidInput
+        }
+        // 구매하려는 수량보다 미리 넣어둔 돈이 적으면 오류를 던짐
+        guard numberOfItemsToVend * itemPrice <= deposited else {
+            let moneyNeeded: Int
+            moneyNeeded = numberOfItemsToVend * itemPrice - deposited
+
+            throw VendingMachineError.insufficientFunds(moneyNeeded: moneyNeeded)
+        }
+        // 구매하려는 수량보다 요구하는 수량이 많으면 오류를 던짐
+        guard itemCount >= numberOfItemsToVend else {
+            throw VendingMachineError.outOfStock
+        }
+        // 오류가 없으면 정상 처리
+        let totalPrice = numberOfItemsToVend * itemPrice
+
+        self.deposited -= totalPrice
+        self.itemCount -= numberOfItemsToVend
+
+        return "\(numberOfItemsToVend)개 제공"
+    }
+}
+
+let machine: VendingMachine = VendingMachine()  // 자판기 인스턴스
+var result: String?     // 판매 결과를 전달 받을 변수
+
+/* 
+오류 처리 
+- 오류 발생의 여지가 있는 throws 함수(메서드)는 try를 사용하여 호출
+- try | try? | try!
+
+*/
+
+/* 
+do-catch 
+- 오류 발생의 여지가 있는 throws 함수(메서드)는 do-catch 구문을 활용하여 오류 발생에 대비
+*/
+
+// 방법 1
+do {
+    try machine.receiveMoney(0)
+} catch VendingMachineError.invalidInput {
+    print("입력이 잘못되었습니다.")
+} catch VendingMachineError.insufficientFunds(let moneyNeeded) {
+    print("\(moneyNeeded)원이 부족합니다.")
+} catch VendingMachineError.outOfStock {
+    print("수량이 부족합니다.")
+}   // 입력이 잘못되었습니다.
+
+// 방법 2 (catch 축소)
+do {
+    try machine.receiveMoney(300)
+} catch /*(let error)*/ {   // error라는 변수는 암시적으로 catch문으로 넘어옴 
+    switch error {
+        case VendingMachineError.invalidInput:
+            print("입력이 잘못되었습니다.")
+        case VendingMachineError.insufficientFunds(let moneyNeeded):
+            print("\(moneyNeeded)원이 부족합니다.")
+        case VendingMachineError.outOfStock:
+            print("수량이 부족합니다.")
+        default:
+            print("알 수 없는 오류 \(error)")
+    }
+}   // 300원 받음
+
+// 방법 3 (더 간단)
+do {
+    result = try machine.vend(numberOfItems: 4)
+} catch {
+    print(error)
+}   // insufficientFunds(100)
+
+// 방법 4 (훨씬 더 간단)
+do {
+    result = try machine.vend(numberOfItems: 4)
+}
 
 
+/* try?와 try! */
+/*
+try?
+- 별도의 오류 처리 결과를 통보 받지 않고
+- 오류가 발생했으면 결과값을 nil로 돌려 받을 수 있음
+- 정상 동작 후에는 옵셔널 타입으로 정상 반환값을 돌려 받음
+*/
+
+result = try? machine.vend(numberOfItems: 2)
+result  // Optional("2개 제공")
+
+result = try? machine.vend(numberOfItems: 2)
+result  // nil
+
+/*
+try!
+- 오류가 발생하지 않을 것이라는 강력한 확신을 가질 때
+- try!를 사용하면 정상 동작 후에 바로 결과값을 돌려 받음
+- 오류가 발생하면 런타임 오류가 발생하여 애플리케이션 동작이 중지됨
+*/
+
+result = try! machine.vend(numberOfItems: 1)
+result  // 1개 제공
+
+// result = try! machine.vend(numberOfItems: 1)
 
 
+/* 28. 고차 함수 */
+// 전달 인자로 함수를 전달 받거나
+// 함수 실행의 결과를 함수로 반환하는 함수
+
+// map, filter, reduce
+
+/* 
+map 
+- 컨테이너 내부의 기존 데이터를 변형하여 새로운 컨테이너를 생성
+*/
+
+let numbers: [Int] = [0, 1, 2, 3, 4]
+var doubledNumbers: [Int]
+var strings: [String]
+
+/* for 구문 사용 */
+doubledNumbers = [Int]()
+strings = [String]()
+
+for number in numbers {
+    doubledNumbers.append(number * 2)
+    string.append("\(number)")
+}
+
+print(doubledNumbers)   // [0, 2, 4, 6, 8]
+print(strings)          // ["0", "1", "2", "3", "4"]
+
+/* map 메서드 사용 */
+// numbers의 각 요소를 2배 하여 새로운 배열 반환 
+doubledNumbers = numbers.map({ (number: Int) -> Int in
+    return number * 2
+})
+
+// numbers의 각 요소를 문자열로 변환하여 새로운 배열 반환
+strings = numbers.map({ (number: Int) -> String in 
+    return "\(number)"
+})
+
+print(doubledNumbers)   // [0, 2, 4, 6, 8]
+print(strings)          // ["0", "1", "2", "3", "4"]
+
+// 매개변수, 반환 타입, 반환 키워드(return) 생략, 후행 클로저
+doubledNumbers = numbers.map{ $0 * 2 }
+
+/* filter */
+// 컨테이너 내부의 값을 걸러서 새로운 컨테이너로 추출
+
+/* 
+for 구문 사용
+- 변수 사용에 주목할 것
+*/
+var filtered: [Int] = [Int]()
+for number in numbers {
+    if number % 2 == 0 {
+        filtered.append(number)
+    }
+}
+print(filtered) //[0, 2, 4]
+
+/* 
+filter 메서드 사용 
+- numbers의 요소 중 짝수를 걸러내어 새로운 배열로 반환
+- for문을 사용한 것과 비교하면 상수로도 받아올 수 있다는 장점이 있음 (변수도 상관X)
+*/
+let evenNumbers: [Int] = numbers.filter {
+    (number: Int) -> Bool in
+    return number % 2 == 0
+}
+print(evenNumbers)  // [0, 2, 4]
+
+// 매개변수, 반환 타입, 반환 키워드(return) 생략, 후행 클로저
+let oddNumbers: [Int] = numbers.filter {
+    $0 % 2 != 0
+}
+print(oddNumbers)   // [1, 3]
+
+/* 
+reduce 
+- 컨테이너 내부의 콘텐츠를 하나로 통합
+*/
+let someNumbers: [Int] = [2, 8, 15]
+
+/* 
+for 구문 사용
+- 변수 사용에 주목할 것
+*/
+var result: Int = 0
+
+// someNumbers의 모든 요소를 더함
+for number in someNumbers {
+    result +=  number
+}
+print(result)   // 25
+
+/* 
+reduce 메서드 사용 
+- 초기 값이 0이고 someNumbers 내부의 모든 값을 더함
+*/
+let sum: Int = someNumbers.reduce(0, {  // 0부터 시작
+    (first: Int, second: Int) -> Int in
+
+    return first + second
+})
+print(sum)  // 25
+
+// 초기 값이 0이고 someNumbers 내부의 모든 값을 뺌
+var subtract: Int = someNumbers.reduce(0, { // 0부터 시작
+    (first: Int, second: Int) -> Int in
+
+    return first - second
+})
+print(subtract) // -25
+
+// 초기 값이 3이고 someNumbers 내부의 모든 값을 더함
+let sumFromThree = somenumbers.reduce(3) { $0 + $1 }
+print(sumFromThree) // 28
