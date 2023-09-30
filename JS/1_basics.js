@@ -373,3 +373,124 @@ console.log(koreanDay)
 console.log('----------------');
 
 
+/**
+ * Loops
+ * 
+ * 1) for
+ * 2) while
+ * 똑같이 continue, break 사용 가능
+ */
+for (let i = 0; i < 10; i++) {
+    console.log(i);
+}
+console.log('-----------');
+
+/**
+ * for...in
+ * 
+ * array에서 key 값을 가져오고 싶을 때 사용
+ */
+
+const sooyoung = {
+    name: '정수영',
+    year: 1999,
+    nickname: '바보'
+}
+
+for (let key in sooyoung) {
+    console.log(key, sooyoung[key]);
+}
+console.log('-----------');
+
+const Day6MembersArray = ['제이', '원필', '성진', '영케이', '도운'];
+for (let key in Day6MembersArray) {
+    console.log(key, Day6MembersArray[key]);    // 인덱스와 함께 출력 
+}
+console.log('-----------');
+
+/**
+ * for...of
+ * 
+ * array에서 value 값을 가져오고 싶을 때 사용
+ */
+for (let value of Day6MembersArray) {
+    console.log(value);
+}
+console.log('-----------');
+
+/**
+ * while
+ */
+let n = 0;
+while (n < 10) {
+    n++;
+    console.log(n);
+}
+console.log('-----------');
+
+/**
+ * do...while
+ */
+k = 0;
+do {
+    k++;
+} while (k < 10);
+console.log(k);
+console.log('-----------');
+
+/**
+ * Coersion
+ * 타입 변환
+ * Type Conversion
+ * 
+ * 1) 명시적
+ * 2) 암묵적
+ */
+
+// 1) 명시적
+// string으로 변환
+let Age = 32;
+let stringAge = age.toString();
+console.log(typeof stringAge, stringAge);
+
+// 2) 암묵적
+// string으로 변환
+let test = age + '';
+console.log(typeof test, test);
+
+console.log('98' + 2);  // 982 -> number를 string으로 변환
+console.log('98' * 2);  // 196 -> string을 number로 변환
+console.log('98' - 2);  // 96 -> string에 - 연산자가 없어 string을 number로 변환
+// 이런 기괴한 현상들을 실제로 사용하지 말고, 명시적으로 변환될 수 있도록 코드를 명시적으로 작성할 것 !!!!
+console.log('-----------');
+
+/**
+ * 명시적 변환 + a
+ */
+// string 타입으로 변환 
+console.log(typeof (99).toString());    
+console.log(typeof (true).toString());
+console.log(typeof (Infinity).toString());
+
+// number 타입으로 변환
+console.log(typeof parseInt('0'), parseInt('0'));   // Int
+console.log(typeof parseFloat('0.99'), parseFloat('0.99')); // Float
+console.log(typeof +'1', +'1'); // Int
+
+/**
+ * Boolean 타입으로의 변환
+ * 
+ * false를 반환하는 경우
+ * 1) 아무 글자도 없는 string
+ * 2) 값이 없는 경우
+ * 0
+ */
+console.log(!'x');  // 비지 않은 문자열은 true, 빈 문자열은 false
+console.log(!'');   // 빈 문자열이 false이므로 !를 붙인 것은 true
+console.log(!!undefined); // undefined를 boolean 타입으로 변환했을 때는 false
+console.log(!!null);  // null을 boolean 타입으로 변환했을 때는 false
+
+console.log(!!{});  // Object는 비어 있든 안 비어 있든 무조건 true
+console.log(!![]);  // array도 비어 있든 안 비어 있든 무조건 true
+
+
