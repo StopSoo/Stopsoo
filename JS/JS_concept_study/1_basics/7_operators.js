@@ -99,6 +99,8 @@ console.log('----------------');
  * null 연산자
  */
 let myName;
+console.log(myName);
+
 myName = myName ?? '정지수';    // 변수 name이 undefined일 경우에 오른쪽 값을 할당해라
 // name ??= '정지수';   // 이렇게 사용할 수도 있음
 console.log(myName);
