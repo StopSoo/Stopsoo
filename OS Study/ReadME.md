@@ -6,6 +6,7 @@
 
 ### Chapter 3. Processes
 1. [프로세스의 이해](https://velog.io/@jpy1030/운영체제-Chapter-3.-Processes)
+2. [프로세스의 생성](https://velog.io/@jpy1030/운영체제-Chapter-3.-Processes-프로세스의-생성)
 
 # References ✨
 1. [운영체제 코드 및 요약 정리](https://github.com/yonghwankim-dev/OperatingSystem_Study)
