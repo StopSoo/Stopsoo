@@ -123,6 +123,7 @@ console.log('---------------------');
 console.log(friends.join());    // 배열 원소들을 기본 문자인 ','로 연결
 console.log(friends.join('/'));
 console.log(friends.join(', '));
+console.log('---------------------');
 
 /**
  * sort()
@@ -133,4 +134,62 @@ friends.sort();
 console.log(friends);   // 오름차순
 console.log(friends.reverse()); // 내림차순
 
+let numbers = [1, 9, 7, 5, 3,];
+console.log(numbers);
 
+// a, b를 비교했을 때 (오름차순) 
+// 1) a를 b보다 나중에 정렬하려면 (뒤에 두려면) 0보다 큰 숫자를 반환
+// 2) a를 b보다 먼저 정렬하려면 (앞에 두려면) 0보다 작은 숫자를 반환
+// 3) 원래 순서를 그대로 두려면 0을 반환
+numbers.sort((a, b) => {    
+    return a > b ? 1 : -1;
+});
+console.log(numbers);
+// 내림차순
+numbers.sort((a, b) => a > b ? -1 : 1);
+console.log(numbers);
+console.log('---------------------');
+
+/**
+ * map()
+ * - array 내 모든 값들을 순회하면서 값들을 변형시키는 역할 수행
+ */
+console.log(friends.map((x) => `99즈 ${x}`));
+console.log(friends.map((x) => {
+    if (x === '정수영') {
+        return `바보 ${x}`;
+    } else {
+        return `99즈 ${x}`;
+    }
+}))
+console.log(friends);   // 원래의 array는 변경되지 않음
+
+/**
+ * filter()
+ * - map()과 비슷하게 모든 값들을 순회하면서 값을 변형시키는 역할을 수행
+ * - but, true를 반환할 때만 값을 변형시킨다. 
+ */
+numbers = [1, 8, 7, 6, 3];
+console.log(numbers.filter((x) => true));
+console.log(numbers.filter((x) => x % 2 === 0).sort()); // 조건에 해당하는 8, 6만 반환 + 정렬까지
+
+/**
+ * find()
+ * - filter()와 같이 조건이 true가 되는 값을 반환시킨다.
+ * - but, 앞에서부터 돌면서 true를 반환하는 "첫 번째" 값만 반환한다는 점이 다르다.
+ */
+console.log(numbers.find((x) => x % 2 === 0));
+
+/**
+ * findIndex()
+ */
+console.log(numbers.findIndex((x) => x % 2 === 0));
+
+/**
+ * reduce()
+ * - reduce 함수는 두 개의 파라미터를 갖는다. 첫 번쨰는 함수, 두 번째는 값
+ * - 첫 번째 인자로 들어가는 함수는 두 개의 파라미터를 갖는다. p(previous), n(next)
+ * - p는 이전 Loop에서 넘어온 값이라고 생각하면 되고, n은 reduce 함수를 실행하는 array에서 하나씩 받는 값이다.
+ * - 두 번째 인자는 첫 번째 실행 때 p에 값이 없으므로 그 때 넣는 값이다. 
+ */
+console.log(numbers.reduce((p, n) => p + n, 0));
