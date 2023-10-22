@@ -33,9 +33,8 @@
 
 <div align=center>
 
-[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=Stopsoo)](https://github.com/anuraghazra/github-readme-stats)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Stopsoo&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-
+[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=Stopsoo&show_icons=true&hide_border=true&title_color=004386)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Stopsoo&show_icons=true&hide_border=true&title_color=004386&icon_color=004386&layout=compact)](https://github.com/Stopsoo)
 </div>
 
 
