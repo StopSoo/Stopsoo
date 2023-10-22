@@ -36,7 +36,7 @@ levelOne();
 console.log('-----------');
 
 /**
- * JS -> LExical Scope
+ * JS -> Lexical Scope
  * - 선언된 위치가 상위 스코프를 정한다. 
  * 
  * Dynamic Scope
