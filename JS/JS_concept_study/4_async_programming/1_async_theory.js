@@ -27,7 +27,7 @@ console.log('World');
 /* Async programming */
 function longWork() {
     // setTimeout : 비동기로 실행되는 함수
-    // 첫 번째 파라미터는 실행할 함수, 두 번째 파라미터는 몇 초 후에 그 함수를 실행할 것인지
+    // 첫 번째 파라미터는 실행할 함수, 두 번째 파라미터는 몇 초(밀리세컨즈) 후에 그 함수를 실행할 것인지
     setTimeout(()=>{
         console.log('완료');
     }, 2000);
