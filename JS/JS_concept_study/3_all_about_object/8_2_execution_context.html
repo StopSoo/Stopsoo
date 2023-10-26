@@ -1,0 +1,24 @@
+<!-- /** Execution Context Stack 
+ * - Creation Phase
+ *   - Global Object를 생성한다. window 또는 global 객체가 생성되고 함수에서는 arguments 객체가 생성된다.
+ *   - this를 window 또는 global에 바인딩한다.
+ *   - 변수와 함수를 Memory Heap에 배정하고 기본 값을 undefined로 저장한다. => hoisting
+ * - Execution Phase
+ *   - 코드를 실행한다.
+ *   - 필요하다면 새로운 Execution Context를 생성한다. 
+ */ -->
+
+<script>
+    /* 아래에 선언한 모든 변수와 함수들이 creation phase 내에 선언되어 있기 때문에 hoisting 현상 발생 */
+    var number1 = 20;
+    var number2 = 30;
+
+    function multiply(x, y){
+        var result = x * y;
+
+        return result;
+    }
+
+    var result1 = multiply(number1, number2);
+    var result2 = multiply(100, 200);
+</script>

@@ -1,0 +1,15 @@
+<script>
+    function getNumber(){
+        var number = 5;
+
+        function innerGetNumber(){
+            return number;
+        }
+
+        return innerGetNumber;  // 함수를 실행해서 반환 X
+    }
+
+    var runner = getNumber();   // 이 때 getNumber()는 stack에서 사라짐
+
+    console.log(runner);    // innerGetNumber가 getNumber보다 나중에 사라짐
+</script>
