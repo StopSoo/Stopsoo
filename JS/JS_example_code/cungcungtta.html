@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿵쿵따 게임</title>
+</head>
+
+<body>
+    <div><span id="order">1</span>번째 참가자</div>
+    <div><span id="word"></span> 쿵쿵따</div>
+    <!-- 사용자 입력 -->
+    <input type="text">
+    <button>입력</button>
+    <script>
+        // 변수 선언부
+        const number = Number(prompt('몇 명이 참가하나요 ?'), 10);
+        const $input = document.querySelector('input');
+        const $button = document.querySelector('button');
+        const $order = document.querySelector('#order');
+        const $word = document.querySelector('#word');
+        let word; // 제시어
+        let newword;    // 사용자가 입력한 단어
+
+        // 함수 선언부
+        const onClickInput = (event) => {
+            newWord = event.target.value;
+        };
+
+        const onClickButton = () => {
+            // 1. 제시어가 비어 있거나
+            // 2. 단어가 올바르고 글자 길이가 3일 경우
+            if (!word || (word[word.length - 1] === newWord[0] && newWord.lengh === 3)) {
+                word = newWord; // 사용자가 입력한 단어를 제시어로 설정
+                $word.textContent = word;   // 제시어 띄우기
+                
+                const order = Number($order.textContent);
+                if (order + 1 > number) {
+                    $order.textContent = 1;
+                } else {
+                    $order.textContent = order + 1;
+                }
+            } else {
+                alert('올바른 단어를 입력해주세요 :)');
+            }
+            $input.value = '';  // 입력 칸 비우기
+            $input.focus();
+        };
+
+        $input.addEventListener('input', onClickInput);
+        $button.addEventListener('click', onClickButton);
+    </script>
+</body>
+</html>
