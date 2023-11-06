@@ -42,7 +42,64 @@
     </div>
 
     <script>
+        let numOne = '';
+        let operator = '';
+        let numTwo = '';
+        const $operator = document.querySelector('#operator');
+        const $result = document.querySelector('#result');
+        const onClickNumber = (number) => {
+            // 함수의 반환형은 항상 undefined이므로 반환형을 맞춰줘야 한다. 
+            // 다음과 같이 함수를 리턴
+            // {}와 return은 생략해서 (number) => () => {}와 같은 형태로도 사용할 수 있다. : 고차 함수(high order function)
+            return () => {
+                if (operator) { // 연산자가 존재할 때
+                    numTwo += number;
+                } else {
+                    numOne += number;
+                }
+                $result.value += number;   // 화면에 띄우는 것을 까먹지 말자 !
+            };
+        };
 
+        /* 다음과 같이 event 객체를 사용해서 중복을 제거할 수 있음 */
+        /* 그럼 onClickNumber 함수를 실행할 때 인자를 넣지 않아도 됨 (!) */
+        /* event.target : 내가 클릭한 버튼 객체를 가리킴 */
+        /* textContent : 문자열로 반환 */
+        // const onClickNumber = (event) => {
+        //     if (operator) { // 연산자가 존재할 때
+        //         numTwo += event.target.textContent;
+        //     } else {
+        //         numOne += event.target.textContent;
+        //     }
+        //     $result.value += event.target.textContent;   // 화면에 띄우는 것을 까먹지 말자 !
+        // };
+
+        document.querySelector('#num-0').addEventListener('click', onClickNumber('0'));
+        document.querySelector('#num-1').addEventListener('click', onClickNumber('1'));
+        document.querySelector('#num-2').addEventListener('click', onClickNumber('2'));
+        document.querySelector('#num-3').addEventListener('click', onClickNumber('3'));
+        document.querySelector('#num-4').addEventListener('click', onClickNumber('4'));
+        document.querySelector('#num-5').addEventListener('click', onClickNumber('5'));
+        document.querySelector('#num-6').addEventListener('click', onClickNumber('6'));
+        document.querySelector('#num-7').addEventListener('click', onClickNumber('7'));
+        document.querySelector('#num-8').addEventListener('click', onClickNumber('8'));
+        document.querySelector('#num-9').addEventListener('click', onClickNumber('9'));
+
+        const onClickOperator = (op) => () => { // 고차 함수 
+            if (numOne) {   // 첫 번째 숫자가 존재할 경우
+                operator = op;
+                $operator.value = op;
+                // $result.value = '';     // 입력 화면 비우기
+            } else {
+                alert('숫자를 먼저 입력하세요 !');
+            }
+        }
+        document.querySelector('#plus').addEventListener('click', onClickOperator('+'));
+        document.querySelector('#minus').addEventListener('click', onClickOperator('-'));
+        document.querySelector('#divide').addEventListener('click', onClickOperator('/'));
+        document.querySelector('#multiply').addEventListener('click', onClickOperator('*'));
+        document.querySelector('#calculate').addEventListener('click', onClickOperator('='));
+        document.querySelector('#clear').addEventListener('click', onClickOperator('+'));
     </script>
 </body>
 </html>
