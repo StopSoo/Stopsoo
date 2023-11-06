@@ -19,23 +19,23 @@
 const age = 32;
 const temperature = -10;
 
-console.log(typeof age);
-console.log(typeof temperature);
+console.log(typeof age);    // number
+console.log(typeof temperature);    // number
 console.log('----------------');
 
-const infinity = Infinity;
-const nInfinity = -Infinity;
+const infinity = Infinity;  
+const nInfinity = -Infinity;   
 
-console.log(typeof infinity);   // 무한대
-console.log(typeof nInfinity);  // - 무한대
+console.log(typeof infinity);   // number
+console.log(typeof nInfinity);  // number
 console.log('----------------');
 
 // 2. String
 const sieun = '시은';
-console.log(typeof sieun);
+console.log(typeof sieun);  // string
 
 const univSieun = "'대학생' 시은";  // 따옴표를 구분해서 사용 가능
-console.log(univSieun);
+console.log(univSieun); // '대학생' 시은
 console.log('----------------');
 
 /**
@@ -73,8 +73,8 @@ const isFalse = false;
  */
 
 let noInit;
-console.log(noInit);
-console.log(typeof noInit);
+console.log(noInit);    // undefined
+console.log(typeof noInit); // undefined
 console.log('----------------');
 
 /**
@@ -83,7 +83,7 @@ console.log('----------------');
  * JS에서는 개발자가 명시적으로 없는 값으로 초기화할 때 사용
  */
 let init = null;
-console.log(init);
+console.log(init);  // null
 console.log(typeof init);   // object -> 일종의 버그
 console.log('----------------');
 
@@ -115,8 +115,8 @@ const dictionary = {
 };
 
 console.log(dictionary);
-console.log(dictionary['red']);
-console.log(typeof dictionary);
+console.log(dictionary['red']); // 빨간색
+console.log(typeof dictionary); // object
 console.log('----------------');
 
 /**
@@ -135,7 +135,7 @@ const season = [
 ];
 
 console.log(season);
-console.log(season[2]);
+console.log(season[2]); // 가을
 season[0] = '보옴'  // 수정
 console.log(season);
 console.log(typeof season); // object

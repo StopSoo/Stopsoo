@@ -10,12 +10,12 @@
  * 값을 추후 변경할 수 있다. 
  */
 var name = '정지수';
-console.log(name);
+console.log(name);  // 정지수
 
 var _age = 32;   // 숫자 선언
 
 let music = '음악'; 
-music = '뮤직';
+music = '뮤직'; // 값 변경 가능
 
 const c_music = '음악';
 // c_music = '뮤직';    // const로 선언한 변수는 추후에 값을 변경할 수 없다.

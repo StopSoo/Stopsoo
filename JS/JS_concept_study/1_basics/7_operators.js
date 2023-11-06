@@ -40,7 +40,7 @@ console.log('----------------');
  * 할당 연산자 사용 가능
  */
 var number = 100;
-console.log(number);
+console.log(number);    // 100
 
 number += 10;
 console.log(number);    // 110
@@ -99,9 +99,9 @@ console.log('----------------');
  * null 연산자
  */
 let myName;
-console.log(myName);
+console.log(myName);    // undefined
 
 myName = myName ?? '정지수';    // 변수 name이 undefined일 경우에 오른쪽 값을 할당해라
-// name ??= '정지수';   // 이렇게 사용할 수도 있음
+// myName ??= '정지수';   // 이렇게 사용할 수도 있음
 console.log(myName);
 console.log('----------------');
