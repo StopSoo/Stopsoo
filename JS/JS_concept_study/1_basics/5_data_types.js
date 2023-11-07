@@ -30,7 +30,18 @@ console.log(typeof infinity);   // number
 console.log(typeof nInfinity);  // number
 console.log('----------------');
 
-// 2. String
+/**
+ * 2. String
+ * 
+ * 문자열도 배열처럼 반복문을 적용할 수 있다.
+ * Ex> const target = '가나다라마';
+ *     let i = 0;
+ *     while (i < target.length) {
+ *         console.log(target[i]);
+ *         i++;
+ *     }
+ */
+
 const sieun = '시은';
 console.log(typeof sieun);  // string
 
@@ -125,6 +136,38 @@ console.log('----------------');
  * 
  * index
  * 0부터 시작해서 + 1
+ * 
+ * const로 선언했지만, 배열 내부를 변경하는 것은 가능
+ * 배열 자체를 바꾸는 것은 불가능
+ * Ex> const target2 = ['a', 'b', 'c'];
+ * target2[0] = 'h'; => 가능
+ * target2 = ['f', 'g']; => 불가능
+ * 
+ * 배열(array)의 맨 앞에 원소를 추가하는 것은 unshift, 빼는 것은 shift
+ * 배열(array)의 맨 뒤에 원소를 추가하는 것은 push, 빼는 것은 pop
+ * 배열(array)의 중간 요소를 제거하는 것은 splice
+ * Ex1> const target = ['가', '나', '다', '라'];
+ *      target.splice(1, 1); // 인덱스 1부터 1개 제거
+ *      console.log(target); // ['가', '다', '라']
+ * Ex2> target.splice(1);   // 인덱스 1부터 마지막까지 모두 제거
+ *      console.log(target); // ['가']
+ * Ex3> target.splice(1, 3, '타', '파');    // 인덱스 1부터 3개의 원소 제거 후, '타', '파' 추가
+ *      console.log(target); // ['가', '타', '파']
+ * Ex4> target.splice(2, 0, '마');  // 인덱스 2부터 아무 것도 안 지우고, 그 자리에 '마'를 추가
+ *      console.log(target);    // ['가', '나', '마', '다', '라']
+ * 
+ * 배열에서 요소 찾기 : includes
+ * Ex> const target = ['가', '나', '다', '라', '마'];
+ *     const result1 = target.includes('다');   
+ *     const result2 = target.includes('카');
+ *     console.log(result1, result2);   // true false
+ * 
+ * 배열에서 인덱스 추출하기 : indexOf / lastIndexOf
+ * 없으면 -1을 반환한다.
+ * Ex> const target = ['가', '나', '다', '라', '마'];
+ *     const result1 = target.indexOf('다');    
+ *     const result2 = target.lastIndexOf('라');       
+ *     console.log(result1, result2);   // 2 1
  */
 
 const season = [
