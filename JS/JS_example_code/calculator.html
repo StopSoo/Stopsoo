@@ -53,10 +53,14 @@
             // {}와 return은 생략해서 (number) => () => {}와 같은 형태로도 사용할 수 있다. : 고차 함수(high order function)
             return () => {
                 if (operator) { // 연산자가 존재할 때
-                    numTwo += number;
-                } else {
                     numOne += number;
+                    $result.value += number;   // 화면에 띄우는 것을 까먹지 말자 !
+                    return;
                 }
+                // 연산자가 존재하지 않을 때
+                if (!numTwo)
+                    $result.value = ''; // 입력창 내 숫자 지워주기 !
+                numTwo += number;
                 $result.value += number;   // 화면에 띄우는 것을 까먹지 말자 !
             };
         };
