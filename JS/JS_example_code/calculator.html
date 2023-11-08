@@ -47,17 +47,19 @@
         let numTwo = '';
         const $operator = document.querySelector('#operator');
         const $result = document.querySelector('#result');
+        // 숫자를 눌렀을 때의 함수
         const onClickNumber = (number) => {
             // 함수의 반환형은 항상 undefined이므로 반환형을 맞춰줘야 한다. 
             // 다음과 같이 함수를 리턴
             // {}와 return은 생략해서 (number) => () => {}와 같은 형태로도 사용할 수 있다. : 고차 함수(high order function)
+            // if문 중첩 제거할 수 있으면 제거하기
             return () => {
-                if (operator) { // 연산자가 존재할 때
+                if (!operator) { // 연산자가 존재하지 않을 때
                     numOne += number;
                     $result.value += number;   // 화면에 띄우는 것을 까먹지 말자 !
                     return;
                 }
-                // 연산자가 존재하지 않을 때
+                // 연산자가 존재할 때
                 if (!numTwo)
                     $result.value = ''; // 입력창 내 숫자 지워주기 !
                 numTwo += number;
@@ -90,20 +92,77 @@
         document.querySelector('#num-9').addEventListener('click', onClickNumber('9'));
 
         const onClickOperator = (op) => () => { // 고차 함수 
-            if (numOne) {   // 첫 번째 숫자가 존재할 경우
+            if (numTwo) {   // 두 번째 숫자까지 존재할 경우
+                switch (operator) {
+                    case '+':
+                        $result.value = Number(numOne) + Number(numTwo);
+                        break;
+                    // 사실 -, *, /는 계산 시 자동으로 문자열로 변환되기 때문에 명시적으로 형 변환 할 필요가 없다.     
+                    case '-':
+                        $result.value = Number(numOne) - Number(numTwo); 
+                        break;
+                    case '*':
+                        $result.value = Number(numOne) * Number(numTwo);  
+                        break;
+                    case '/':
+                        $result.value = Number(numOne) / Number(numTwo);
+                        break;
+                    default:
+                        break;
+                }
+                numOne = $result.value;
+                numTwo = '';
+            }
+            
+            if (numOne) {   // 첫 번째 숫자만 존재할 경우
                 operator = op;
                 $operator.value = op;
-                // $result.value = '';     // 입력 화면 비우기
             } else {
                 alert('숫자를 먼저 입력하세요 !');
             }
         }
+
         document.querySelector('#plus').addEventListener('click', onClickOperator('+'));
         document.querySelector('#minus').addEventListener('click', onClickOperator('-'));
         document.querySelector('#divide').addEventListener('click', onClickOperator('/'));
         document.querySelector('#multiply').addEventListener('click', onClickOperator('*'));
-        document.querySelector('#calculate').addEventListener('click', onClickOperator('='));
-        document.querySelector('#clear').addEventListener('click', onClickOperator('+'));
+        document.querySelector('#calculate').addEventListener('click', () => {
+            if (!numTwo) {  // 두 번째 숫자가 비어 있는 경우
+                alert('숫자를 입력해주세요 !');
+            }
+            // 연산자에 따른 계산
+            let result;
+            switch (operator) {
+                case '+':
+                    $result.value = Number(numOne) + Number(numTwo);
+                    break;
+                // 사실 -, *, /는 계산 시 자동으로 문자열로 변환되기 때문에 명시적으로 형 변환 할 필요가 없다.     
+                case '-':
+                    $result.value = Number(numOne) - Number(numTwo); 
+                    break;
+                case '*':
+                    $result.value = Number(numOne) * Number(numTwo);  
+                    break;
+                case '/':
+                    $result.value = Number(numOne) / Number(numTwo);
+                    break;
+                default:
+                    break;
+            }
+            // 두 개 이상의 수 연산이 필요할 때
+            $operator.value = '';
+            numOne = $result.value;
+            operator = '';
+            numTwo = '';
+        });
+        // 초기화
+        document.querySelector('#clear').addEventListener('click', () => {
+            numOne = '';
+            operator = '';
+            numTwo= '';
+            $operator.value = '';
+            $result.value = '';
+        });
     </script>
 </body>
 </html>
