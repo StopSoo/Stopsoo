@@ -18,7 +18,7 @@ let jisoojeong = {
 console.log(jisoojeong);    
 console.log(jisoojeong.name);       // 해당 프로퍼티를 가져오는 방법 1
 console.log(jisoojeong['name']);    // 해당 프로퍼티를 가져오는 방법 2
-console.log(jisoojeong.dance());    // 함수는 () 필수 !
+console.log(jisoojeong.dance());    // 함수 실행 시 () 필수 !
 console.log('-----------');
 
 // 객체에 key와 value를 변수로 넣을 때

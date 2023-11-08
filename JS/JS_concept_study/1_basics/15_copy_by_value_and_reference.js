@@ -19,7 +19,7 @@ let originalObj = {
     name: '정지수',
     major: 'computer science'
 }
-let cloneObj = originalObj;
+let cloneObj = originalObj; // copy by reference
 
 console.log(originalObj);
 console.log(cloneObj);
@@ -28,7 +28,7 @@ cloneObj['age'] = 25;
 console.log(originalObj);
 console.log(cloneObj);  // copy by reference => 둘 다 같은 객체를 가리킴
 
-console.log(original === clone);
+console.log(original === clone);    // false => 같은 객체가 아님을 알 수 있음
 console.log(originalObj === cloneObj);  // true => 같은 객체임을 알 수 있음
 console.log('-----------');
 
@@ -43,7 +43,7 @@ const jisoo3 = {
 }
 
 console.log(jisoo1 === jisoo2); // true
-console.log(jisoo1 === jisoo3); // false
+console.log(jisoo1 === jisoo3); // false => 같은 값을 가졌다고 해서 같은 객체가 아님 !
 console.log(jisoo2 === jisoo3); // false
 console.log('-----------');
 
@@ -55,7 +55,7 @@ const jisoo4 = {
     ...jisoo3,
 }
 console.log(jisoo4);    // 값이 그대로 copy => copy by value
-console.log(jisoo4 === jisoo3); // false
+console.log(jisoo4 === jisoo3); // false => 같은 객체는 아님 !
 console.log('-----------');
 
 const jisoo5 = {

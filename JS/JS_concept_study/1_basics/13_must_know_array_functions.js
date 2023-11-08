@@ -98,6 +98,7 @@ console.log('---------------------');
  * spread operator
  * - ... 뒤에 spread할 array의 이름을 입력한다. 
  * - 해당 array의 모든 원소들이 퍼져 새로운 array에 들어가게 된다. 
+ * - 새로운 객체를 생성하는 것
  */
 let friends2 = [
     ...friends,

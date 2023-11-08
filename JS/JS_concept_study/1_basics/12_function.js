@@ -76,7 +76,9 @@ const multiplyThree = function(x, y, z) {
 console.log(multiplyThree(3, 4, 5));
 
 // argument 개념을 이용한 함수
-const multiplyAll = function (...arguments) {
+// 지정된 개수의 인자만 받는 게 아니라, 제한 없이 받고 싶을 때 ...arguments를 사용
+// arguments만 출력하면 객체 형태로 반환하는데, 이 때 Object.values(arguments)를 통해 인자 값들만 가져온다 (!)
+const multiplyAll = function (...arguments) {   
     return Object.values(arguments).reduce((a, b) => a * b, 1);
 }
 console.log(multiplyAll(3, 4, 5, 6, 7, 8, 9, 10));
