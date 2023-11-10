@@ -5,7 +5,16 @@
  * 1) 기본적으로 모든 primitive 값은 copy by value
  * 2) 객체는 copy by reference
  *    같은 값을 갖는다고 같은 객체가 아님 (!)
+ * # 객체가 아닌 숫자, 문자열, 불 값, null, undefined는 모두 값이 같다면 같은 것으로 인식한다. 
+ * Ex1> 'str' === 'str;
+ *       123 === 123;
+ *       undefined = undefined;
+ * Ex2> const a = { name : 'jisoo' };
+ *      const array = [1, 2, a]; 
+ *      array === [1, 2, a];
+ *      ==> false : 서로 다른 객체이기 때문
  */
+console.log({} === {}); // false => 모양이 같다고 true는 아니라는 점.
 
 let original = '안녕하세요';
 let clone = original;   // '안녕하세요'
