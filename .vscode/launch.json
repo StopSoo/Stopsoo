@@ -7,8 +7,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open calculator.html",
-            "file": "/Users/jisoojeong/Desktop/Stopsoo/JS/JS_example_code/calculator.html"
+            "name": "number_baseball.html",
+            "file": "/Users/jisoojeong/Desktop/Stopsoo/JS/JS_example_code/number_baseball.html"
         }
     ]
 }
