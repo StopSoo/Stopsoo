@@ -15,17 +15,25 @@ import Library from './chapter_03/Library'; // Library component 가져오기
 // );
 
 import Clock from './chapter_04/Clock';
-// 1000ms마다 Clock component를 root div에 rendering 
-// ReactDOM.render(element, document.getElementById('root')); 형태
-setInterval(() => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <Clock />
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}, 1000); // 매초 화면에 새로운 element를 만들어서 렌더링
+/* 1000ms마다 Clock component를 root div에 rendering
+   ReactDOM.render(element, document.getElementById('root')); 형태 */
+// setInterval(() => {
+//   ReactDOM.render(
+//     <React.StrictMode>
+//       <Clock />
+//     </React.StrictMode>,
+//     document.getElementById('root')
+//   );
+// }, 1000); // 매초 화면에 새로운 element를 만들어서 렌더링
 
+import NotificationList from './chapter_06/NotificationList';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <NotificationList />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
