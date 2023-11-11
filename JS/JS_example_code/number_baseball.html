@@ -7,8 +7,10 @@
 </head>
 
 <body>
+    <!-- input 태그를 form 태그로 감싸기
+    - 특히 button 달린 Input 태그는 form으로 감쌀 것 !
+    - 이런 경우 form 태그에 addEventListner 달기 -->
     <form id="form">
-        <!-- input 태그를 form 태그로 감싸기 -->
         <input type="text" id="input">
         <button>확인</button>
     </form>
@@ -18,6 +20,60 @@
         const $input = document.querySelector('#input');
         const $form = document.querySelector('#form');
         const $logs = document.querySelector('#logs');
+        /* 1~9 숫자를 배열에 넣기 */
+        const numbers = [];
+        for (let n = 1; n <= 9; n += 1) {
+            numbers.push(n);
+        }
+        /* 숫자 뽑기 */
+        const answer = [];
+        for (let n = 0; n <= 3; n += 1) {   // 4자리의 숫자를 뽑아야 함
+            // 인덱스니까 0~8 정수 (Math.random() : 0 이상 1 미만)
+            // but, 뽑은 숫자는 제거하므로 numbers 배열의 길이까지만 인덱스가 뽑힐 수 있게 설정한다. 
+            const index = Math.floor(Math.random() * numbers.length);    
+            answer.push(numbers[index]);
+            numbers.splice(index, 1);   // 1~9 숫자 배열에서 방금 뽑은 숫자 제거
+        }
+        console.log(answer);
+
+        const tries = [];
+        /* 입력값 유효성 검증 함수
+        - Set의 크기는 size를 사용
+        - 배열 내 존재 여부 체크는 includes를 사용
+        - 입력 값 길이 체크 -> 중복된 숫자 사용 여부 체크 -> 이미 확인한 값인지 체크 순서
+        */
+        function checkInput(input) {
+            if (input.length !== 4) {   // 길이가 4인지 체크
+                return alert('4자리 숫자를 입력해주세요.');
+            }   
+            if (new Set(input).size !== 4) {    // 중복된 숫자 존재 여부 체크
+                return alert('중복되지 않게 입력해주세요.');
+            } 
+            if (tries.includes(input)) {    // 이미 시도한 값인지 체크
+                return alert('이미 시도한 값입니다.');
+            }
+            return true;
+        }
+
+        /* form 태그는 'submit' 이벤트를 사용 
+        - form 태그 내 button을 누르면 'submit' 이벤트가 호출됨
+        - form 태그는 button을 누르면 페이지가 새로고침되는 것 같은 현상이 존재 => event.preventDefault()를 통해 해당 현상 방지
+        - form 태그는 form 태그 하위 태그들을 event.target[0]과 같이 접근할 수 있다.
+        */
+        $form.addEventListener('submit', (event) => {
+            event.preventDefault(); // form의 기본 동작 막기
+
+            const value = $input.value; // 입력창 내 값을 value 변수에 넣기
+            $input.value = '';  // 입력 창 비우기
+
+            const valid = checkInput(value);    // 입력 값의 유효성을 검증
+            if (valid) {
+                // 입력값에 문제 없음
+                tries.push(value);  // 시도한 값 넣기
+            } else {
+                // 에러 존재
+            }
+        })
     </script>
 </body>
 </html>
