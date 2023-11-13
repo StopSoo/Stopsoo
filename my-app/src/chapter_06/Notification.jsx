@@ -23,15 +23,15 @@ class Notification extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {
+  componentDidMount() { // component 생성 
     console.log(`${this.props.id} componentDidMount() called.`);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate() {  // component 상태 변경
     console.log(`${this.props.id} componentDidUpdate() called.`);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount() {  // component 삭제
     console.log(`${this.props.id} componentWillUnmount() called.`);
   }
 
