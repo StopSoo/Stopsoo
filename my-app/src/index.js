@@ -27,12 +27,12 @@ import Clock from './chapter_04/Clock';
 // }, 1000); // 매초 화면에 새로운 element를 만들어서 렌더링
 
 import CommentList from './chapter_05/CommentList';
-ReactDOM.render(
-  <React.StrictMode>
-    <CommentList />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <CommentList />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 
 // import NotificationList from './chapter_06/NotificationList';
 // ReactDOM.render(
@@ -42,7 +42,14 @@ ReactDOM.render(
 //   document.getElementById('root')
 // );
 
+import ConfirmButton from './chapter_08/ConfirmButton';
 
+ReactDOM.render(
+  <React.StrictMode>
+    <ConfirmButton />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 
 // If you want to start measuring performance in your app, pass a function
