@@ -44,9 +44,18 @@ import CommentList from './chapter_05/CommentList';
 
 import ConfirmButton from './chapter_08/ConfirmButton';
 
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <ConfirmButton />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
+import Blocks from './chapter_15/Blocks';
+
 ReactDOM.render(
   <React.StrictMode>
-    <ConfirmButton />
+    <Blocks />
   </React.StrictMode>,
   document.getElementById('root')
 );
