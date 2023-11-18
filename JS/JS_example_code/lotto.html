@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>로또 추첨기</title>
+  <style>
+    .ball {
+      /* 공 디자인 */
+      display: inline-block;
+      border: 1px solid black;
+      border-radius: 20px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 20px;
+      text-align: center;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="result">추첨 결과는 ?</div>
+  <div id="bonus">보너스 : </div>
+  <script>
+    // < 피셔 예이츠 셔플 (Fisher-Yates Shuffle)>
+    // 45개 전부가 다 섞임
+    // Array(45).fill() - undefined로 빈 배열이 채워짐
+    const candidate = Array(45).fill().map((v, i) => i + 1);
+    const shuffle = [];
+    while (candidate.length > 0) {
+      const random = Math.floor(Math.random() * candidate.length);  // 무작위 인덱스 뽑기
+      // splice의 반환 값은 "배열"이다 (!)
+      const spliceArray = candidate.splice(random, 1);  // 뽑은 값은 배열에 들어 있음
+      const value = spliceArray[0]; // 배열에 들어 있는 값을 꺼냄
+      shuffle.push(value);  // shuffle 배열에 넣기
+    } 
+    console.log(shuffle);
+    const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b); // 6개를 뽑고 뽑은 것들을 정렬
+    const bonus = shuffle[6];
+    console.log(winBalls, bonus);
+  </script>
+</body>
+</html>

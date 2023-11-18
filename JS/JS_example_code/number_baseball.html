@@ -16,7 +16,7 @@
         <button>확인</button>
     </form>
     <!-- 사용자가 입력한 기록들이 누적될 영역 -->
-    <div id="logs"></div>
+    <div id="logs" style="color:black"></div>
     <script>
         const $input = document.querySelector('#input');
         const $form = document.querySelector('#form');
@@ -55,7 +55,13 @@
             }
             return true;
         }
+        
+        function defeated() {
+            const message = document.createTextNode(`패배 ! 정답은 ${answer.join('')}`);
+            $logs.appendChild(message);
+        }
 
+        let out = 0;    // out count 세기
         /* form 태그는 'submit' 이벤트를 사용 
         - form 태그 내 button을 누르면 'submit' 이벤트가 호출됨
         - form 태그는 button을 누르면 페이지가 새로고침되는 것 같은 현상이 존재 => event.preventDefault()를 통해 해당 현상 방지
@@ -80,7 +86,7 @@
                 return; // 종료
             }
             if (tries.length >= 9) {    // 정해진 시도 횟수를 넘은 경우
-                $logs.append(`패배! 정답은 ${answer.join('')}`); // 계속해서 추가 가능
+                defeated();
                 return;
             }
             // 몇 스트라이크 몇 볼인지 검사
@@ -96,15 +102,23 @@
                     }
                 }
             }
+            // 아웃 추가
+            if (strike === 0 && ball === 0) {
+                out++;
+                $logs.append(`${value} 아웃`, document.createElement('br'));
+            } else {
+                $logs.append(`${value} : ${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));    // 여러 개 append 가능
+            }
+            if (out === 3) {    // 3 아웃일 경우 실패
+                defeated();
+            }
+            tries.push(value);
             /* 
             - document.createElement() : 해당 태그를 만드는 함수
             - document.createTextNode() : 텍스트 노드를 만드는 함수
             => 둘 다 append or appendChild 꼭 해줘야 함 !
             */
-            $logs.append(`${value}: ${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));    // 여러 개 append 가능
-            tries.push(value);
         })
     </script>
 </body>
-
 </html>
