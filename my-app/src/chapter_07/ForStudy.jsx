@@ -67,3 +67,16 @@ const memoizedCallback = useCallback(
 // Ref : 특정 컴포넌트에 접근할 수 있는 객체
 // refObject.current : 현재 참조하고 있는 element를 가리킨다.
 // useRef() hook은 내부의 데이터가 변경되었을 때 별도로 알리지 않는다.
+
+/* Hook의 규칙 */
+// 1. hook은 컴포넌트가 렌더링 될 때마다 매번 같은 순서로 호출되어야 한다.
+//    조건문, 반복문 등에 의해 특정한 때만 호출되면 안된다는 뜻이다.
+// 2. hook은 리액트 함수 컴포넌트에서만 호출해야 한다.
+// => eslint-plugin-react-hooks 사용하기
+
+/* Custom Hook 만들기 */
+// - 중복되는 로직을 추출하여 custom hook으로 만든다.
+// - 이름은 꼭 !!! "use"로 시작하고, 내부에서 다른 hook을 호출하는 하나의 js 함수
+// - 여러 개의 컴포넌트에서 하나의 custom hook을 사용할 때, 컴포넌트 내부에 있는 모든 state와 effcts는 전부 분리되어 있다.
+//   각 custom hook 호출에 대해서 분리된 state를 얻게 되기 때문이다.
+// - 각 custom hook의 호출 또한 완전히 독립적이다.
