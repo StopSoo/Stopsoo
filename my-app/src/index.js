@@ -51,14 +51,23 @@ import ConfirmButton from './chapter_08/ConfirmButton';
 //   document.getElementById('root')
 // );
 
-import Blocks from './chapter_15/Blocks';
+import Accommodate from './chapter_07/Accommodate';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Blocks />
+    <Accommodate />
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+import Blocks from './chapter_15/Blocks';
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Blocks />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 
 
 // If you want to start measuring performance in your app, pass a function
