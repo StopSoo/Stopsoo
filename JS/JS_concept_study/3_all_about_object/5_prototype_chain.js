@@ -5,7 +5,7 @@
 const testObj = {};
 // __proto__ : 모든 객체에 존재하는 프로퍼티
 // class 강의에서 배울 때 상속에서 부모 클래스에 해당되는 값
-console.log(testObj.__proto__);     // null prototype 
+console.log(testObj.__proto__);     // [Object: null prototype] {}
 
 function IdolModel(name, year) {
     this.name = name;

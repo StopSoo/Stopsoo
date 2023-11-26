@@ -29,4 +29,4 @@ const IdolModelArrow = (name, year) => {    // arrow 함수를 사용해서 생�
     this.name = name;
     this.year = year;
 };
-const jisoo3 = new IdolModelArrow('정지수', 1999);
+// const jisoo3 = new IdolModelArrow('정지수', 1999);
