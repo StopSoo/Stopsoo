@@ -7,7 +7,7 @@
 const testFunction = function(){
     return this;
 }
-console.log(testFunction());
+console.log(testFunction());    // global object가 출력된다.
 console.log(testFunction() === global); // this가 global과 맵핑되는 것을 확인할 수 있다.
 console.log('----------');
 
@@ -34,7 +34,8 @@ console.log(jisoo2.sayHello());
 Person.prototype.dance = function(){
     return `${this.name}가 춤을 춥니다.`;
 }
-console.log(jisoo2.dance());
+console.log(jisoo2.dance());    // 정지수가 춤을 춥니다.
+console.log('----------');
 
 /**
  * this 키워드가 가리키는 것
@@ -78,5 +79,5 @@ console.log(multiply.apply(jisoo4, [3, 4, 5]));
  * - 바로 함수가 실행되지 않고 반환받아 놓은 후 나중에 실행할 수 있다는 차이점이 있다.
  */
 const laterFunc = multiply.bind(jisoo4, 3, 4, 5);
-console.log(laterFunc);
+console.log(laterFunc); // [Function: bound multiply]
 console.log(laterFunc());   // 함수 실행

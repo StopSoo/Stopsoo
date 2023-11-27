@@ -11,10 +11,10 @@ function getNumber(){
         return number;
     }
 
-    return innerGetNumber();
+    return innerGetNumber();    // 함수를 실행해서 반환
 }
 // console.log(number); // error 발생
-console.log(getNumber());
+console.log(getNumber());   // [Function: innerGetNumber]
 
 // Q. innerGetNumber가 getNumber보다 더 오래 살아 있으려면 ?
 function getNumber(){
@@ -24,11 +24,11 @@ function getNumber(){
         return number;
     }
 
-    return innerGetNumber; // // 함수를 실행해서 반환 X (!)
+    return innerGetNumber; // 함수를 실행해서 반환 X (!)
 }
 const runner = getNumber();
-console.log(runner);
-console.log(runner());
+console.log(runner);    // [Function: innerGetNumber]
+console.log(runner());  // 5
 
 /**
  * 1) 데이터 캐싱
@@ -47,7 +47,7 @@ function cacheFunction(){
         return number * newNumb;
     }
 
-    return innerCacheFunction;
+    return innerCacheFunction;  // 함수를 실행해서 반환 X
 }
 const runner2 = cacheFunction();    // 이렇게 작성하면 number 계산을 한 번만 하게 됨 -> 효율적
 console.log(runner2(10));
@@ -64,7 +64,7 @@ function cacheFunction2(){
         return number;
     }
 
-    return increment;
+    return increment;   // 함수 자체를 반환
 }
 const runner3 = cacheFunction2();
 console.log(runner3()); // 100
@@ -76,7 +76,7 @@ console.log(runner3()); // 101
 function Idol(name, year){
     this.name = name;
 
-    var _year = year;
+    var _year = year;   // 변수명 앞에 언더바(_) 붙이기
 
     this.sayNameAndYear = function(){
         return `안녕하세요 저는 ${this.name}입니다. ${_year}년에 태어났습니다.`;
