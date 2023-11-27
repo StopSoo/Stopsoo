@@ -109,3 +109,53 @@ function UserStatus(props) {
     </div>
   );
 }
+
+function LoginControl(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLoginClick = () => {
+    setIsLoggedIn(true);
+  }
+  const handleLogoutClick = () => {
+    setIsLoggedIn(false);
+  }
+
+  return (
+    <div>
+      <Greeting isLoggedIn={isLoggedIn} />
+      {isLoggedIn
+        ? <LogoutButton onClick={handleLogoutClick} />
+        : <LoginButton onClick={handleLoginClick} />
+      }
+    </div>
+  );
+}
+
+// Q. 컴포넌트를 렌더링하고 싶지 않을 떄는 ?
+// A. null을 리턴하면 렌더링되지 않는다.
+function WarningBanner(props) {
+  if (!props.warning) {
+    return null;
+  }
+  // props.warning이 true일 때만 렌더링된다. 
+  return (
+    <div>경고!</div>
+  );
+}
+
+function MainPage(props) {
+  const [showWarning, setShowWarning] = useState(false);
+
+  const handleToggleClick = () => {
+    setShowWarning(prevShowWarning => !prevShowWarning); 
+  }
+
+  return (
+    <div>
+      <WarningBanner warning={showWarning} />
+      <button onClick={handleToggleClick}>
+        {showWarning ? '감추기' : '보이기'}
+      </button>
+    </div>
+  );
+}

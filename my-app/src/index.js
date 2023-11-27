@@ -43,7 +43,6 @@ import CommentList from './chapter_05/CommentList';
 // );
 
 import ConfirmButton from './chapter_08/ConfirmButton';
-
 // ReactDOM.render(
 //   <React.StrictMode>
 //     <ConfirmButton />
@@ -52,15 +51,22 @@ import ConfirmButton from './chapter_08/ConfirmButton';
 // );
 
 import Accommodate from './chapter_07/Accommodate';
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Accommodate />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 
+import LandingPage from './chapter_09/LandingPage';
 ReactDOM.render(
   <React.StrictMode>
-    <Accommodate />
+    <LandingPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-import Blocks from './chapter_15/Blocks';
+// import Blocks from './chapter_15/Blocks';
 
 // ReactDOM.render(
 //   <React.StrictMode>

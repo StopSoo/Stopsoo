@@ -5,7 +5,7 @@ const MAX_CAPACITY = 10;
 
 function Accommodate(props) {
   const [isFull, setIsFull] = useState(false);
-  const [count, increaseCount, decreaseCount] = useCounter(0);
+  const [count, increaseCount, decreaseCount] = useCount(0);
   // 의존성 배열이 없는 형태
   // 컴포넌트 mount 직후에 호출, 컴포넌트가 업데이트될 때마다 호출됨
   useEffect(() => {
@@ -32,3 +32,5 @@ function Accommodate(props) {
     </div>
   );
 }
+
+export default Accommodate;
