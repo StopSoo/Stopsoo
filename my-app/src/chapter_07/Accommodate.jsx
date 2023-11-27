@@ -16,20 +16,19 @@ function Accommodate(props) {
   // 의존성 배열이 있는 형태
   // 컴포넌트 mount 직후에 호출, count 값이 바뀔 때마다 호출됨
   useEffect(() => {
-    setIsFull(count >= MAX_CAPACITY); // 용량이 가득 찼는지의 여부를 isFull 변수에 저장
+    setIsFull(count >= MAX_CAPACITY); // 용량이 가득 찼는지의 여부(bool 값)를 isFull 변수에 저장
     console.log(`Current count value: ${count}`);
-  }, [count]);  // count 변수 값이 바뀌면 실행
+  }, [count]);
 
   return(
     <div style={{ padding: 16 }}>
       <p>{`총 ${count}명 수용했습니다.`}</p>
 
-      <button onClick={increaseCount} disabled={isFull}>
-        입장
-      </button>
+      <button onClick={increaseCount} disabled={isFull}>입장</button>
       <button onClick={decreaseCount}>퇴장</button>
 
-      {isFull && <p style={{ color: "red" }}>정원이 가득 찼습니다.</p>}
+      {isFull && <p style={{ color: "red" }}>정원이 가득 찼습니다.</p>} 
+      {/* 조건문 사용 */}
     </div>
   );
 }
