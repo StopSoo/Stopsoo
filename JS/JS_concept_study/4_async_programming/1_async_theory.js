@@ -23,6 +23,14 @@ console.log('Hello');
 longWork();
 console.log('World');
 
+/**
+ * 출력 예제
+ * Hello
+ * 2023-11-28T02:09:37.2022
+ * (2초 뒤)
+ * 완료
+ * World
+ */
 
 /* Async programming */
 function longWork() {
@@ -36,3 +44,11 @@ function longWork() {
 console.log('Hello');
 longWork();
 console.log('World');
+
+/**
+ * 출력 예제
+ * Hello
+ * World
+ * (2초 뒤)
+ * 완료
+ */

@@ -4,8 +4,8 @@
  */
 const getPromise = (seconds) => new Promise((resolve, reject) => {
     setTimeout(() => {
-        // resolve('완료');
-        reject('에러');
+        resolve('완료');
+        // reject('에러');
     }, seconds * 1000)
 });
 
@@ -14,7 +14,7 @@ async function runner() {
         const result1 = await getPromise(1);    // await을 통해 반환 받은 값을 result1에 넣기
         console.log(result1);
 
-        const result2 = await getPromise(2);
+        const result2 = await getPromise(2);    // 위에 있는 getPromise가 끝나고 2초 뒤에 실행됨
         console.log(result2);
     } catch (e) {   // reject 때 실행됨
         console.log(e);

@@ -3,6 +3,8 @@
  * 선언하고 나중에 실행해도 되는 함수 
  */
 function waitAndRun(){
+    // setTimeout : 비동기 함수
+    // 2초 뒤에 실행
     setTimeout(() => {
         console.log('끝');
     }, 2000);
@@ -61,6 +63,17 @@ getPromise(3).then((res) => {
     console.log(res);
 })
 
+/**
+ * 출력 결과
+ * (3초 뒤)
+ * first
+ * 완료
+ * (3초 뒤)
+ * second
+ * 완료 
+ * */
+
+
 // Ex3
 const getPromise2 = (seconds) => new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -77,6 +90,14 @@ getPromise2(3).then((res) => {
     console.log('finally');
 })
 
+/**
+ * 출력 결과
+ * (3초 뒤)
+ * first catch
+ * 에러
+ * finally
+ */
+
 // 여러 개의 promise 동시에 실행 가능
 // 가장 느린 함수 기준으로 then이 실행된다. 
 Promise.all([
@@ -86,3 +107,9 @@ Promise.all([
 ]).then((res) => {
     console.log(res);
 });
+
+/**
+ * 출력 결과
+ * (2초 뒤)
+ * [ '완료', '완료', '완료' ]
+ */
