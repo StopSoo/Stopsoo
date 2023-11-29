@@ -59,9 +59,28 @@ import Accommodate from './chapter_07/Accommodate';
 // );
 
 import LandingPage from './chapter_09/LandingPage';
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <LandingPage />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
+import AttendanceBook from './chapter_10/AttendanceBook';
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <AttendanceBook />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
+import SignUp from './chapter_11/SignUp';
+
 ReactDOM.render(
   <React.StrictMode>
-    <LandingPage />
+    <SignUp />
   </React.StrictMode>,
   document.getElementById('root')
 );
