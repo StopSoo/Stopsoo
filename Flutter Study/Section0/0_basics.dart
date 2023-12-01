@@ -27,6 +27,7 @@ void addNumbers(int x, [int y = 0, int z = 0]) {
 }
 // 4) named parameter - 이름이 있는 파라미터이므로 순서가 중요하지 않다.
 // 함수 선언 시 parameter 앞에 'required'라는 키워드를 사용한다.  
+// 함수 선언 시 {} 안에 parameter를 선언한다.
 // 실제로 함수를 사용할 때는 parameter 자리에 '변수명: 값' 형태로 사용한다. 
 // (!) 여기서 optional paramter를 사용하기 위해서는 맨 앞에 'required' 키워드를 삭제해주고 디폴트 값을 넣어주면 된다.
 void addNumbers2({required int x, required int y, required int z}) {
@@ -46,21 +47,21 @@ void addNumbers2({required int x, required int y, required int z}) {
 // 화살표 다음에 오는 값이 반환되는 값이다. 
 int addNumbers3(int x, {required int y, int z = 30}) => x + y + z;
 
-// 12. typedef
+// 12. typedef (!)
 // 아래 signature에 부합하게 함수 형태를 작성
 typedef Operation = int Function(int x, int y, int z);
 // 더하기
 int add(int x, int y, int z) => x + y + z;
 // 빼기
 int subtract(int x, int y, int z) => x - y - z;
+
 // 계산 (실제 사용 예시)
 int calculate(int x, int y, int z, Operation operation) {
   return operation(x, y, z);
 }
 
 
-
-// 메인 함수
+/* 메인 함수 */
 // void 키워드 : 아무 것도 반환하지 않음
 void main() {
   // nullable
@@ -78,6 +79,8 @@ void main() {
   // 값 변경 불가능
   final String name = '정지수';
   const String name2 = '블랙핑크';
+  // name = '지수정'; // final로 선언한 변수 값 변경 불가능
+
   // var 키워드 생략 가능 -> 알아서 할당
   final age = 23;
   final age2 = 30;
@@ -180,7 +183,7 @@ void main() {
   }
 
   // 2) switch문
-  // 반드시 break를 사용해야 함
+  // 반드시 break를 사용해야 함 (!)
   switch (num % 3) {
   case 0:
       print('나머지가 0입니다.');
@@ -201,27 +204,27 @@ void main() {
   int total = 0;
   List<int> numbers2 = [1, 2, 3, 4, 5, 6];
 
-  for (int i=0; i < numbers2.length; i++) {
-  total += numbers2[i];
+  for (int i=0; i < numbers2.length; i++) { // for문 1
+    total += numbers2[i];
   }
   print(total);
 
   total = 0;
-  for (int number in numbers2) {
-  total += number;
+  for (int number in numbers2) {  // for문 2
+    total += number;
   }
 
   // 2) while loop
   total = 0;
   while (total < 10) {
-  total += 1;
+    total += 1;
   }
   print(total);
 
   // 3) do-while loop
   total = 0;
   do {
-  total += 1;
+    total += 1;
   } while (total < 10);
   print(total);
 
@@ -241,6 +244,7 @@ void main() {
   // 11. function
   addNumbers(10, 20, 30);
   // 둘은 같은 결과값을 반환함.
+  // named parameter -> 순서가 상관 없다는 뜻 
   addNumbers2(x: 10, y:30, z: 40);
   addNumbers2(y: 30, x: 10, z: 40);
 

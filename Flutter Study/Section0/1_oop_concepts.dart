@@ -3,7 +3,7 @@
 void main() {
   // 객체 선언
   // new 키워드를 사용해도 되고 안 해도 된다. 
-  const Idol blackPink = Idol(
+  Idol blackPink = Idol(
     '블랙핑크', 
     ['지수', '제니', '로제', '리사']
   );
@@ -12,8 +12,8 @@ void main() {
     '블랙핑크', 
     ['지수', '제니', '로제', '리사']
   );
-  // const를 사용했기 때문에 변수 값들이 각각 모두 같은 두 객체를 같다고 인식
-  print(blackPink == blackPink2);
+  // const를 사용했기 때문에 변수명은 다르지만 변수 값들이 각각 모두 같은 두 객체를 같다고 인식
+  print(blackPink == blackPink2); // true
 
   const Idol bts = Idol(
     '방탄소년단',
@@ -31,34 +31,38 @@ void main() {
   );
   bts2.sayHello();  // named constructor를 통한 생성 후 함수 실행
   
+  // getter 사용 예제 -> ()를 사용하지 않는다는 점 !
+
   print(blackPink.firstMember); // 첫 번째 멤버인 '지수'를 반환
-  blackPink.firstMember = '박진영';  // setter를 사용해서 값을 변경
+  blackPink.firstMember = '박진영';  // setter를 사용해서 값을 변경 -> blackPink 객체를 const로 설정하면 값 변경이 되지 않음 주의(!)
   print(blackPink.firstMember);
 
   print('----- Idol -----');
   Idol2 apink = Idol2(name: '에이핑크', membersCount: 5);
   
-  apink.sayName;
+  apink.sayName();  // 함수 실행 시 () 붙이세요!
   apink.sayMembersCount();
   print('');
   // Idol class를 상속 받았기 때문에 Idol 클래스 내 함수들도 사용 가능
   BoyGroup BTS = BoyGroup('BTS', 7);
-  BTS.sayMembersCount();
   BTS.sayName();
+  BTS.sayMembersCount();
   print('');
   
   GirlGroup redVelvet = GirlGroup('Red Velvet', 5);
-  redVelvet.sayMembersCount();
   redVelvet.sayName();
   redVelvet.sayFemale();
-  
+  redVelvet.sayMembersCount();
+  print('');
+
   print('----- Type Comparison -----');
   print(apink is Idol2);
   print(apink is GirlGroup);
   print(BTS is Idol2); // 상속 받은 클래스의 경우 부모 클래스에도 해당한다. 
   print(BTS is BoyGroup);
   print(BTS is GirlGroup); // 같은 부모 클래스를 상속 받은 자식 클래스들은 서로 상관이 없다.
-
+  print('');
+  
   TimesTwo tt = TimesTwo(2);
   print(tt.calculate());
   
@@ -92,7 +96,7 @@ void main() {
 }
 
 
-// class 선언
+/* class 선언 */
 class Idol {
   // 변수 선언
   // 몇몇 예외를 제외하고는 변수를 final로 선언해서 값 변경을 최소화하기 !
@@ -100,18 +104,18 @@ class Idol {
   final List<String> members;
 
   // constructor (생성자) 만들기 -> 변수 선언 후 생성자 만들기
-  //                          -> 콜론 찍고 this 포인터를 사용해서 초기화하기
+  //                          -> 콜론 찍고(!) this 포인터를 사용해서 초기화하기
   // 기본 생성자 선언 방법 1
   // 생성자 선언 시 const를 사용해야 실제 사용 시 const로 값을 변경하지 못 하게 할 수 있다.
-  // 또한, 객체 생성 시 const를 사용하면 객체명이 다르더라도 내부 변수 값이 같았을 때 두 객체를 같다고 인식한다.
-  const Idol(String name, List<String> members): 
-  this.name = name, 
-  this.members = members;
+  // 또한, 객체 생성 시 const를 사용하면 객체명이 다르더라도 내부 변수 값이 같았을 때 두 객체를 같다고 인식한다. (!)
+  const Idol(String name, List<String> members)
+    : this.name = name, 
+      this.members = members;
   // 기본 생성자 선언 방법 2 
   // Idol(this.name, this.members);
   
-  // named constructor 선언 방법 -> 클래스명.생성자명() : 
-  // 클래스의 각 요소를 values list의 0, 1번째에 넣겠다는 의미
+  // named constructor 선언 방법 -> 클래스명.생성자명(): 
+  // 클래스의 각 요소를 values list의 0, 1번째에 넣겠다는 의미 (방향 체크)
   // 이 생성자에는 const 키워드를 사용하지 않았기 때문에 사용 시 const 키워드를 사용할 수 없다.
   Idol.fromList(List values)
     : this.members = values[0],
@@ -125,15 +129,15 @@ class Idol {
     print('저희 멤버는 ${this.members}가 있습니다.');
   }
 
-  // getter / setter
-  // 데이터를 가져올 때 / 데이터를 설정할 때
-
+  /**
+   * getter / setter
+   * 데이터를 가져올 때 / 데이터를 설정할 때
+   */
   // getter
   // 맨 앞에 반환 자료형은 붙여도 되고 안 붙여도 된다 !
   String get firstMember {
     return this.members[0];
   }
-  
   // setter
   // 무조건 하나의 파라미터를 필요로 한다. (할당 개념)
   set firstMember(String name) {
@@ -144,14 +148,12 @@ class Idol {
   // 변수명 앞에 _를 붙여주면 외부 파일에서 접근할 수 없다.
 }
 
-// 상속 - inheritance
+/* 상속 - inheritance */
 // 상속을 받으면 부모 클래스의 모든 속성을 자식 클래스가 부여 받는다.
 // 부모 class
 class Idol2 {
-  // 이름
-  String name;
-  // 멤버 숫자
-  int membersCount;
+  String name;  // 이름
+  int membersCount; // 멤버 숫자
   // 생성자
   Idol2({
     // named parameter
@@ -176,9 +178,9 @@ class BoyGroup extends Idol2 {
     String name,
     int membersCount,
   ): super (
-          name: name,
-          membersCount: membersCount,
-          );
+    name: name,
+    membersCount: membersCount,
+  );
   
   void sayMale() {
     print('저는 남자 아이돌입니다.');
@@ -189,7 +191,10 @@ class GirlGroup extends Idol2 {
   GirlGroup(
     String name,
     int membersCount,
-  ): super (name: name, membersCount: membersCount);
+  ): super (
+    name: name, 
+    membersCount: membersCount
+  );
   
   void sayFemale() {
     print('저는 여자 아이돌입니다.');
