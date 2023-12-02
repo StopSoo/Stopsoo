@@ -78,9 +78,18 @@ import AttendanceBook from './chapter_10/AttendanceBook';
 
 import SignUp from './chapter_11/SignUp';
 
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <SignUp />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
+import Calculator from './chapter_12/Calculator';
+
 ReactDOM.render(
   <React.StrictMode>
-    <SignUp />
+    <Calculator />
   </React.StrictMode>,
   document.getElementById('root')
 );
