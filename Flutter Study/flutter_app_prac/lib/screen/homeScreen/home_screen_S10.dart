@@ -1,160 +1,118 @@
-// Section 10 : 만난 지 며칠 U&I
-// Expanded : 화면에서 위젯이 나머지 공간을 차지할 수 있게 한다. 
-import 'package:flutter/cupertino.dart';
+// Section 7 : Stateful Widget
 import 'package:flutter/material.dart';
+import 'dart:ui';
+// StatefulWidget 단축 명령어 : stful
+// StatelessWidget 단축 명령어 : stless
 
-class HomeScreenS10 extends StatefulWidget {
-  const HomeScreenS10({super.key});
+// StatefulWidget은 createState() 함수를 실행해야 한다.
+class HomeScreenS7 extends StatefulWidget {
+  // _HomeScreenState 함수에서 사용할 Color 변수를 StatefulWidget에서 선언
+  final Color color;
+
+  HomeScreenS7({
+    // named parameter
+    required this.color,
+    Key? key,
+  }) : super(key: key) {
+    print('Widget Constructor 실행!');
+  }
 
   @override
-  State<HomeScreenS10> createState() => _HomeScreenS10State();
+  _HomeScreenS7State createState() {
+    print('createState 실행!');
+    return _HomeScreenS7State();
+  }
+
+  // @override
+  // State<StatefulWidget> createState() {
+  //   // State 함수는 어차피 외부에서 쓸 일이 X -> 따라서 private으로 선언하기 위해 _을 붙인다.
+  //   return _HomeScreenS7State();
+  // }
 }
 
-class _HomeScreenS10State extends State<HomeScreenS10> {
-  // date picker에 의해 선택된 날짜
-  DateTime selectedDate = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+class _HomeScreenS7State extends State<HomeScreenS7> {
+  int number = 0;
+
+  // 이 클래스에서 initState() 함수는 필수 !!
+  @override
+  void initState() {
+    print('initState 실행!');
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    print('didChangeDependencies 실행!');
+    super.didChangeDependencies();
+  }
+
+  @override
+  void deactivate() {
+    print('deactivate 실행!');
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    print('dispose 실행!');
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant HomeScreenS7 oldWidget) {
+    print('didUpdateWidget 실행!');
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.pink[100],  // 이와 같이 100~900 사이의 100 단위 값으로 진하기를 설정할 수 있다.
-      body: SafeArea(
-        // SafeArea : 아래 쪽은 적용 해제
-        bottom: false,  
-        child: Container(
-          width: MediaQuery.of(context).size.width, // 화면 크기와 상관 없이 항상 가운데 정렬
-          child: Column(
-            children: [
-              // 이와 같이 클래스 형태로 만들기
-              _TopPart(
-                // named parameter 값 꼭 넣어주기 
-                selectedDate: selectedDate,
-                onPressed: onHeartPressed,
-              ),
-              _BottomPart(),
-            ]
-          )
+    print('build 실행!');
+
+    return GestureDetector(
+      onTap: (){
+        setState((){
+          number++;
+        });
+      },
+      child: Container(
+        width: 50.0,
+        height: 50.0,
+        color: widget.color,
+        child: Center(
+          child: Text(
+            number.toString(),
+          ),
         ),
-      )
-    );
-  }
-
-  // stateful => stateless : setState() 함수 사용 못 하므로, 상태를 트리의 위로 옮김 (!)
-  void onHeartPressed(){
-    // dialog
-    showCupertinoDialog(
-      context: context,
-      // dialog 바깥 영역을 누르면 위젯 닫힘
-      // 기본 값은 false
-      barrierDismissible: true,
-      // 화면 안에 들어갈 위젯을 builder에 넣어주면 된다. 
-      // build 함수라고 생각하면 됨 !!
-      builder: (BuildContext context) {
-        // Container를 Align으로 묶기 => 안 하면 화면 전체를 덮음 ! (flutter 특징)
-        return Align(
-          // 창의 위치 설정
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            color: Colors.white,
-            height: 300.0,
-            child: CupertinoDatePicker(
-              mode: CupertinoDatePickerMode.date,
-              // 초기 값 세팅
-              initialDateTime: selectedDate,
-              // 미래의 날짜를 선택해서 날 수 있는 오류를 방지
-              maximumDate: DateTime(
-                DateTime.now().year,
-                DateTime.now().month,
-                DateTime.now().day ,
-              ),
-              // 함수 정의 들어가서 보면 onDateTimeChanged는 
-              // DateTime 형태의 value를 받는다는 걸 알 수 있음
-              onDateTimeChanged: (DateTime date) {
-                // setState() 함수 사용하기 !
-                // date 값으로 받은 날짜를 selectedDate 변수에 업데이트
-                setState(() {
-                  selectedDate = date;
-                });
-              },
-            )
-          ),
-        );
-      }
-    );
-  }
-}
-
-// 클래스화 for 코드의 효율성
-// date picker에 의해 날짜를 변경해줘야 하므로 stateful로 변경 (!)
-// 다시 stateless로 바꾸고 상태를 트리의 위로 옮김 
-class _TopPart extends StatelessWidget {
-  final DateTime selectedDate;
-  final VoidCallback onPressed; // setState() 제거 위함
-
-  _TopPart({
-    required this.selectedDate, 
-    required this.onPressed,
-    Key? key
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // 위젯 트리에서 가장 가까운 theme을 가져온다. 
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-
-    return Expanded(
-      child: Column(
-        // 위젯들 간의 배치 상태에 따라 설정할 것.
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            'U & I',
-            style: textTheme.headline1,
-          ),
-          Column(
-            children: [
-              Text(
-                '우리 처음 만난 날',
-                style: textTheme.bodyText1,
-              ),
-              Text(
-                // 아래처럼 value 가져오는 것 잊지 않기 !
-                '🩷 ${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일 🩷',
-                style: textTheme.bodyText2,
-              ),
-            ],
-          ),
-          IconButton(
-            // IconButton에서 크기를 설정하는 게 Icon에서 크기를 설정하는 것보다 효율적 !
-            iconSize: 70.0,
-            onPressed: onPressed,
-            icon: Icon(
-              Icons.favorite,
-              color: Colors.red,
-            )
-          ),
-          Text(
-            // 두 시간의 차 => difference 사용하기 
-            'D + ${DateTime.now().difference(selectedDate).inDays + 1}',
-            style: textTheme.headline2,
-          ),
-        ],
       ),
     );
+    // return Container(
+    //   width: 50.0,
+    //   height: 50.0,
+    //   // _HomeScreenState 클래스가 HomeScreen의 State를 상속받기 때문에
+    //   // 아래 코드에서 widget은 상단에 위치하는 StatefulWidget을 가리킨다.
+    //   color: widget.color,
+    // );
   }
 }
 
-// 이미지
-class _BottomPart extends StatelessWidget {
-  const _BottomPart({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Image.asset(
-        'asset/img/middle_image.png',
-      ),
-    );
-  }
-}
+// Stateless로 선언하면 한 클래스 안에서 Color 변수를 선언하고 build 함수에서 사용하면 된다.
+// 또한, 클래스명을 클릭해서 'Convert to StatefulWidget'을 선택하면 위 코드로 바로 변환 가능하다. 
+
+// class HomeScreenS7 extends StatelessWidget {
+//   final Color color;
+
+//   const HomeScreenS7({
+//     required this.color,
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: 50.0,
+//       height: 50.0,
+//       color: color,
+//     );
+//   }
+// }

@@ -1,57 +1,66 @@
-// Section 14 : Navigation
-// MainLayout 적용
-import 'package:flutter/material.dart';
-import 'package:flutter_application_prac/layout/main_layout.dart';
-import 'package:flutter_application_prac/screen/route_one_screen.dart';
+// Section 11 : Const constructor
+// Q. const는 언제 사용할까 ?
+// A. build 타임에 모든 변수들의 값들을 다 알 수 있을 때 사용 !
+// 앱이 실행되는 동안 build 함수는 한 번만 실행된다는 뜻
+// const로 선언한 위젯이 많을 수록 더욱 효율적이다.
 
-class HomeScreenS14 extends StatelessWidget {
-  const HomeScreenS14({super.key});
+import 'package:flutter/material.dart';
+
+class HomeScreenS11 extends StatefulWidget {
+  const HomeScreenS11({super.key});
+
+  @override
+  State<HomeScreenS11> createState() => _HomeScreenS11State();
+}
+
+class _HomeScreenS11State extends State<HomeScreenS11> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // 아래 두 TestWidget은 const 키워드를 사용하였으므로 build를 여러 번 눌러도 한 번만 생성된다. 
+            const TestWidget(label: 'test1'),
+            const TestWidget(label: 'test2'),
+            // ElevatedButton은 const로 선언 불가능 (!)
+            // setState() 함수에 뭐가 들어갈지 모르기 때문
+            ElevatedButton(
+              onPressed: () {
+                // setState()를 실행하면 build가 다시 실행된다. 
+                setState(() {});
+              }, 
+              child: const Text(
+                'Build !'
+              )
+            )
+          ],
+        ),
+      )
+    );
+  }
+}
+
+class TestWidget extends StatelessWidget {
+  final String label;
+
+  const TestWidget({
+    required this.label, 
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      // 안드로이드에서 시스템 상 뒤로가기 버튼을 통해 강제로 앱을 종료하는 일이 없게 방지
-      onWillPop: () async {
-        // true : pop 가능
-        // false : pop 불가능
-
-        // Pop이 가능한 경우는 true를 반환, 불가능한 경우는 false를 반환하게 설정 
-        final canPop = Navigator.of(context).canPop();
-
-        return canPop;
-      },
-      child: MainLayout(
-        title: 'Home Screen', 
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              // maybePop : 더 이상 뒤로 갈 페이지가 없을 때 pop되지 않음
-              Navigator.of(context).maybePop();
-            },
-            child: Text('Maybe Pop'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('Pop'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              final result = await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => RouteOneScreen(
-                    number: 123,
-                  ),
-                )
-              );
-    
-              print(result);
-            }, 
-            child: Text('Push')
-          )
-        ],
-      ),
+    return Container(
+      child: Text(
+        label,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 20,
+        )
+      )
     );
   }
 }

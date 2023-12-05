@@ -1,134 +1,194 @@
-// Section 15 : 동영상 플레이어
-// 동영상 재생 시 화면이 push되는 형태가 아닌, 이 파일 내에서 영상이 재생되도록 설정 (!)
-import 'package:flutter/material.dart';
-import 'package:flutter_application_prac/component/custom_video_player.dart';
-import 'package:image_picker/image_picker.dart';
+// Section 12 : 쓸데없이 예쁜 랜덤 숫자 생성기
+import 'dart:math';
 
-// stateful widget으로 변경 => class 내 모든 위젯들에서 context 사용 가능 (!)
-class HomeScreenS15 extends StatefulWidget {
-  const HomeScreenS15({super.key});
+import 'package:flutter/material.dart';
+import 'package:flutter_application_prac/component/number_row.dart';
+import 'package:flutter_application_prac/constant/colors.dart';
+import 'package:flutter_application_prac/screen/settings_screen.dart';
+
+class HomeScreenS12 extends StatefulWidget {
+  const HomeScreenS12({super.key});
 
   @override
-  State<HomeScreenS15> createState() => _HomeScreenS15State();
+  State<HomeScreenS12> createState() => _HomeScreenS12State();
 }
 
-class _HomeScreenS15State extends State<HomeScreenS15> {
-  XFile? video; // for image picker
+class _HomeScreenS12State extends State<HomeScreenS12> {
+  int maxNumber = 1000;
+
+  List<int> randomNumbers = [
+    123,
+    456,
+    789,
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: video == null ? renderEmpty() : renderVideo(),
-    );
-  }
-
-  Widget renderVideo() {
-    return Center(
-      child: CustomVideoPlayer(
-        video: video!,
-        onNewVideoPressed: onNewVideoPressed,
+      backgroundColor: PRIMARY_COLOR,
+      body: SafeArea(
+        // Padding widget으로 감싼다는 점 (!)
+        child: Padding(
+          // EdgeInsets
+          // 1. .all : L, T, R, B 모두 적용
+          // 2. .only : named parameter를 이용하여 적용
+          // 3. .symmetric : 가로 대칭(horizontal), 세로 대칭(vertical)으로 적용
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 헤더
+              _Header(
+                onPressed: onSettingsPop,
+              ),
+              // 랜덤 숫자 나오는 부분
+              _Body(
+                randomNumbers: randomNumbers
+              ),
+              // 생성하기 버튼
+              _Footer(
+                onPressed: onRandomNumberGenerater,
+              )
+            ],
+          ),
+        ),
       )
     );
   }
-  
-  Widget renderEmpty() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      // Container 자체에 color를 지정 or BoxDecoration 안에 color를 지정
-      decoration: getBoxDecoration(),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _logo(
-            onTap: onNewVideoPressed,
-          ),
-          SizedBox(height: 30.0),
-          _AppName()
-        ],
-      ),
-    );
-  }
 
-  // async-await 설정
-  // : 이미지 클릭 시 갤러리로 전환되어 사용자가 미디어를 선택할 때까지 기다려야 하기 때문
-  void onNewVideoPressed() async {
-    final video = await ImagePicker().pickVideo(
-      source: ImageSource.gallery,
+  void onRandomNumberGenerater() {
+    // 랜덤 생성기
+    final rand = Random();
+    // 새로운 리스트 => 집합으로 변경해서 중복 제거 !
+    final Set<int> newNumbers = {};
+
+    // 중복이 제거되더라도 숫자의 개수는 3개가 될 수 있게 => 버그 가능성 제거
+    while (newNumbers.length != 3) {
+      // nextInt : 인수로 들어온 숫자가 최대 숫자
+      final number = rand.nextInt(maxNumber);
+      newNumbers.add(number);
+    }
+
+    // 리스트 덮어쓰기
+    // setState() 함수 사용 체크 (!)
+    setState(() {
+      randomNumbers = newNumbers.toList();
+    });
+  } 
+
+  void onSettingsPop () async {
+    // 1. 스크린 이동하기 : Navigator를 이용한 방법 알아둘 것
+    //    [HomeScreenS12(), SettingsScreen()] 개념
+    // 2. 데이터를 돌려받을 때 navigator push한 곳에서 변수를 설정해서 돌려받으면 된다 (!)
+    //    그냥 돌려받을 수는 없고 async - await 설정해줘야 하고, (!)
+    //    push 옆에 generic(<>)으로 어떤 값을 돌려받는지 설정해주면 좋다.
+    // 3. SettingsScreen에서 받은 숫자를 바로 화면에 띄울 수 없다. 트리 상단으로 올려야 함 !! 
+    // 4. 현재 '저장' 버튼을 눌러야 값이 넘어오기 때문에 result는 null 값이 될 수 있는 int? 형이다 (!)
+    //    따라서 setState() 함수 실행은 null 처리를 해줘야 한다. 
+    final result = await Navigator.of(context).push<int>(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return SettingsScreen(
+            maxNumber: maxNumber,
+          );
+        },
+      )
     );
 
-    // null check
-    if (video != null) {
+    // 함수를 위로 올렸기 때문에 받은 숫자를 setState() 설정을 통해 화면에 띄울 수가 있음 !!
+    // result가 null이 아닐 때만 setState() 함수를 실행한다.
+    if (result != null) {
       setState(() {
-        // 고른 비디오를 이 함수의 변수 video에 넣는다. 
-        this.video = video; 
+        maxNumber = result;
       });
     }
   }
+}
 
-  BoxDecoration getBoxDecoration() {
-    return BoxDecoration(
-      // LinearGradient : 한 색깔이 위에서부터 찬찬히 바뀐다는 뜻
-      // RadialGradient : 한 색깔이 가운데서부터 동그랗게 바깥쪽으로 바뀌어 간다는 뜻
-      gradient: LinearGradient(
-        // begin, end, colors 세 가지 요소를 설정
-        // colors : list를 받음
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          // 위쪽 색깔부터 차례로 넣기
-          Color(0xFF2A3A7C),
-          Color(0xFF000118),
-        ]
+class _Header extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const _Header({required this.onPressed, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          '랜덤 숫자 생성기',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30.0,
+            fontWeight: FontWeight.w700
+          )
+        ),
+        IconButton(
+          // onPressed 함수 위로 올림 !
+          onPressed: onPressed,
+          icon: Icon(
+            Icons.settings,
+            color: RED_COLOR,
+          ),
+        )
+      ]
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  // 코드 정리 시, randomNumbers 리스트를 외부에서 받아올 수 있게 설정해준다. 
+  final List<int> randomNumbers;
+
+  const _Body({required this.randomNumbers, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        // 코드의 효율성을 위해서 이런 식으로 map 쓰는 것 익숙해지기 !
+        children: randomNumbers
+        .asMap()
+        .entries  // key, value로 저장됨
+        .map(
+          (e) => 
+          Padding(
+            padding: EdgeInsets.only(
+              // 마지막 Row에는 아래 패딩을 넣지 않는다 (!)
+              bottom: e.key == 2 ? 0.0 : 16.0
+            ),
+            child: NumberRow(
+              number: e.value,
+            )
+          )
+        ).toList()
       )
     );
   }
 }
 
-class _logo extends StatelessWidget {
-  // VoidCallback형 onTap 함수를 named parameter로 선언해줌으로써 상위에서 onTap을 사용할 수 있다.
-  final VoidCallback onTap;
-  
-  const _logo({required this.onTap, super.key});
+class _Footer extends StatelessWidget {
+  // Stateful -> Stateless 변경 시, setState() 오류 해결하는 방법 (!)
+  final VoidCallback onPressed;
+
+  const _Footer({required this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      // GestureDetector 위젯의 child 위젯을 누르면 onTap 함수가 실행됨
-      onTap: onTap,
-      child: Image.asset(
-        'asset/img/logo.png'
-      ),
-    );
-  }
-}
-
-class _AppName extends StatelessWidget {
-  const _AppName({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // text style 설정 => build 안에 넣을 것 !
-    final textStyle = TextStyle(
-      color: Colors.white,
-      fontSize: 30.0,
-      fontWeight: FontWeight.w300,
-    );
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'VIDEO',
-          style: textStyle
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        // ElevatedButton : style 지정 방법 체크 (!)
+        style: ElevatedButton.styleFrom(
+          primary: RED_COLOR,
         ),
-        Text(
-          'PLAYER',
-          // .copyWith() : 적용된 설정은 유지하고, 추가로 다른 설정을 적용할 수 있음
-          style: textStyle.copyWith(
-            fontWeight: FontWeight.w700
-          )
+        // 버튼을 누르면 난수 생성
+        onPressed: onPressed,
+        child: const Text(
+          '생성하기',
         )
-      ],
+      ),
     );
   }
 }
