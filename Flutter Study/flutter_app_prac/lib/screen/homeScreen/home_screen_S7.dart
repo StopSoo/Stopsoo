@@ -11,7 +11,7 @@ class HomeScreenS5 extends StatelessWidget {
         bottom: false,  // 아래 쪽은 적용 해제
         child: Container(
           color: Colors.black,
-          // MediaQuery.of(context) : size(width, height)를 가져올 수 있다.
+          // MediaQuery.of(context) : 화면의 전체 size(width, height)를 가져올 수 있다.
           // width: MediaQuery.of(context).size.width,
           child: Column(
             // MainAxisAlignment - 주축 정렬
