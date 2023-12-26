@@ -8,8 +8,8 @@ export default class View {
     console.log(tag, "constructor");
     // element가 존재할 경우에만 내부 변수로 관리한다.
     if (!element) throw "no element";
+    
     this.element = element;
-
     this.originalDisplay = this.element.style.display || "";  // 객체 노출 여부
 
     return this;

@@ -1,28 +1,19 @@
 import Controller from "./Controller.js";
 import Store from "./Store.js";
 import storage from "./storage.js";
-import SearchFormView from "./views/SearchFormView.js";
-import SearchResultView from "./views/SearchResultView.js";
-import TabView from "./views/TabView.js";
-import KeywordListView from "./views/KeywordListView.js";
-import HistoryListView from "./views/HistoryListView.js";
 
-const tag = "[main]";
-
+const tag = "[main]"
+// DOM이 로딩되었을 때 main 함수를 호출
 document.addEventListener("DOMContentLoaded", main);
 
 function main() {
   console.log(tag, "main");
 
-  const store = new Store(storage);
+  const store = new Store(storage);  // storage 객체를 이용해 model을 생성 
 
   const views = {
-    searchFormView: new SearchFormView(),
-    searchResultView: new SearchResultView(),
-    tabView: new TabView(),
-    keywordListView: new KeywordListView(),
-    historyListView: new HistoryListView(),
+    // TODO
   };
 
-  new Controller(store, views);
+  new Controller(store, views); // MVC 각 계층의 객체들을 초기화하는 역할
 }

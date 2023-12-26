@@ -1,19 +1,26 @@
+/* DOM API를 직접 사용하지 않기 위해 아래 함수들처럼 래핑 */
+// document.querySelector를 줄여놓은 함수
 export function qs(selector, scope = document) {
   if (!selector) throw "no selector";
 
   return scope.querySelector(selector);
 }
 
+// document.querySelectorAll 함수를 호출
 export function qsAll(selector, scope = document) {
   if (!selector) throw "no selector";
 
-  return Array.from(scope.querySelectorAll(selector));
+  // 유사 배열을 반환
+  return Array.from(scope.querySelectorAll(selector)); 
 }
 
+// target element에서 event를 수신하고, addEventListener를 매핑
 export function on(target, eventName, handler) {
   target.addEventListener(eventName, handler);
 }
 
+// 인자로 받은 handler를 그대로 사용하지 않고, emitEvent라는 handler로 래핑
+// 특정 element 하위에 있는 자식 element들의 event를 처리할 때 사용한다.
 export function delegate(target, eventName, selector, handler) {
   const emitEvent = (event) => {
     const potentialElements = qsAll(selector, target);
@@ -28,11 +35,13 @@ export function delegate(target, eventName, selector, handler) {
   on(target, eventName, emitEvent);
 }
 
+// event를 발행
 export function emit(target, eventName, detail) {
   const event = new CustomEvent(eventName, { detail });
   target.dispatchEvent(event);
 }
 
+/* 참고용 */
 export function formatRelativeDate(date = new Date()) {
   const TEN_SECOND = 10 * 1000;
   const A_MINUTE = 60 * 1000;
