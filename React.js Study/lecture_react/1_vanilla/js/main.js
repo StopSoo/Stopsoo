@@ -1,8 +1,10 @@
 import Controller from "./Controller.js";
 import Store from "./Store.js";
 import storage from "./storage.js";
+import SearchFormView from "./views/SearchFormView.js";
 
 const tag = "[main]"
+// Application 진입점에서 main 함수가 호출된다.
 // DOM이 로딩되었을 때 main 함수를 호출
 document.addEventListener("DOMContentLoaded", main);
 
@@ -12,7 +14,7 @@ function main() {
   const store = new Store(storage);  // storage 객체를 이용해 model을 생성 
 
   const views = {
-    // TODO
+    searchFormView: new SearchFormView()
   };
 
   new Controller(store, views); // MVC 각 계층의 객체들을 초기화하는 역할
