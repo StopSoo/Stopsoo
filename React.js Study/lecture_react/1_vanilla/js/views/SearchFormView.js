@@ -24,16 +24,18 @@ export default class SearchFormView extends View {
     on(this.inputElement, "keyup", () => this.handleKeyup());
     // this.element에서 "submit" event가 실행되면 event 객체를 인자로 넘겨 handleSubmit handler를 추가한다. 
     on(this.element, "submit", event => this.handleSubmit(event));
-    // this.resetElement에서 "click" event가 실행되면 X버튼을 보이지 않게 한다.
-    on(this.resetElement, "click", this.showResetButton(false));
+    // this.resetElement에서 "click" event가 실행되면 검색 결과를 삭제한다.
+    on(this.resetElement, "click", () => this.handleReset());
   }
   
   handleKeyup() {
     // 입력 키워드의 존재 여부에 따라 showResetButton 함수 호출 
     const { value } = this.inputElement;
     this.showResetButton(value.length > 0);
-
-    
+    // 검색어를 삭제했을 때 검색 결과를 삭제하는 handleReset 함수를 호출
+    if (value.length <= 0) {
+      this.handleReset();
+    }
   }
 
   handleSubmit(event) {
@@ -44,5 +46,11 @@ export default class SearchFormView extends View {
     const { value } = this.inputElement;
     // custom event임을 구분하기 위해 eventName에 @를 추가, 입력 객체 전달
     this.emit("@submit", {value});
+  }
+
+  handleReset() {
+    console.log(tag, "handleReset");
+    // 검색 결과를 삭제하는 것은 검색창 바깥의 일이므로 밖으로 넘겨주기
+    this.emit("@reset");
   }
 }

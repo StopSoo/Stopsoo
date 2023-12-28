@@ -14,10 +14,14 @@ export default class Controller {
     // this.searchFormView에서 "@submit" event가 실행되면 event 객체를 인자로 넘겨 search 함수를 수행
     this.searchFormView.on("@submit", (event) => 
       this.search(event.detail.value)
-    );
+    ).on("@reset", () => this.reset()); // on 함수는 this를 return하고 있어 chaining이 가능
   }
 
   search(keyword) {
     console.log(tag, keyword);  // 확인용 출력
+  }
+
+  reset() {
+    console.log(tag, "reset");
   }
 }
