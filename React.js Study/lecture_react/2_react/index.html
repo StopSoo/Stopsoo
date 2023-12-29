@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lecture React</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <div id="app"></div>
@@ -20,9 +21,13 @@
 
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <script type="text/babel">
-    const element = React.createElement("h1", null, "Hello World"); // h1 태그 내 Hello World 문자열을 넣어 element를 생성
-    ReactDOM.render(element, document.querySelector('#app'));
-  </script>
+  <!-- data-type="module" : main.js 파일 안에서 다른 파일들을 import할 수 있도록 함 -->
+  <!-- data-presets="react" :  babel이 컴파일 시 preset 정보를 확인함 -->
+  <script 
+    type="text/babel" 
+    src="js/main.js" 
+    data-type="module" 
+    data-presets="react"
+  ></script>
 </body>
 </html>
