@@ -1,34 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Lecture React</title>
 </head>
 <body>
-  <script>
-    const state = {
-      _data: "Hello World",
-    };
+  <div id="app"></div>
 
-    const render = () => (document.body.innerHTML = `<p>${state.data}</p>`);
+  <script
+    crossorigin
+    src="https://unpkg.com/react@17/umd/react.development.js"
+  ></script>
 
-    Object.defineProperty(state, "data", {
-      get() {
-        console.log("get");
-        return state._data;
-      },
-      set(value) {
-        console.log("set");
-        state._data = value;
-        render(); // 변경한 value를 다시 html의 body에 띄우기
-      },
-    });
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+  ></script>
 
-    render();
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    state.data = "안녕";
-    // state.data = "Hello World";
+  <script type="text/babel">
+    const element = React.createElement("h1", null, "Hello World"); // h1 태그 내 Hello World 문자열을 넣어 element를 생성
+    ReactDOM.render(element, document.querySelector('#app'));
   </script>
 </body>
 </html>
