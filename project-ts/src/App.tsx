@@ -56,9 +56,19 @@ class App extends React.Component<AppProps, AppState> {
     return (
       <div className="App">
         { this.props.name }, { this.state.age }
+        <StatelessComponent name="Anna"/>
       </div>
     );
   }
+}
+
+// FunctionComponent: 해당 타입이 함수 컴포넌트를 나타낸다는 것을 의미
+// SFC는 FunctionComponent로 교체됨
+const StatelessComponent: React.FunctionComponent<AppProps> = (props) => {
+  // render() 존재X
+  return (
+    <h2>{props.name}</h2>
+  );
 }
 
 export default App;
