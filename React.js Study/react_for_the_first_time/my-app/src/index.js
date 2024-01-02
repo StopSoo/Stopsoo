@@ -15,8 +15,8 @@ import Library from './chapter_03/Library'; // Library component 가져오기
 // );
 
 import Clock from './chapter_04/Clock';
-/* 1000ms마다 Clock component를 root div에 rendering
-   ReactDOM.render(element, document.getElementById('root')); 형태 */
+/* setInterval 함수를 이용해서 1000ms(=1s)마다 Clock component를 root div에 rendering
+  ReactDOM.render(element, document.getElementById('root')); 형태 */
 // setInterval(() => {
 //   ReactDOM.render(
 //     <React.StrictMode>
