@@ -1,5 +1,5 @@
 import View from "./View.js";
-import { qs, qsAll } from "../helpers.js";
+import { qs, qsAll, delegate } from "../helpers.js";
 
 export const TabType = {  // Store.js 파일에서 사용하기 위해 export
   KEYWORD: 'KEYWORD', // 추천 검색어
@@ -11,11 +11,28 @@ const TabLabel = {
   [TabType.HISTORY]: '최근 검색어',
 }
 
+const tag = "[TabView]";
+
 export default class TabView extends View {
   constructor() {
+    console.log(tag, "constructor");  // 확인용 출력
     super(qs('#tab-view')); // this.element에 tabView element를 넣음
-    this.template = new Template();
+    this.template = new Template(); // 탭 객체 생성
+    this.bindEvents();
   }
+
+  bindEvents() {
+    // li 태그에서 click 이벤트가 발생했을 때 handler를 실행한다. 
+    delegate(this.element, "click", "li", (event) => this.handleClick(event));
+  }
+
+  handleClick() {
+    console.log(tag, event.target);
+    // 탭에 따른 검색 결과를 출력하는 것은 뷰 바깥의 역할이므로 emit 이벤트를 발행
+    const value = event.target.dataset.tab;
+    this.emit("@change", { value });
+  }
+
   // View에 있는 show 함수를 overriding
   // selectedTab은 TabType이 들어올 예정
   show(selectedTab) {

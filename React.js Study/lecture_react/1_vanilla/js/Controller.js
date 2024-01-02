@@ -19,8 +19,10 @@ export default class Controller {
     // this.searchFormView에서 "@submit" event가 실행되면 event 객체를 인자로 넘겨 search 함수를 수행
     // on 함수는 this를 return하고 있어 chaining이 가능
     this.searchFormView
-      .on("@submit", (event) => this.search(event.detail.value))
-      .on("@reset", () => this.reset()); 
+      .on("@submit", (event) => this.search(event.detail.value))  // 사용자가 작성한 검색어를 가지고 search 함수를 통해 검색
+      .on("@reset", () => this.reset()); // reset 이벤트는 this.reset 함수에 바인딩
+    // 탭이 바뀌었을 때 "@change" 이벤트가 발행되므로 이를 받아 changeTab 함수를 실행
+    this.tabView.on("@change", event => this.changeTab(event.detail.value));
   }
 
   search(searchKeyword) {
@@ -36,6 +38,13 @@ export default class Controller {
     this.store.searchResult = []; // 검색 결과 리스트 초기화
     this.render();  // 검색 결과가 삭제될 것
   }
+
+  changeTab(tab) {
+    console.log(tag, 'changeTab', tab);
+    this.store.selectedTab = tab; // 모델 내 탭 값을 방금 선택한 탭 값으로 변경
+    this.render();  // 선택한 탭으로 변경될 것
+  }
+
   // 컨트롤러가 관리하고 있는 뷰들을 화면에 출력하는 기능
   render() {
     // 검색어 존재
