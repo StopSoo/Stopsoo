@@ -13,6 +13,6 @@ function MyButton(props) {
         isClicked ? 'Clicked!' : 'Click here!'
     )
 }
-// react component를 dom container에 rendering
+// react component를 Dom container에 rendering
 const domContainer = document.querySelector('#root');
 ReactDOM.render(React.createElement(MyButton), domContainer);
