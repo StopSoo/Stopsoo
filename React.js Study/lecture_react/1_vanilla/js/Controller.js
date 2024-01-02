@@ -29,6 +29,10 @@ export default class Controller {
 
   reset() {
     console.log(tag, "reset");
+    // 즉각 hide()를 호출하는 것이 아닌 render() 함수가 무엇에 의존하고 있는지 살필 것 (!)
+    this.store.searchKeyword = "";  // 검색어 초기화
+    this.store.searchResult = []; // 검색 결과 리스트 초기화
+    this.render();  // 검색 결과가 삭제될 것
   }
   // 컨트롤러가 관리하고 있는 뷰들을 화면에 출력하는 기능
   render() {
