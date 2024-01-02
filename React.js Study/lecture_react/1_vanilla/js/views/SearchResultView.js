@@ -8,7 +8,7 @@ export default class SearchResultView extends View {
     // 검색 결과 템플릿 객체 생성
     this.template = new Template();
   }
-  // show 함수 overriding 
+  // View에 있는 show 함수를 overriding
   show(data = []) {
     // 데이터가 존재한다면 getList 함수를, 존재하지 않는다면 getEmptyMessage 함수를 실행
     this.element.innerHTML = 

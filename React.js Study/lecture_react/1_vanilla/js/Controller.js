@@ -2,15 +2,17 @@
 const tag = "[Controller]";
 
 export default class Controller {
-  constructor(store, { searchFormView, searchResultView }) {
+  constructor(store, { searchFormView, searchResultView, tabView }) {
     console.log(tag);
 
-    this.store = store;
+    this.store = store; // Store.js에서 store 객체를 가져옴 
 
     this.searchFormView = searchFormView;
     this.searchResultView = searchResultView;
-    // View가 발행하는 event를 수신
-    this.subscribeViewEvents();
+    this.tabView = tabView;
+
+    this.subscribeViewEvents(); // View가 발행하는 event를 수신
+    this.render();  // 뷰를 렌더링
   }
 
   subscribeViewEvents() {
@@ -36,11 +38,17 @@ export default class Controller {
   }
   // 컨트롤러가 관리하고 있는 뷰들을 화면에 출력하는 기능
   render() {
+    // 검색어 존재
     if (this.store.searchKeyword.length > 0) {
-      this.searchResultView.show(this.store.searchResult);
-      return;
+      return this.renderSearchResult();
     }
-    // searchKeyword가 없을 때
+    // 검색어 존재 X
+    this.tabView.show(this.store.selectedTab);
     this.searchResultView.hide();
+  }
+  // 검색 결과를 보여주는 함수
+  renderSearchResult() {
+    this.tabView.hide();
+    this.searchResultView.show(this.store.searchResult);
   }
 }

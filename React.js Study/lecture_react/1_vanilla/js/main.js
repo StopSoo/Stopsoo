@@ -3,6 +3,7 @@ import Store from "./Store.js";
 import storage from "./storage.js";
 import SearchFormView from "./views/SearchFormView.js";
 import SearchResultView from "./views/SearchResultView.js";
+import TabView from "./views/TabView.js";
 
 const tag = "[main]"
 // Application 진입점에서 main 함수가 호출된다.
@@ -17,6 +18,7 @@ function main() {
   const views = {
     searchFormView: new SearchFormView(),
     searchResultView: new SearchResultView(),
+    tabView: new TabView(),
   };
 
   new Controller(store, views); // MVC 각 계층의 객체들을 초기화하는 역할
