@@ -20,7 +20,7 @@ export default class SearchFormView extends View {
   }
 
   bindEvents() {
-    // this.inputElement에서 event인 'keyup'을 수신하고, 'keyup'에 handleKeyup이라는 handler를 추가(addEventListner)
+    // this.inputElement에서 event인 'keyup'을 수신하고, 'keyup'에 handleKeyup이라는 handler를 추가(addEventListener)
     on(this.inputElement, "keyup", () => this.handleKeyup());
     // this.element에서 "submit" event가 실행되면 event 객체를 인자로 넘겨 handleSubmit handler를 추가한다. 
     on(this.element, "submit", event => this.handleSubmit(event));
@@ -29,8 +29,9 @@ export default class SearchFormView extends View {
   }
   
   handleKeyup() {
-    // 입력 키워드의 존재 여부에 따라 showResetButton 함수 호출 
+    // 사용자가 입력한 내용을 객체 형태로 저장
     const { value } = this.inputElement;
+    // 입력 키워드의 존재 여부에 따라 showResetButton 함수 호출 
     this.showResetButton(value.length > 0);
     // 검색어를 삭제했을 때 검색 결과를 삭제하는 handleReset 함수를 호출
     if (value.length <= 0) {
