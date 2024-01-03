@@ -25,4 +25,8 @@ export default class Store {
       product.name.includes(keyword)
     );
   }
+  // 추천 검색어 목록을 storage에서 찾아서 반환하는 함수
+  getKeywordList() {
+    return this.storage.keywordData;
+  }
 }

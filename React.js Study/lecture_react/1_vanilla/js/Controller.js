@@ -1,15 +1,23 @@
+import { TabType } from "./views/TabView.js";
+
 /* View를 관리하는 Controller */
 const tag = "[Controller]";
 
 export default class Controller {
-  constructor(store, { searchFormView, searchResultView, tabView }) {
+  constructor
+    (
+      store, 
+      { searchFormView, searchResultView, tabView, keywordListView }
+    ) 
+  {
     console.log(tag);
 
     this.store = store; // Store.js에서 store 객체를 가져옴 
-
+    // 컨트롤러 내부에 뷰들을 저장
     this.searchFormView = searchFormView;
     this.searchResultView = searchResultView;
     this.tabView = tabView;
+    this.keywordListView = keywordListView;
 
     this.subscribeViewEvents(); // View가 발행하는 event를 수신
     this.render();  // 뷰를 렌더링
@@ -38,26 +46,37 @@ export default class Controller {
     this.store.searchResult = []; // 검색 결과 리스트 초기화
     this.render();  // 검색 결과가 삭제될 것
   }
-
+  // 탭이 바뀔 때마다 실행되는 함수
   changeTab(tab) {
-    console.log(tag, 'changeTab', tab);
     this.store.selectedTab = tab; // 모델 내 탭 값을 방금 선택한 탭 값으로 변경
     this.render();  // 선택한 탭으로 변경될 것
   }
 
   // 컨트롤러가 관리하고 있는 뷰들을 화면에 출력하는 기능
   render() {
-    // 검색어 존재
+    /* 1. 검색어 존재 */
     if (this.store.searchKeyword.length > 0) {
       return this.renderSearchResult();
     }
-    // 검색어 존재 X
+
+    /* 2. 검색어 존재 X */
     this.tabView.show(this.store.selectedTab);
+
+    if (this.store.selectedTab === TabType.KEYWORD) {
+      this.keywordListView.show(this.store.getKeywordList());
+    } else if (this.store.selectedTab === TabType.HISTORY) {
+      this.keywordListView.hide();
+    } else {
+      throw "사용할 수 없는 탭입니다.";
+    }
+
     this.searchResultView.hide();
   }
-  // 검색 결과를 보여주는 함수
+  // 검색어 존재 시 검색 결과를 보여주는 함수
+  // 보여줄 화면만 show()하고, 나머지는 모두 hide() 하는 게 포인트 (!)
   renderSearchResult() {
     this.tabView.hide();
+    this.keywordListView.hide();
     this.searchResultView.show(this.store.searchResult);
   }
 }

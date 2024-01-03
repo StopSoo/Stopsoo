@@ -1,6 +1,7 @@
 import Controller from "./Controller.js";
 import Store from "./Store.js";
 import storage from "./storage.js";
+import KeywordListView from "./views/KeywordListView.js";
 import SearchFormView from "./views/SearchFormView.js";
 import SearchResultView from "./views/SearchResultView.js";
 import TabView from "./views/TabView.js";
@@ -19,7 +20,9 @@ function main() {
     searchFormView: new SearchFormView(),
     searchResultView: new SearchResultView(),
     tabView: new TabView(),
+    keywordListView: new KeywordListView(),
   };
-
-  new Controller(store, views); // MVC 각 계층의 객체들을 초기화하는 역할
+  // MVC 각 계층의 객체들을 초기화하는 역할
+  // 위에서 생성한 뷰 리스트를 인자로 넘긴다.
+  new Controller(store, views); 
 }

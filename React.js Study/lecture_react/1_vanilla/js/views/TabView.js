@@ -27,7 +27,6 @@ export default class TabView extends View {
   }
 
   handleClick() {
-    console.log(tag, event.target);
     // 탭에 따른 검색 결과를 출력하는 것은 뷰 바깥의 역할이므로 emit 이벤트를 발행
     const value = event.target.dataset.tab;
     this.emit("@change", { value });
@@ -38,9 +37,10 @@ export default class TabView extends View {
   show(selectedTab) {
     // getTabList 함수를 통해 반환 받는 탭 리스트를 뷰에 표시
     this.element.innerHTML = this.template.getTabList();
-    // 
+    // this.element 하에서 li 태그 객체를 모두 찾아 forEach를 수행
     qsAll("li", this.element).forEach(li => {
       // li 태그에서 'data-tab'이라는 속성을 li.dataset.tab으로 표현
+      // style.css 파일에서 선택된 탭을 class='active'로 표현되게 지정해 놓음
       li.className = li.dataset.tab === selectedTab ? "active" : "";
     });
     
