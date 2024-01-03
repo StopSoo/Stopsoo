@@ -29,14 +29,16 @@ export default class Controller {
     this.searchFormView
       .on("@submit", (event) => this.search(event.detail.value))  // 사용자가 작성한 검색어를 가지고 search 함수를 통해 검색
       .on("@reset", () => this.reset()); // reset 이벤트는 this.reset 함수에 바인딩
-    // 탭이 바뀌었을 때 "@change" 이벤트가 발행되므로 이를 받아 changeTab 함수를 실행
+    // 탭이 바뀌었을 때 "@change" 이벤트가 뷰에서 발행되므로 이를 받아 changeTab 함수를 실행
     this.tabView.on("@change", event => this.changeTab(event.detail.value));
+    // 추천 검색어 클릭 시 "@click" 이벤트가 뷰에서 발행되므로 이를 받아 해당 키워드에 대해 search 함수를 실행 
+    this.keywordListView.on("@click", event => this.search(event.detail.value));
   }
 
   search(searchKeyword) {
     console.log(tag, "search", searchKeyword);  
     this.store.search(searchKeyword); // 검색어에 대해 store에서 검색
-    this.render();  // 검색 결과를 출력
+    this.render();  // 검색 결과를 화면에 출력
   }
 
   reset() {
