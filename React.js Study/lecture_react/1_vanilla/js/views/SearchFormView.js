@@ -54,4 +54,11 @@ export default class SearchFormView extends View {
     // 검색 결과를 삭제하는 것은 검색창 바깥의 일이므로 밖으로 넘겨주기
     this.emit("@reset");
   }
+  // View에 있는 show 함수를 overriding
+  // 추천 검색어 클릭 시 검색창에도 해당 키워드가 보이도록 함
+  show(value = "") {
+    this.inputElement.value = value;  // 검색어를 검색창에 띄움
+    this.showResetButton(this.inputElement.value.length > 0); // 검색어 존재 시 X버튼 보이게
+    super.show();
+  }
 }

@@ -30,9 +30,11 @@ export default class Controller {
       .on("@submit", (event) => this.search(event.detail.value))  // 사용자가 작성한 검색어를 가지고 search 함수를 통해 검색
       .on("@reset", () => this.reset()); // reset 이벤트는 this.reset 함수에 바인딩
     // 탭이 바뀌었을 때 "@change" 이벤트가 뷰에서 발행되므로 이를 받아 changeTab 함수를 실행
-    this.tabView.on("@change", event => this.changeTab(event.detail.value));
+    this.tabView.on("@change", (event) => this.changeTab(event.detail.value));
     // 추천 검색어 클릭 시 "@click" 이벤트가 뷰에서 발행되므로 이를 받아 해당 키워드에 대해 search 함수를 실행 
-    this.keywordListView.on("@click", event => this.search(event.detail.value));
+    this.keywordListView.on("@click", (event) => 
+      this.search(event.detail.value)
+    );
   }
 
   search(searchKeyword) {
@@ -77,6 +79,7 @@ export default class Controller {
   // 검색어 존재 시 검색 결과를 보여주는 함수
   // 보여줄 화면만 show()하고, 나머지는 모두 hide() 하는 게 포인트 (!)
   renderSearchResult() {
+    this.searchFormView.show(this.store.searchKeyword); // 검색어를 검색창에 띄우는 역할
     this.tabView.hide();
     this.keywordListView.hide();
     this.searchResultView.show(this.store.searchResult);
