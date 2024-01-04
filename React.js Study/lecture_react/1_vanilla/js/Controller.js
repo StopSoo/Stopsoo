@@ -4,12 +4,16 @@ import { TabType } from "./views/TabView.js";
 const tag = "[Controller]";
 
 export default class Controller {
-  constructor
-    (
-      store, 
-      { searchFormView, searchResultView, tabView, keywordListView }
-    ) 
-  {
+  constructor(
+    store, 
+    { 
+      searchFormView, 
+      searchResultView, 
+      tabView, 
+      keywordListView,
+      historyListView,
+    }
+  ) {
     console.log(tag);
 
     this.store = store; // Store.js에서 store 객체를 가져옴 
@@ -18,6 +22,7 @@ export default class Controller {
     this.searchResultView = searchResultView;
     this.tabView = tabView;
     this.keywordListView = keywordListView;
+    this.historyListView = historyListView;
 
     this.subscribeViewEvents(); // View가 발행하는 event를 수신
     this.render();  // 뷰를 렌더링
@@ -33,6 +38,10 @@ export default class Controller {
     this.tabView.on("@change", (event) => this.changeTab(event.detail.value));
     // 추천 검색어 클릭 시 "@click" 이벤트가 뷰에서 발행되므로 이를 받아 해당 키워드에 대해 search 함수를 실행 
     this.keywordListView.on("@click", (event) => 
+      this.search(event.detail.value)
+    );
+    // 최근 검색어 클릭 시 "@click" 이벤트가 뷰에서 발행되므로 이를 받아 해당 키워드에 대해 search 함수를 실행 
+    this.historyListView.on("@click", (event) => 
       this.search(event.detail.value)
     );
   }
@@ -65,11 +74,13 @@ export default class Controller {
 
     /* 2. 검색어 존재 X */
     this.tabView.show(this.store.selectedTab);
-
+    // 탭의 종류에 따라 뷰를 show or hide
     if (this.store.selectedTab === TabType.KEYWORD) {
       this.keywordListView.show(this.store.getKeywordList());
+      this.historyListView.hide();
     } else if (this.store.selectedTab === TabType.HISTORY) {
       this.keywordListView.hide();
+      this.historyListView.show(this.store.getHistoryList());
     } else {
       throw "사용할 수 없는 탭입니다.";
     }
@@ -82,6 +93,7 @@ export default class Controller {
     this.searchFormView.show(this.store.searchKeyword); // 검색어를 검색창에 띄우는 역할
     this.tabView.hide();
     this.keywordListView.hide();
-    this.searchResultView.show(this.store.searchResult);
+    this.historyListView.hide();
+    this.searchResultView.show(this.store.searchResult);  // 검색 결과만 뷰에서 보이게 함
   }
 }

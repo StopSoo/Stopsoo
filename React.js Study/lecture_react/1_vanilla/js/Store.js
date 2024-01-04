@@ -29,4 +29,12 @@ export default class Store {
   getKeywordList() {
     return this.storage.keywordData;
   }
+  // 최근 검색어 목록을 storage에서 찾아서 날짜 순으로 정렬 후 반환하는 함수
+  getHistoryList() {
+    return this.storage.historyData.sort(this._sortHistory);
+  }
+  // 두 날짜를 비교하여 bool 값을 반환
+  _sortHistory(history1, history2) {
+    return history2.date > history1.date
+  }
 }

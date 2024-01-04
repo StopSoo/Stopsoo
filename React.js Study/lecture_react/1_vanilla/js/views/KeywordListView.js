@@ -3,13 +3,15 @@ import View from './View.js';
 
 const tag = "[KeywordListView]";
 
+// HistoryListView.js 파일에서 KeywordListView class를 상속 받아 사용하므로 constructor에서 인자를 받도록 수정
 export default class KeywordListView extends View {
-  constructor() {
+  constructor(element = qs('#keyword-list-view'), template = new Template()) {
+    // 확인용 출력
     console.log(tag, "constructor");
 
-    super(qs('#keyword-list-view'));
+    super(element);
     // 추천 검색어 리스트에 대한 객체를 생성
-    this.template = new Template();
+    this.template = template;
     // 추천 검색어 객체를 클릭 시 해당 검색어에 대한 검색 결과로 넘어가는 이벤트를 생성
     this.bindEvents();
   }
@@ -46,7 +48,9 @@ class Template {
 
   getEmptyMessage() {
     return `
-      <div class="empty-box">추천 검색어가 없습니다.</div>
+      <div class="empty-box">
+        추천 검색어가 없습니다.
+      </div>
     `;
   }
 
