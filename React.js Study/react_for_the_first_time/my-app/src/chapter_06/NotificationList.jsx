@@ -42,8 +42,8 @@ class NotificationList extends React.Component {
           notifications: notifications,
         });
       } else {
+        // 알림이 다 차면 notifications 배열을 비움으로써 component 사망 -> componentDidUnmount() 실행
         this.setState({
-          // notifications를 비움으로써 component 사망
           notifications: [],
         });
         clearInterval(timer);
