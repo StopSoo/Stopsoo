@@ -1,11 +1,30 @@
-import { qs, formatRelativeDate } from '../helpers.js';
+import { qs, delegate, formatRelativeDate } from '../helpers.js';
 import KeywordListView from './KeywordListView.js';
 
+const tag = "[HistoryListView]";
 // KeywordListView와 비슷한 점이 많아 이를 상속 받아 사용
 export default class HistoryListView extends KeywordListView {
   constructor() {
     // KeywordListView의 constructor를 사용
     super(qs('#history-list-view'), new Template());
+  }
+  // KeywordListView가 가지고 있는 bindEvents() 함수를 overriding
+  // button 중에 "class명이 btn-remove"인 요소에서 "click" 이벤트가 발생했을 경우 
+  bindEvents() {
+    delegate(this.element, "click", "button.btn-remove", (event) => 
+      this.handleClickRemoveButton(event)
+    );
+    
+    super.bindEvents();
+  }
+
+  handleClickRemoveButton(event) {
+    // 확인용 출력
+    console.log(tag, "handleClickRemoveButton", event.target);
+    // 검색 이력을 삭제하는 것은 모델의 역할이므로, 외부로 이벤트를 발행
+    // 검색 기록 객체인 li element의 "data-keyword" 속성 값을 넘겨준다. 
+    const value = event.target.parentElement.dataset.keyword;
+    this.emit("@remove", { value });
   }
 }
 

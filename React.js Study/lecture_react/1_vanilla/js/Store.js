@@ -21,8 +21,8 @@ export default class Store {
 
   search(keyword) {
     this.searchKeyword = keyword;
-    this.searchResult = this.storage.productData.filter((product) =>
-      product.name.includes(keyword)
+    this.searchResult = this.storage.productData.filter(
+      (product) => product.name.includes(keyword)
     );
   }
   // 추천 검색어 목록을 storage에서 찾아서 반환하는 함수
@@ -36,5 +36,13 @@ export default class Store {
   // 두 날짜를 비교하여 bool 값을 반환
   _sortHistory(history1, history2) {
     return history2.date > history1.date
+  }
+  // 최근 검색어 목록에서 X버튼을 클릭하면 검색어 삭제
+  removeHistory(keyword) {
+    // storage.historyData에 저장되어 있는 keyword들 중 인자로 들어 온 keyword와 다른 것들만 반환 
+    // => 인자로 들어온 keyword와 같은 객체는 삭제
+    this.storage.historyData = this.storage.historyData.filter(
+      (history) => history.keyword !== keyword
+    );
   }
 }
