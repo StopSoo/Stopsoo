@@ -8,7 +8,9 @@ class App extends React.Component {
   }
   // 검색어에 변화가 있을 때마다 실행되는 함수
   handleChangeInput(event) {
-    /* 아래와 같이 state 값만 변경한다고 화면이 rendering되지는 않음 (!)
+    /* 
+      기본적으로 state는 js 객체이다.
+      아래와 같이 state 값만 변경한다고 화면이 rendering되지는 않음 (!)
       무조건 setState() 함수를 사용해서 state 값을 변경해야 한다 !!
     */
     // this.state.searchKeyword = event.target.value;

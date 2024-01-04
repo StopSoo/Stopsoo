@@ -1,3 +1,5 @@
+// Component는 계속 존재하는 것이 아니라, 시간의 흐름에 따라 생성되고 업데이트되다가 사라진다.
+// componentDidMount(), componentDidUpdate(), componentDidUnmount()
 import React from "react";
 
 // css 객체 정의
