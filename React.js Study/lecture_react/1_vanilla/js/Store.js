@@ -1,4 +1,5 @@
 import { TabType } from "./views/TabView.js";
+import { createNextId } from "./helpers.js";
 /* 요구 사항 
 - Store.js 파일은 MVC 패턴에서 "model" 역할을 한다.
 - 검색 결과(검색어, 검색어에 합당한 결과)를 가지고 있어야 한다. 
@@ -24,6 +25,8 @@ export default class Store {
     this.searchResult = this.storage.productData.filter(
       (product) => product.name.includes(keyword)
     );
+    // 검색하면 해당 검색어에 대한 검색 이력을 추가
+    this.addHistory(keyword);
   }
   // 추천 검색어 목록을 storage에서 찾아서 반환하는 함수
   getKeywordList() {
@@ -33,7 +36,7 @@ export default class Store {
   getHistoryList() {
     return this.storage.historyData.sort(this._sortHistory);
   }
-  // 두 날짜를 비교하여 bool 값을 반환
+  // 두 날짜를 비교하여 bool 값을 반환 => 최근 것이 위로 오게 됨
   _sortHistory(history1, history2) {
     return history2.date > history1.date
   }
@@ -44,5 +47,23 @@ export default class Store {
     this.storage.historyData = this.storage.historyData.filter(
       (history) => history.keyword !== keyword
     );
+  }
+
+  addHistory(keyword) {
+    keyword = keyword.trim(); // 검색어에서 공백을 제거
+    /* 1. 검색어가 없을 경우 */
+    if (!keyword) { return; }
+    /* 2. 검색어가 있을 경우 */
+    // array에서 some 함수 - 배열 내 한 개의 요소라도 특정 조건을 충족하는지 확인하는 데 사용한다 (!) 
+    // 그럼 bool 값을 반환하겠죠 ?
+    const hasHistory = this.storage.historyData.some(history => history.keyword === keyword);
+    if (hasHistory) {
+      this.removeHistory(keyword);  // 기존 검색 이력 삭제
+    }
+    // id, date 생성 후 배열에 해당 객체를 추가
+    const id = createNextId(this.storage.historyData);
+    const date = new Date();
+    this.storage.historyData.push({id, keyword, date});
+    this.storage.historyData = this.storage.historyData.sort(this._sortHistory);
   }
 }

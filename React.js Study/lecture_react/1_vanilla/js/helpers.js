@@ -68,7 +68,7 @@ export function createPastDate(date = 1, now = new Date()) {
 
   return createPastDate(date - 1, yesterday);
 }
-
+// 배열을 인자로 넣으면 다음으로 넣을 객체의 id를 반환
 export function createNextId(list = []) {
   return Math.max(...list.map((item) => item.id)) + 1;
 }
