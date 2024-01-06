@@ -22,7 +22,7 @@ class ConfirmButton extends React.Component {
   render() {
     return (
       <button 
-        onClick={this.handleConfirm}  // bind를 해줬기 때문에 함수명만 전달 가능
+        onClick={this.handleConfirm}  // bind를 해줬기 때문에 함수명만 전달 가능 (괄호를 사용하지 않고!)
         disabled={this.state.isConfirmed}
       >
         {this.state.isConfirmed ? "확인됨" : "확인하기"}
