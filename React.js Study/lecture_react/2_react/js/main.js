@@ -1,3 +1,5 @@
+import store from './js/Store.js';
+
 class App extends React.Component {
   constructor() {
     super();
@@ -5,6 +7,7 @@ class App extends React.Component {
     this.state = {
       searchKeyword: "",  // 검색어
       searchResult: [], // 검색 결과
+      submitted: false, // 검색 여부
     }
   }
   // 검색어에 변화가 있을 때마다 실행되는 함수
@@ -32,6 +35,15 @@ class App extends React.Component {
   handleSubmit(event) {
     event.preventDefault(); // 리렌더링 방지
     console.log('handleSubmit', this.state.searchKeyword);
+    this.search(this.state.searchKeyword);  // search 함수로 역할을 위임
+  }
+  // 검색어를 인자로 받아 검색 결과를 반환하는 함수
+  search(searchKeyword) {
+    const searchResult = store.search(searchKeyword); // 검색 결과를 가져오기
+    this.setState({ 
+      searchResult: searchResult,
+      submitted: true,  // 검색 여부를 true로 변경
+    });
   }
   // 검색 결과를 삭제하는 함수
   handleReset() {
@@ -81,11 +93,23 @@ class App extends React.Component {
             )}
           </form>
           <div className="content">
-            {this.state.searchResult.length > 0 ? (
-              <div>TODO: 검색 결과 목록 표시하기</div>
-            ) : (
-              <div className="empty-box">검색 결과가 없습니다.</div>
-            )}
+            {this.state.submitted && (
+              this.state.searchResult.length > 0 ? (
+                // 검색 결과가 존재할 때 = searchResult 배열이 채워져 있을 때
+                <ul className="result">
+                  {this.state.searchResult.map(item => {
+                    return (
+                      <li key={item.id}>
+                        <img src={item.imageUrl} alt={item.name} />
+                        <p>{item.name}</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                // 검색 결과가 없을 때 = searchResult 배열이 비어 있을 때
+                <div className="empty-box">검색 결과가 없습니다.</div>
+              ))}
           </div>
         </div>
       </>
@@ -98,6 +122,7 @@ class App extends React.Component {
 // <input> 태그에 onChange 사용하는 이유 : 사용자가 값을 입력할 때마다 해당 값을 띄워줘야 하기 때문
 // X버튼의 type이 'reset'이므로, X버튼을 클릭하면 버튼을 감싸고 있는 form에서 'reset' 이벤트가 발행될 것 (!) 따라서 onReset 속성으로 작성하면 됨.
 // setState() 함수는 "비동기"로 동작한다 (!)
+// map 함수를 사용하면 두 번째 인자로 index 값이 들어오므로 이를 li 태그의 key 값으로 사용할 수도 있지만, 이는 최후의 수단으로 하는 것이 좋다.
 ReactDOM.render(
   <App />, 
   document.querySelector('#app')
