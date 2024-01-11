@@ -20,16 +20,15 @@ class App extends React.Component {
     // this.state.searchKeyword = event.target.value;
     // this.forceUpdate();
 
-    /* setState 함수를 실행해야 React는 state 값이 변경된 지 깨닫고 render 함수를 다시 수행 */
+    
     const searchKeyword = event.target.value;
-    this.setState({
-      searchKeyword: searchKeyword,
-    });
     // 검색어가 없을 경우 검색 결과를 삭제 
-    if (searchKeyword == "") {
+    if (searchKeyword.length <= 0 && this.state.submitted) {
       // handleReset() 함수에서 searchKeyword에 관한 상태를 관리하고 있기 때문에 여기서는 return한다. (이해가 잘 안됨)
       return this.handleReset();
     }
+    /* setState 함수를 실행해야 React는 state 값이 변경된 지 깨닫고 render 함수를 다시 수행 */
+    this.setState({ searchKeyword: searchKeyword });
   }
   // 검색어를 입력하고 폼 제출 시 실행되는 함수
   handleSubmit(event) {
@@ -54,10 +53,12 @@ class App extends React.Component {
 
     // setState() 함수의 인자로 값을 업데이트할 수 있는 함수, 업데이트 완료 시 실행될 callback 함수(필수X)를 넣는다. 
     this.setState(() => {
-      return { searchKeyword: "" }
-    }, () => {
-      console.log('handleReset', this.state.searchKeyword);
-    })
+      return { 
+        searchKeyword: "",
+        searchResult: [],
+        submitted: false,
+      }
+    });
   }
 
   render() {
