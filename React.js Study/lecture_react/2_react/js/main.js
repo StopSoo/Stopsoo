@@ -4,6 +4,7 @@ class App extends React.Component {
     // state를 통해 브라우져가 관리하던 것들을 React component가 관리하게 함
     this.state = {
       searchKeyword: "",  // 검색어
+      searchResult: [], // 검색 결과
     }
   }
   // 검색어에 변화가 있을 때마다 실행되는 함수
@@ -79,6 +80,13 @@ class App extends React.Component {
               <button type="reset" className="btn-reset"></button>
             )}
           </form>
+          <div className="content">
+            {this.state.searchResult.length > 0 ? (
+              <div>TODO: 검색 결과 목록 표시하기</div>
+            ) : (
+              <div className="empty-box">검색 결과가 없습니다.</div>
+            )}
+          </div>
         </div>
       </>
     );
