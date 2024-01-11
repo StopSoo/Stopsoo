@@ -71,46 +71,51 @@ class App extends React.Component {
     // 조건부 렌더링 방법 2 : 삼항 연산자 사용하기
     // 조건부 렌더링 방법 3 : && 연산자 사용하기
 
+    const searchForm = (
+      <form 
+        onSubmit={(event) => this.handleSubmit(event)}
+        onReset={() => this.handleReset()}
+      >
+        <input 
+          type="text" 
+          placeholder="검색어를 입력하세요" 
+          autoFocus 
+          value={this.state.searchKeyword}
+          onChange={event => this.handleChangeInput(event)}
+        />
+        {this.state.searchKeyword.length > 0 && (
+          <button type="reset" className="btn-reset"></button>
+        )}
+      </form>
+    );
+
+    const searchResult = (
+      this.state.searchResult.length > 0 ? (
+        // 검색 결과가 존재할 때 = searchResult 배열이 채워져 있을 때
+        <ul className="result">
+          {this.state.searchResult.map(item => {
+            return (
+              <li key={item.id}>
+                <img src={item.imageUrl} alt={item.name} />
+                <p>{item.name}</p>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        // 검색 결과가 없을 때 = searchResult 배열이 비어 있을 때
+        <div className="empty-box">검색 결과가 없습니다.</div>
+      )
+    );
+
     return (
       <>
         <header>
           <h2 className="container">검색</h2>
         </header>
         <div className="container">
-          <form 
-            onSubmit={(event) => this.handleSubmit(event)}
-            onReset={() => this.handleReset()}
-          >
-            <input 
-              type="text" 
-              placeholder="검색어를 입력하세요" 
-              autoFocus 
-              value={this.state.searchKeyword}
-              onChange={event => this.handleChangeInput(event)}
-            />
-            {this.state.searchKeyword.length > 0 && (
-              <button type="reset" className="btn-reset"></button>
-            )}
-          </form>
-          <div className="content">
-            {this.state.submitted && (
-              this.state.searchResult.length > 0 ? (
-                // 검색 결과가 존재할 때 = searchResult 배열이 채워져 있을 때
-                <ul className="result">
-                  {this.state.searchResult.map(item => {
-                    return (
-                      <li key={item.id}>
-                        <img src={item.imageUrl} alt={item.name} />
-                        <p>{item.name}</p>
-                      </li>
-                    );
-                  })}
-                </ul>
-              ) : (
-                // 검색 결과가 없을 때 = searchResult 배열이 비어 있을 때
-                <div className="empty-box">검색 결과가 없습니다.</div>
-              ))}
-          </div>
+          { searchForm }
+          <div className="content">{ this.state.submitted && searchResult }</div>
         </div>
       </>
     );
