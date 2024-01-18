@@ -20,7 +20,14 @@ class App extends React.Component {
       searchResult: [], // 검색 결과
       submitted: false, // 검색 여부
       selectedTab: TabType.KEYWORD, // 선택된 탭
+      keywordList: [],  // 추천 검색어 리스트
     }
+  }
+
+  componentDidMount() {
+    // store에서 추천 검색어 목록을 받아와서 내부 변수 값 업데이트하기
+    const keywordList = store.getKeywordList();
+    this.setState({ keywordList: keywordList });
   }
   // 검색어에 변화가 있을 때마다 실행되는 함수
   handleChangeInput(event) {
@@ -120,6 +127,19 @@ class App extends React.Component {
         <div className="empty-box">검색 결과가 없습니다.</div>
       )
     );
+    // 추천 검색어 탭
+    const keywordList = (
+      <ul className="list">
+        {this.state.keywordList.map((item, index) => {
+          return (
+            <li key={item.id}>
+              <span className="number">{index + 1}</span>
+              <span>{item.keyword}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
 
     const tabs = (
       <>
@@ -137,7 +157,7 @@ class App extends React.Component {
           })}
         </ul>
         {/* 조건부 렌더링 */}
-        {this.state.selectedTab === TabType.KEYWORD && <>TODO: 추천 검색어</>}
+        {this.state.selectedTab === TabType.KEYWORD && keywordList}
         {this.state.selectedTab === TabType.HISTORY && <>TODO: 최근 검색어</>}
       </>
     );
