@@ -19,6 +19,7 @@ class App extends React.Component {
       searchKeyword: "",  // 검색어
       searchResult: [], // 검색 결과
       submitted: false, // 검색 여부
+      selectedTab: TabType.KEYWORD, // 선택된 탭
     }
   }
   // 검색어에 변화가 있을 때마다 실행되는 함수
@@ -121,15 +122,24 @@ class App extends React.Component {
     );
 
     const tabs = (
-      <ul className="tabs">
-        {Object.values(TabType).map((tabType) => {
-          return (
-            <li key={tabType}>
-              {TabLabel[tabType]}
-            </li>
-          );
-        })}
-      </ul>
+      <>
+        <ul className="tabs">
+          {Object.values(TabType).map((tabType) => {
+            return (
+              <li 
+                className={ this.state.selectedTab === tabType ? 'active' : '' } 
+                key={tabType}
+                onClick={() => this.setState({ selectedTab: tabType })} // selectedTab을 현재 내가 선택한 탭으로
+              >
+                {TabLabel[tabType]}
+              </li>
+            );
+          })}
+        </ul>
+        {/* 조건부 렌더링 */}
+        {this.state.selectedTab === TabType.KEYWORD && <>TODO: 추천 검색어</>}
+        {this.state.selectedTab === TabType.HISTORY && <>TODO: 최근 검색어</>}
+      </>
     );
 
     return (
