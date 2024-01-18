@@ -60,6 +60,7 @@ class App extends React.Component {
     const searchResult = store.search(searchKeyword); // 검색 결과를 가져오기
     this.setState({ 
       searchResult: searchResult,
+      searchKeyword: searchKeyword, // 검색어를 검색창에 설정
       submitted: true,  // 검색 여부를 true로 변경
     });
   }
@@ -127,12 +128,12 @@ class App extends React.Component {
         <div className="empty-box">검색 결과가 없습니다.</div>
       )
     );
-    // 추천 검색어 탭
+    // 추천 검색어 리스트
     const keywordList = (
       <ul className="list">
         {this.state.keywordList.map((item, index) => {
           return (
-            <li key={item.id}>
+            <li key={item.id} onClick={() => this.search(item.keyword)}>
               <span className="number">{index + 1}</span>
               <span>{item.keyword}</span>
             </li>
