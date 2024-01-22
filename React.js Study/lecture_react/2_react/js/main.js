@@ -65,9 +65,12 @@ class App extends React.Component {
   // 검색어를 인자로 받아 검색 결과를 반환하는 함수
   search(searchKeyword) {
     const searchResult = store.search(searchKeyword); // 검색 결과를 가져오기
+    const historyList = store.getHistoryList(); // 검색 기록 리스트를 가져오기
+
     this.setState({ 
       searchResult: searchResult,
-      searchKeyword: searchKeyword, // 검색어를 검색창에 설정
+      searchKeyword, // 검색어를 검색창에 설정
+      historyList: historyList,
       submitted: true,  // 검색 여부를 true로 변경
     });
   }

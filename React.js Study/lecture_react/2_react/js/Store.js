@@ -14,11 +14,32 @@ class Store {
   }
 
   search(keyword) {
+    // 검색어를 검색 기록에 리스트로 추가
+    this.addHistory(keyword); 
     // 순수 JS 프로젝트에서 작성한 것과 다르게 Store.js 파일 내부 변수들을 초기화하는 코드는 삭제하고, 검색 결과만 반환.
     return this.storage.productData.filter(
       (product) => product.name.includes(keyword)
     );
   }
+  // 검색어를 검색 기록에 추가
+  addHistory(keyword = "") {
+    // 키워드에서 공백을 제거
+    keyword = keyword.trim();
+    if (!keyword) {
+      return;
+    }
+    // 검색 기록에 검색어가 존재하는지를 검사하고 있다면 제거
+    const hasHistory = this.storage.historyData.some(
+      (history) => history.keyword === keyword
+    );
+    if (hasHistory) this.removeHistory(keyword);
+
+    const id = createNextId(this.storage.historyData);
+    const date = new Date();
+    this.storage.historyData.push({ id, keyword, date });
+    this.storage.historyData = this.storage.historyData.sort(this._sortHistory);
+  }
+
   // 추천 검색어 목록을 storage에서 찾아서 반환하는 함수
   getKeywordList() {
     return this.storage.keywordData;
@@ -29,6 +50,7 @@ class Store {
   }
 
   _sortHistory(history1, history2) {
+    // 날짜의 역순으로 정렬
     return history2.date > history1.date;
   }
 
