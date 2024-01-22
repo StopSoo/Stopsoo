@@ -23,6 +23,14 @@ class Store {
   getKeywordList() {
     return this.storage.keywordData;
   }
+
+  getHistoryList() {
+    return this.storage.historyData.sort(this._sortHistory);
+  }
+
+  _sortHistory(history1, history2) {
+    return history2.date > history1.date;
+  }
 }
 
 // 순수 JS 프로젝트에서는 main.js 파일에서 선언했던 store 객체를

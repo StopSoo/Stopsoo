@@ -1,4 +1,5 @@
 import store from './js/Store.js';
+import { formatRelativeDate } from './js/helpers.js';
 
 // 탭에 대한 모델을 만듬.
 const TabType = {
@@ -21,13 +22,19 @@ class App extends React.Component {
       submitted: false, // 검색 여부
       selectedTab: TabType.KEYWORD, // 선택된 탭
       keywordList: [],  // 추천 검색어 리스트
+      historyList: [],  // 검색 기록 리스트
     }
   }
 
   componentDidMount() {
-    // store에서 추천 검색어 목록을 받아와서 내부 변수 값 업데이트하기
+    // store에서 추천 검색어 목록과 검색 기록 목록을 받아와서 내부 변수 값 업데이트하기
     const keywordList = store.getKeywordList();
-    this.setState({ keywordList: keywordList });
+    const historyList = store.getHistoryList();
+
+    this.setState({ 
+      keywordList: keywordList,
+      historyList: historyList,
+    });
   }
   // 검색어에 변화가 있을 때마다 실행되는 함수
   handleChangeInput(event) {
@@ -141,7 +148,20 @@ class App extends React.Component {
         })}
       </ul>
     );
-
+    // 검색 기록 리스트
+    const historyList = (
+      <ul className="list">
+        {this.state.historyList.map(({id, keyword, date}) => {
+          return (
+            <li key={id} onClick={() => this.search(keyword)}>
+              <span>{keyword}</span>
+              <span className="date">{formatRelativeDate(date)}</span>
+              <button className="btn-remove"></button>
+            </li>
+          );
+        })}
+      </ul>
+    );
     const tabs = (
       <>
         <ul className="tabs">
@@ -159,7 +179,7 @@ class App extends React.Component {
         </ul>
         {/* 조건부 렌더링 */}
         {this.state.selectedTab === TabType.KEYWORD && keywordList}
-        {this.state.selectedTab === TabType.HISTORY && <>TODO: 최근 검색어</>}
+        {this.state.selectedTab === TabType.HISTORY && historyList}
       </>
     );
 
