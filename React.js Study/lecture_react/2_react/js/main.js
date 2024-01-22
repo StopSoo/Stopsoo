@@ -87,6 +87,15 @@ class App extends React.Component {
       }
     });
   }
+  // 검색 기록 리스트에서 X 버튼 눌렀을 때 검색 기록 삭제
+  handleClickRemoveHistory(event, keyword) {
+    // li element의 상위 element로의 이벤트 전파를 차단
+    event.stopPropagation();
+
+    store.removeHistory(keyword);
+    const historyList = store.getHistoryList();
+    this.setState({ historyList });
+  }
 
   render() {
     // 조건부 렌더링 방법 1
@@ -156,12 +165,13 @@ class App extends React.Component {
             <li key={id} onClick={() => this.search(keyword)}>
               <span>{keyword}</span>
               <span className="date">{formatRelativeDate(date)}</span>
-              <button className="btn-remove"></button>
+              <button className="btn-remove" onClick={event => this.handleClickRemoveHistory(event, keyword)}></button>
             </li>
           );
         })}
       </ul>
     );
+
     const tabs = (
       <>
         <ul className="tabs">

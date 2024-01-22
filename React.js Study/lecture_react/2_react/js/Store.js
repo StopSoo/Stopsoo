@@ -31,6 +31,13 @@ class Store {
   _sortHistory(history1, history2) {
     return history2.date > history1.date;
   }
+
+  removeHistory(keyword) {
+    // 해당 키워드에 대한 검색 기록만을 삭제하고 historyData에 재할당
+    this.storage.historyData = this.storage.historyData.filter(
+      (history) => history.keyword !== keyword
+    );
+  }
 }
 
 // 순수 JS 프로젝트에서는 main.js 파일에서 선언했던 store 객체를
