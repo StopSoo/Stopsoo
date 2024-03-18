@@ -18,26 +18,10 @@ export default class KeywordList extends React.Component {
   render() {
     return (
       <List 
-        data={this.state.keywordList} 
-        onClick={this.props.onClick} 
-        renderItem={(item, index) => {
-          return (
-            <>
-              <span className='number'>{index+1}</span>
-              <span>{item.keyword}</span>
-            </>
-          );
-        }}
+        data={keywordList} 
+        onClick={onClick} 
+        hasIndex={true}
       />
-    );
-  }
-
-  renderItem(item, index) {
-    return (
-      <>
-        <span className='number'>{index+1}</span>
-        <span>{item.keyword}</span>
-      </>
     );
   }
 }
