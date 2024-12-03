@@ -41,7 +41,7 @@
 <br> &nbsp; &nbsp; &nbsp; 부담을 줄이고 간편하게 할 수 있는 기부 플랫폼, `사랑의 붕어빵`
 <br/><br/>
 🥈 [2022 전북대학교 LINC 3.0 <함께 하는 디지털 전환 융합아이디어> 공모전 우수상] _2022.08.04, 디지털전환융합아이디어공모전 대학연합_
-<br> &nbsp; &nbsp; &nbsp; `Data-driven Analysis System for Introducing Bioplastic(DASIB): 프로그램데이터마이닝 기반 바이오플라스틱의 효용성 분석 시스템`
+<br> &nbsp; &nbsp; &nbsp; `Data-driven Analysis System for Introducing Bioplastic(DASIB)`
 <br/><br/>
 
 
@@ -54,8 +54,8 @@
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"><img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
 
   <br>
-  <h4>🪓 Framework</h4>
-  <img src="https://img.shields.io/badge/react.js-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"><img src="https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
+  <h4>🪓 Framework & Library</h4>
+  <img src="https://img.shields.io/badge/react.js-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"><img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"><img src="https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
   
   <br>
   <h4>⚙️ Development & Collaboration Tools</h4>
