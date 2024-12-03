@@ -10,8 +10,7 @@
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Stopsoo&show_icons=true&hide_border=true&title_color=004386&icon_color=004386&layout=compact)](https://github.com/Stopsoo)
 </div>
 
------------------
-### ⚡️ Experience
+## ⚡️ Experience
 - [유데미X스나이퍼팩토리] Next.js 3기 _(2024.09 ~ 2024.11)_
 - 2024 대한전자공학회 IEIE 하계종합학술대회 학회 _(2024.06.26 ~ 2024.06.28)_
 - 2023 제 1회 동국톤 _(2023.11 ~ 2023.12)_
@@ -20,15 +19,15 @@
 - 2022 전북대학교 LINC 3.0 <함께 하는 디지털 전환 융합 아이디어> _(2022.06 ~ 2022.08)_
 <br/>
 
-### 💻 Projects
-- **토마토들 🍅** Next.js 웹 개발 _(2024.10 ~ 2024.11)_
-- **라이브러리봇 🤖** Flutter 앱 개발 _(2024.02 ~ 2024.06)_
-- **사랑의 붕어빵 🐟** React.js 앱 개발 _(2023.11 ~ 2023.12)_
-- **UNI-SPHERE 🌏** React.js 웹 개발 _(2023.09 ~ 2023.12)_
-- **찰칵-메디슨 💊** Flutter 앱 개발 _(2023.07 ~ 2023.10)_
+## 💻 Projects
+- **토마토들 🍅** Next.js [Frontend] _(2024.10 ~ 2024.11)_
+- **라이브러리봇 🤖** Flutter [Design, Frontend] _(2024.02 ~ 2024.06)_
+- **사랑의 붕어빵 🐟** React.js [Frontend] _(2023.11 ~ 2023.12)_
+- **UNI-SPHERE 🌏** React.js [Design, Frontend] _(2023.09 ~ 2023.12)_
+- **찰칵-메디슨 💊** Flutter [Frontend] _(2023.07 ~ 2023.10)_
 <br/>
 
-### 🏆 Awards
+## 🏆 Awards
 🥇 [2024 유데미X스나이퍼팩토리 Next.js 3기 최우수상] _2024.11.01, 주식회사 웅진씽크빅_
 <br> &nbsp; &nbsp; &nbsp; 대학생들의 공모전과 대외활동 찾기 서비스, `토마토들`
 <br/><br/>
@@ -42,39 +41,29 @@
 <br> &nbsp; &nbsp; &nbsp; 부담을 줄이고 간편하게 할 수 있는 기부 플랫폼, `사랑의 붕어빵`
 <br/><br/>
 🥈 [2022 전북대학교 LINC 3.0 <함께 하는 디지털 전환 융합아이디어> 공모전 우수상] _2022.08.04, 디지털전환융합아이디어공모전 대학연합_
-<br> &nbsp; &nbsp; &nbsp; `Data-driven Analysis System for Introducing Bioplastic (DASIB): 프로그램데이터마이닝 기반 바이오 플라스틱의 효용성 분석 시스템`
-<br/>
+<br> &nbsp; &nbsp; &nbsp; `Data-driven Analysis System for Introducing Bioplastic(DASIB): 프로그램데이터마이닝 기반 바이오플라스틱의 효용성 분석 시스템`
+<br/><br/>
 
------------------
 
 <div> 
   <h4>🔠 Language</h4>
-  <img src="https://img.shields.io/badge/c++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white">
-  <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-  <img src="https://img.shields.io/badge/dart-0175C2?style=for-the-badge&logo=Dart&logoColor=white">
+  <img src="https://img.shields.io/badge/c++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"><img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"><img src="https://img.shields.io/badge/dart-0175C2?style=for-the-badge&logo=Dart&logoColor=white">
   <br>
-  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-  <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
-  <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white">
-  <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=yellow" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/><img src="https://img.shields.io/badge/CSS3-31572B6?style=for-the-badge&logo=css3&logoColor=white"/><img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"><img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=yellow" />
+  <br>
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"><img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
 
   <br>
   <h4>🪓 Framework</h4>
-  <img src="https://img.shields.io/badge/react.js-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-  <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white">
-  <img src="https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
+  <img src="https://img.shields.io/badge/react.js-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"><img src="https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
   
   <br>
   <h4>⚙️ Development & Collaboration Tools</h4>
-  <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
-  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-  <img src="https://img.shields.io/badge/VSCODE-007ACC?style=for-the-badge&logo=vscode&logoColor=white">
-  <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=FFFFFF"/>
-  <img src="https://img.shields.io/badge/supabase-000000?style=for-the-badge&logo=supabase&logoColor=3FCF8E" />
+  <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"><img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/VSCODE-007ACC?style=for-the-badge&logo=vscode&logoColor=white">
   <br>
-  <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
-  <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=FFFFFF"/>
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=FFFFFF"/>
+  <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=FFFFFF"/><img src="https://img.shields.io/badge/supabase-000000?style=for-the-badge&logo=supabase&logoColor=3FCF8E" />
+  <br>
+  <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"><img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=FFFFFF"/><img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=FFFFFF"/>
 </div>
 
 
