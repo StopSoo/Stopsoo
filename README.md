@@ -11,8 +11,9 @@
 </div>
 
 ## ⚡️ Experience
+- **소프트스퀘어드 외주 개발자 근무** _(2024.12 ~)_
 - [유데미X스나이퍼팩토리] Next.js 3기 _(2024.09 ~ 2024.11)_
-- 2024 대한전자공학회 IEIE 하계종합학술대회 학회 _(2024.06.26 ~ 2024.06.28)_
+- 2024 대한전자공학회 IEIE 하계종합학술대회 _(2024.06.26 ~ 2024.06.28)_
 - 2023 제 1회 동국톤 _(2023.11 ~ 2023.12)_
 - 2023 U-LINC 협력 사업 경진 대회 _(2023.12 ~ 2024.02)_
 - 제 17회 공개 SW 개발자대회 _(2023.07 ~ 2023.10)_
@@ -46,19 +47,23 @@
 
 
 <div> 
-  <h4>🔠 Language</h4>
+  <h3>🔠 Language</h3>
   <img src="https://img.shields.io/badge/c++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"><img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"><img src="https://img.shields.io/badge/dart-0175C2?style=for-the-badge&logo=Dart&logoColor=white">
   <br>
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/><img src="https://img.shields.io/badge/CSS3-31572B6?style=for-the-badge&logo=css3&logoColor=white"/><img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"><img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=yellow" />
   <br>
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"><img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+  <br>
+  
+  <h3>📚 Studying</h3>
+  <img src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white"><img src="https://img.shields.io/badge/Recoil-764ABC?style=for-the-badge&logo=Recoil&logoColor=white"/><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"><img src="https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white">
 
   <br>
-  <h4>🪓 Framework & Library</h4>
-  <img src="https://img.shields.io/badge/react.js-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"><img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"><img src="https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
+  <h3>🪓 Framework & Library</h3>
+  <img src="https://img.shields.io/badge/react.js-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"><img src="https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
   
   <br>
-  <h4>⚙️ Development & Collaboration Tools</h4>
+  <h3>⚙️ Development & Collaboration Tools</h3>
   <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"><img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/VSCODE-007ACC?style=for-the-badge&logo=vscode&logoColor=white">
   <br>
   <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=FFFFFF"/><img src="https://img.shields.io/badge/supabase-000000?style=for-the-badge&logo=supabase&logoColor=3FCF8E" />
