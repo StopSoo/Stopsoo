@@ -11,7 +11,7 @@
 </div>
 
 ## ⚡️ Experience
-- **소프트스퀘어드 외주 개발자 근무** _(2024.12 ~)_
+- **소프트스퀘어드 외주 개발자 근무** _(2024.12 ~ 2025.02)_
 - [유데미X스나이퍼팩토리] Next.js 3기 _(2024.09 ~ 2024.11)_
 - 2024 대한전자공학회 IEIE 하계종합학술대회 _(2024.06.26 ~ 2024.06.28)_
 - 2023 제 1회 동국톤 _(2023.11 ~ 2023.12)_
@@ -48,7 +48,7 @@
 
 <div> 
   <h3>🔠 Language</h3>
-  <img src="https://img.shields.io/badge/c++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"><img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"><img src="https://img.shields.io/badge/dart-0175C2?style=for-the-badge&logo=Dart&logoColor=white">
+  <img src="https://img.shields.io/badge/c++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"><img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"><img src="https://img.shields.io/badge/dart-0175C2?style=for-the-badge&logo=Dart&logoColor=white">
   <br>
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/><img src="https://img.shields.io/badge/CSS3-31572B6?style=for-the-badge&logo=css3&logoColor=white"/><img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"><img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=yellow" />
   <br>
@@ -57,6 +57,8 @@
   
   <h3>📚 Studying</h3>
   <img src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white"><img src="https://img.shields.io/badge/Recoil-764ABC?style=for-the-badge&logo=Recoil&logoColor=white"/><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"><img src="https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white">
+  <br>
+  <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white"><img src="https://img.shields.io/badge/Spring-6DB33F.svg?style=for-the-badge&logo=Spring&logoColor=white"><img src="https://img.shields.io/badge/Spring%20Boot-6DB33F.svg?style=for-the-badge&logo=Spring-Boot&logoColor=white">
 
   <br>
   <h3>🪓 Framework & Library</h3>
