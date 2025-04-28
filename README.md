@@ -1,17 +1,11 @@
 <div align=center>
-  
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FStopSoo&count_bg=%23FFEC00&title_bg=%23333333&icon=github.svg&icon_color=%23E7E7E7&title=GITHUB&edge_flat=false)](https://hits.seeyoufarm.com)
-
-</div>
-
-<div align=center>
 
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=Stopsoo&show_icons=true&hide_border=true&title_color=004386)](https://github.com/anuraghazra/github-readme-stats)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Stopsoo&show_icons=true&hide_border=true&title_color=004386&icon_color=004386&layout=compact)](https://github.com/Stopsoo)
 </div>
 
 ## ⚡️ Experience
-- **소프트스퀘어드 외주 개발자 근무** _(2024.12 ~ 2025.02)_
+- 소프트스퀘어드 외주 개발자 근무 _(2024.12 ~ 2025.02)_
 - [유데미X스나이퍼팩토리] Next.js 3기 _(2024.09 ~ 2024.11)_
 - 2024 대한전자공학회 IEIE 하계종합학술대회 _(2024.06.26 ~ 2024.06.28)_
 - 2023 제 1회 동국톤 _(2023.11 ~ 2023.12)_
