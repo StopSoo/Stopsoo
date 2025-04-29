@@ -1,7 +1,8 @@
 <div align=center>
-
+  
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=Stopsoo&show_icons=true&hide_border=true&title_color=004386)](https://github.com/anuraghazra/github-readme-stats)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Stopsoo&show_icons=true&hide_border=true&title_color=004386&icon_color=004386&layout=compact)](https://github.com/Stopsoo)
+[![Solved.ac Profile](http://mazassumnida.wtf/api/generate_badge?boj=stopsoo)](https://solved.ac/stopsoo)
 </div>
 
 ## ⚡️ Experience
@@ -39,7 +40,6 @@
 <br> &nbsp; &nbsp; &nbsp; `Data-driven Analysis System for Introducing Bioplastic(DASIB)`
 <br/><br/>
 
-
 <div> 
   <h3>🔠 Language</h3>
   <img src="https://img.shields.io/badge/c++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"><img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"><img src="https://img.shields.io/badge/dart-0175C2?style=for-the-badge&logo=Dart&logoColor=white">
@@ -66,6 +66,4 @@
   <br>
   <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"><img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=FFFFFF"/><img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=FFFFFF"/>
 </div>
-
-
 
