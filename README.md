@@ -15,6 +15,7 @@
 <br/>
 
 ## 💻 Projects
+- **PARENTLY 🧑‍🧒** React.js [Design, Frontend] _(2024.12 ~ 2025.03)_
 - **토마토들 🍅** Next.js [Frontend] _(2024.10 ~ 2024.11)_
 - **라이브러리봇 🤖** Flutter [Design, Frontend] _(2024.02 ~ 2024.06)_
 - **사랑의 붕어빵 🐟** React.js [Frontend] _(2023.11 ~ 2023.12)_
