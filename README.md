@@ -1,12 +1,11 @@
 <div align=center>
   
-[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=Stopsoo&show_icons=true&hide_border=true&title_color=004386)](https://github.com/anuraghazra/github-readme-stats)
 [![Solved.ac Profile](http://mazassumnida.wtf/api/generate_badge?boj=stopsoo)](https://solved.ac/stopsoo)
 </div>
 
 ## ⚡️ Experience
-- **코드비전 프론트엔드 개발자 인턴 근무 _(2025.10 ~)_**
-- 소프트스퀘어드 외주 개발자 근무 _(2024.12 ~ 2025.02)_
+- 코드비전 프론트엔드 개발자 인턴 근무 _(2025.10 ~ 2025.12)_
+- 소프트스퀘어드 외주 개발자 근무 _(2024.12 ~ 2025.03)_
 - [유데미X스나이퍼팩토리] Next.js 3기 _(2024.09 ~ 2024.11)_
 - 2024 대한전자공학회 IEIE 하계종합학술대회 _(2024.06.26 ~ 2024.06.28)_
 - 2023 제 1회 동국톤 _(2023.11 ~ 2023.12)_
@@ -16,6 +15,8 @@
 <br/>
 
 ## 💻 Projects
+- **Smart-Flow 🦾** Next.js [Design, Frontend] _(2025.11 ~ 2025.12)_
+- **Medict 🏥** Next.js [Design, Frontend] _(2025.10 ~ 2025.11)_
 - **PARENTLY 🧑‍🧒** React.js [Design, Frontend] _(2024.12 ~ 2025.03)_
 - **토마토들 🍅** Next.js [Frontend] _(2024.10 ~ 2024.11)_
 - **라이브러리봇 🤖** Flutter [Design, Frontend] _(2024.02 ~ 2024.06)_
@@ -51,9 +52,11 @@
   <br>
   
   <h3>📚 Studying</h3>
-  <img src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white"><img src="https://img.shields.io/badge/Recoil-764ABC?style=for-the-badge&logo=Recoil&logoColor=white"/><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"><img src="https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white">
+  <img src="https://img.shields.io/badge/storybook-%23FF4785.svg?style=for-the-badge&logo=storybook&logoColor=white"><img src="https://img.shields.io/badge/shadcn/ui-%23000000.svg?style=for-the-badge&logo=shadcnui&logoColor=white">
   <br>
-  <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white"><img src="https://img.shields.io/badge/Spring-6DB33F.svg?style=for-the-badge&logo=Spring&logoColor=white"><img src="https://img.shields.io/badge/Spring%20Boot-6DB33F.svg?style=for-the-badge&logo=Spring-Boot&logoColor=white">
+  <img src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white"><img src="https://img.shields.io/badge/Recoil-764ABC?style=for-the-badge&logo=Recoil&logoColor=white"/><img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"><img src="https://img.shields.io/badge/-Tanstack%20Query-000000?style=for-the-badge&logo=tanstack&logoColor=white">
+  <br>
+  <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white"><img src="https://img.shields.io/badge/Spring-6DB33F.svg?style=for-the-badge&logo=Spring&logoColor=white"><img src="https://img.shields.io/badge/Spring%20Boot-6DB33F.svg?style=for-the-badge&logo=Spring-Boot&logoColor=white"><img src="https://img.shields.io/badge/Docker-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white">
 
   <br>
   <h3>🪓 Framework & Library</h3>
