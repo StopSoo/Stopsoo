@@ -3,17 +3,6 @@
 [![Solved.ac Profile](http://mazassumnida.wtf/api/generate_badge?boj=stopsoo)](https://solved.ac/stopsoo)
 </div>
 
-## ⚡️ Experience
-- 코드비전 프론트엔드 개발자 인턴 근무 _(2025.10 ~ 2025.12)_
-- 소프트스퀘어드 외주 개발자 근무 _(2024.12 ~ 2025.03)_
-- [유데미X스나이퍼팩토리] Next.js 3기 _(2024.09 ~ 2024.11)_
-- 2024 대한전자공학회 IEIE 하계종합학술대회 _(2024.06.26 ~ 2024.06.28)_
-- 2023 제 1회 동국톤 _(2023.11 ~ 2023.12)_
-- 2023 U-LINC 협력 사업 경진 대회 _(2023.12 ~ 2024.02)_
-- 제 17회 공개 SW 개발자대회 _(2023.07 ~ 2023.10)_
-- 2022 전북대학교 LINC 3.0 <함께 하는 디지털 전환 융합 아이디어> _(2022.06 ~ 2022.08)_
-<br/>
-
 ## 💻 Projects
 - **Smart-Flow 🦾** Next.js [Design, Frontend] _(2025.11 ~ 2025.12)_
 - **Medict 🏥** Next.js [Design, Frontend] _(2025.10 ~ 2025.11)_
@@ -24,23 +13,6 @@
 - **UNI-SPHERE 🌏** React.js [Design, Frontend] _(2023.09 ~ 2023.12)_
 - **찰칵-메디슨 💊** Flutter [Frontend] _(2023.07 ~ 2023.10)_
 <br/>
-
-## 🏆 Awards
-🥇 [2024 유데미X스나이퍼팩토리 Next.js 3기 최우수상] _2024.11.01, 주식회사 웅진씽크빅_
-<br> &nbsp; &nbsp; &nbsp; 대학생들의 공모전과 대외활동 찾기 서비스, `토마토들`
-<br/><br/>
-📄 [2024 IEIE 하계종합학술대회 학회 참가 및 학술지 논문 게재] *2024.06.28, 대한전자공학회*
-<br> &nbsp; &nbsp; &nbsp; 동국대학교 중앙도서관 반입금지물품 인식 및 알림 서비스, `라이브러리봇`
-<br/><br/>
-🥇 [2024 U-LINC 협력사업 경진대회 최우수상] _2024.02.20, 동국대학교 3단계 산학연협력선도대학(LINC 3.0)_
-<br> &nbsp; &nbsp; &nbsp; 국제개발협력 관련 청년 단체를 위한 교류 활성화 플랫폼 개발, `UNI-SPHERE`
-<br/><br/>
-🥈 [2023 동국대학교 제 1회 동국톤 최우수상] _2023.12.20, 동국대학교 SW교육원_
-<br> &nbsp; &nbsp; &nbsp; 부담을 줄이고 간편하게 할 수 있는 기부 플랫폼, `사랑의 붕어빵`
-<br/><br/>
-🥈 [2022 전북대학교 LINC 3.0 <함께 하는 디지털 전환 융합아이디어> 공모전 우수상] _2022.08.04, 디지털전환융합아이디어공모전 대학연합_
-<br> &nbsp; &nbsp; &nbsp; `Data-driven Analysis System for Introducing Bioplastic(DASIB)`
-<br/><br/>
 
 <div> 
   <h3>🔠 Language</h3>
