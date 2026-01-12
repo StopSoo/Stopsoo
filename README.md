@@ -1,6 +1,10 @@
-<div align=center>
-  
-[![Solved.ac Profile](http://mazassumnida.wtf/api/generate_badge?boj=stopsoo)](https://solved.ac/stopsoo)
+<div align="center">
+  <a href="https://solved.ac/stopsoo">
+    <img src="http://mazassumnida.wtf/api/generate_badge?boj=stopsoo" height="170" />
+  </a>
+  <a href="https://velog.io/@jpy1030/posts">
+    <img src="https://velog-github-badge.vercel.app/badge/jpy1030?theme=dark&posts=5" height="170" />
+  </a>
 </div>
 
 ## 💻 Projects
